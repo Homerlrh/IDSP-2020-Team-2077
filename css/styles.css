@@ -1,0 +1,105 @@
+/*
+ __     _____     ______     ______  
+/\ \   /\  __-.  /\  ___\   /\  == \ 
+\ \ \  \ \ \/\ \ \ \___  \  \ \  _-/ 
+ \ \_\  \ \____-  \/\_____\  \ \_\   
+  \/_/   \/____/   \/_____/   \/_/   
+                                     
+ ______     ______     ______        
+/\  ___\   /\  ___\   /\  ___\       
+\ \ \____  \ \___  \  \ \___  \      
+ \ \_____\  \/\_____\  \/\_____\     
+  \/_____/   \/_____/   \/_____/     
+
+  
+Table of Contents
+    1.0 Navigation Bar
+        1.1 Top Half Navigation
+        1.2 Bottom Half Navigation
+    2.0 Drop Down Bar
+    3.0 Bottom Menu Bar
+
+*/
+
+
+/*1.0 Navagation Bar*/
+
+.navigation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+body {
+    margin: 0px;
+}
+.nav {
+    background-color: #EAF0F5;
+    font-family: 'Roboto', sans-serif;
+    width: 100vw;
+}
+/*1.1*/
+.tophalf-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+/*1.2*/
+.bothalf-nav {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.search-logo {
+    margin: 5px;
+}
+
+#search-box {
+    border: none;
+    padding: 6px;
+}
+
+/*2.0 Drop Down Menu*/
+
+.drop-down {
+    font-family: 'Roboto', sans-serif;
+    text-align: end;
+    background-color: #E6E6E6;
+    width: 20vh;
+    position: absolute;
+    top: 2rem;
+    display: none;
+    flex-direction: column;
+    right: 5px;
+    
+}
+
+.categories {
+    text-decoration: none;
+    padding: 8px;
+}
+
+/*3.0 Bottom Menu*/
+
+.bot-menu-container {
+    position: fixed;
+    bottom: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: #cfd3d4;
+}
+
+.bottom-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
+.bottom-icon {
+    align-items: center;
+    display: flex;
+}

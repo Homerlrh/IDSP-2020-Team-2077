@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">     
+        <meta name="keywords" content="HTML, CSS, XML, JavaScript">
+        <meta name="IDSP-Team-2020" content="IDSP-Team-2020, Homer Lee, Sahil Sian, Kai Erfle, Aksel Roughsedge">
+        <!-- Sets Viewport for Mobile Viewing -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Icon Library --> <!-- Roboto Type Font -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+        <title>IDSP Craigslist Redesign</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div class="navigation-container">
+            <div class="nav">
+                <div class="tophalf-nav">
+            <!-- Logo -->
+                    <span class="logo-logo" id="js-logo" >
+                        <i class="material-icons">texture</i>
+                    </span>
+            <!-- Hamburger Menu -->
+                    <span class="hamburger-menu" id="js_menu_toggle" onclick="menutoggle()">
+                        <i class="material-icons">menu</i>
+                    </span>
+                </div>
+                <div class="bothalf-nav">
+            <!-- Search Bar -->
+                    <input type="text" placeholder="Search.." id="search-box">
+                    <span class="search-logo" id="searchicon">
+                        <i class="material-icons">search</i>
+                    </span>
+                </div>
+            
+            </div>
+            <!-- Drop Down Menu -->
+            <div class="drop-down" id="js-menu-dropdown">
+                <a href="#" class="categories">Housing</a>
+                <a href="#" class="categories">Auto</a>
+                <a href="#" class="categories">Electronics</a>
+                <a href="#" class="categories">Jobs</a>
+                <a href="#" class="categories">Community</a>
+                <a href="#" class="categories">For Sale</a>
+            </div>
+
+        <!-- (Mobile) Bottom Menu -->
+
+        <div class="bot-menu-container">
+            <div class="home-button bottom-button">
+                <span class="home-icon bottom-icon" id="js-home-icon">
+                    <i class="material-icons">home</i>
+                </span>
+                <span class="home-text">Home</span>
+            </div>
+            <div class="favourite-button bottom-button">
+                <span class="favourite-icon bottom-icon" id="js-favourite-icon">
+                    <i class="material-icons">favorite</i>
+                </span>
+                <span class="favourite-text">Favourite</span>
+            </div>
+            <div class="post-button bottom-button">
+                <span class="post-icon bottom-icon" id="js-post-icon">
+                    <i class="material-icons">post_add</i>
+                </span>
+                <span class="post-text">Post</span>
+            </div>
+            <div class="account-button bottom-button">
+                <span class="account-icon bottom-icon" id="js-account-icon">
+                    <i class="material-icons">account_circle</i>
+                </span>
+                <span class="account-text">Account</span>
+            </div>
+        </div>
+    <script src="app.js"></script>
+    </body>
+</html>
