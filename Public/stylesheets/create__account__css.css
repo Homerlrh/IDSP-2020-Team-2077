@@ -1,0 +1,53 @@
+body{
+    margin: 0px;
+}
+
+.acc__field__container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 250px;
+    align-items: center;
+    text-align: center;
+    top: 100px;
+}
+
+.acc__field{
+    flex: 1;
+}
+
+.acc__field__box{
+    width: 220px;
+}
+
+.acc__line{
+    top: 180px;
+    position: relative;
+}
+
+.acc__btn{
+    position: relative;
+    width: 150px;
+    height: 30px;
+}
+
+.acc__btn__container{
+
+    top: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 200px;
+    align-items: center;
+    text-align: center;
+}
+
+.acc__btn__next{
+    top: 50px;
+}
+
+.acc__btn__login{
+    margin: 10px;
+}
