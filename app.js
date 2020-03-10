@@ -1,20 +1,16 @@
-let state = {};
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const app = express();
 
-fetch("./objects.json")
-    .then(function(resp) {
-        return resp.json();
-    })
-    .then(function(data) {
-        console.log(data);
-        state = data.boolstate
-    })
+module.exports = db => {
+  app.use(express.static(path.join(__dirname, "public")));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
 
-function menutoggle() {
-    if(state === false) {
-        state = true;
-        document.querySelector("#js-menu-dropdown").style.display = "flex";
-    } else {
-        state = false;
-        document.querySelector("#js-menu-dropdown").style.display = "none";
-    }
-}
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/view/index.html"));
+  });
+
+  return app;
+};

@@ -1,0 +1,29 @@
+{
+  "name": "IDSP-2020-Team-2077",
+  "version": "1.0.0",
+  "description": "1. Aksel Carl Roughsedge\r 2. Sahill Sian\r 3. Kai Erfle\r 4. Joseph Li\r 5. Ruihao(ruihao) li",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emo8355/IDSP-2020-Team-2077.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emo8355/IDSP-2020-Team-2077/issues"
+  },
+  "homepage": "https://github.com/emo8355/IDSP-2020-Team-2077#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
+  }
+}
