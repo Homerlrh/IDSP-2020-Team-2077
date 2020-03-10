@@ -1,0 +1,41 @@
+body{
+    margin: 0px;
+}
+
+.acc__field__container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 250px;
+    align-items: center;
+    text-align: center;
+    top: 100px;
+}
+
+.acc__field{
+    flex: 1;
+}
+
+.acc__field__box{
+    width: 220px;
+}
+.acc__btn__next{
+    position: relative;
+    width: 150px;
+    height: 30px;
+    top: 260px;
+}
+
+.acc__btn__container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.acc__line{
+    top: 230px;
+    position: relative;
+}
