@@ -1,0 +1,20 @@
+body{
+    margin: 0px;
+}
+
+.conf__container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 500px;
+    top: 100px;
+    position: relative;
+}
+
+.conf__btn{
+    width: 150px;
+    height: 30px;
+    top: 280px;
+    position: relative;
+}
