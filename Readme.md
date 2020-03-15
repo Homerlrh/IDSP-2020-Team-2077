@@ -17,7 +17,7 @@ Html page
 #### public
 |
 |__Javascripts: where all the javascript land
-|
-|__stylesheets: where all the css land
+\
+  |__stylesheets: where all the css land
 
 You guys can still do the prefer way. and i can change it to this version
