@@ -1,0 +1,138 @@
+<section class="container content_box1">
+	<div class="top_bar">
+		<span class="material-icons">
+			keyboard_backspace
+		</span>
+		<p>BACK</p>
+	</div>
+	<%if (locals.msg) { %>
+	<div class="alert alert-danger" role="alert">
+		<%=msg %>
+	</div>
+	<% } %>
+	<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
+	<div class="content_box1 inner">
+		<form id="user_sign_up" action="/auth/sign_up" method="POST">
+			<div class="form-group">
+				<label for="Username">Username</label>
+				<input
+					type="text"
+					class="form-control"
+					name="Username"
+					id="Username"
+					placeholder="John Doe"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="email">Email address</label>
+				<input
+					type="email"
+					class="form-control"
+					name="email"
+					id="email"
+					placeholder="exampleemail@gmail.com"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input
+					id="password"
+					type="password"
+					name="password"
+					class="form-control"
+					placeholder="Password"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="Confirm_Password">Confirm Password</label>
+				<input
+					id="Confirm_Password"
+					type="password"
+					name="Confirm_Password"
+					class="form-control"
+					placeholder="Confirm Password"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+					required
+				/>
+			</div>
+		</form>
+		<button id="toggle_btn" class="login">Sign up</button>
+		<p>OR</p>
+		<a style="width: 80%; margin: 0 auto;" href="/auth/fb_signin"
+			><img width="100%" alt="fb_login" src="/image/facebook.png"
+		/></a>
+		<a style="width: 80%; margin: 0 auto;" href="/auth/google_signin"
+			><img width="100%" alt="google_login" src="/image/google.png"
+		/></a>
+		<a class="skip" href="/type/login">Login</a>
+	</div>
+	<div class="inner2">
+		<div class="form-group inp">
+			<label for="Phone">Phone</label>
+			<input
+				type="text"
+				class="form-control"
+				name="Phone"
+				id="Phone"
+				placeholder="123-4567890"
+				value=""
+				form="user_sign_up"
+			/>
+		</div>
+		<div class="form-group inp">
+			<label for="Address">Address</label>
+			<input
+				type="text"
+				class="form-control"
+				name="Address"
+				id="Address"
+				placeholder="123 Main Street"
+				value=""
+				form="user_sign_up"
+			/>
+		</div>
+		<div class="form-group inp">
+			<label for="City">City</label>
+			<input
+				type="text"
+				class="form-control"
+				name="City"
+				id="City"
+				placeholder="Vancouver"
+				value=""
+				form="user_sign_up"
+			/>
+		</div>
+		<div class="form-group inp">
+			<label for="postcode">Postal code</label>
+			<input
+				type="text"
+				class="form-control"
+				name="postcode"
+				id="postcode"
+				placeholder="123 abc"
+				value=""
+				form="user_sign_up"
+			/>
+		</div>
+		<div class="form-group inp">
+			<label for="Country">Country</label>
+			<input
+				type="text"
+				class="form-control"
+				name="Country"
+				id="Country"
+				placeholder="Canada"
+				value=""
+				form="user_sign_up"
+			/>
+		</div>
+		<button id="continue_btn" class="login inp">Continue</button>
+		<br />
+		<a class="skip" href="/skip">Skip for now</a>
+	</div>
+</section>

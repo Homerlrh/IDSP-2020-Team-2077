@@ -1,0 +1,48 @@
+<section class="container content_box1">
+	<div class="top_bar">
+		<span class="material-icons">
+			keyboard_backspace
+		</span>
+		<p>BACK</p>
+	</div>
+	<%if (locals.msg) { %>
+	<div class="alert alert-danger" role="alert">
+		<%=msg %>
+	</div>
+	<% } %>
+	<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
+	<form id="user_login" action="/auth/login" method="POST">
+		<div class="form-group">
+			<label for="email">Email address</label>
+			<input
+				type="email"
+				class="form-control"
+				name="email"
+				id="email"
+				placeholder="exampleemail@gmail.com"
+				required
+			/>
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input
+				id="password"
+				type="password"
+				name="password"
+				class="form-control"
+				placeholder="Password"
+				required
+			/>
+		</div>
+	</form>
+	<button form="user_login" class="login">Login</button>
+	<a class="skip" href="/forgot_password">Forgot Password ?</a>
+	<p>OR</p>
+	<a style="width: 80%; margin: 0 auto;" href="/auth/fb_signin"
+		><img width="100%" alt="fb_login" src="/image/facebook.png"
+	/></a>
+	<a style="width: 80%; margin: 0 auto;" href="/auth/google_signin"
+		><img width="100%" alt="google_login" src="/image/google.png"
+	/></a>
+	<a class="skip" href="/type/sign_up">Create account</a>
+</section>
