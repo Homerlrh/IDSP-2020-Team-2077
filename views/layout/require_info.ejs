@@ -1,0 +1,73 @@
+<%- include ("../partial/dialog"); %>
+
+<form id="user_sign_up" action="/auth/sign_up" method="POST">
+	<div class="form-group">
+		<label for="Username">Username</label>
+		<input
+			type="text"
+			class="form-control"
+			name="Username"
+			id="Username"
+			placeholder="John Doe"
+		/>
+	</div>
+	<div class="form-group">
+		<label for="email">Email address</label>
+		<input
+			type="email"
+			class="form-control"
+			name="email"
+			id="email"
+			placeholder="examplemail@gmail.com"
+		/>
+		<ul class="int_req">
+			<li for="email"><small>Must be an valid email</small></li>
+		</ul>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input
+			id="password"
+			type="password"
+			name="password"
+			class="form-control"
+			placeholder="Password"
+		/>
+		<ul class="int_req">
+			<li for="password">
+				<small>Must equal or more than 6 digit</small>
+			</li>
+			<li for="password">
+				<small>Must contain at least one upper and one lower</small>
+			</li>
+			<li for="password">
+				<small>Must contain at least one number</small>
+			</li>
+		</ul>
+	</div>
+	<div class="form-group">
+		<label for="Confirm_Password">Confirm Password</label>
+		<input
+			id="Confirm_Password"
+			type="password"
+			name="Confirm_Password"
+			class="form-control"
+			placeholder="Confirm Password"
+		/>
+		<ul class="int_req">
+			<li for="Confirm_Password"><small>password match</small></li>
+		</ul>
+	</div>
+</form>
+<button id="toggle_btn" class="login">Sign up</button>
+<br />
+
+<p>OR</p>
+<a style="width: 80%; margin: 0 auto;" href="/auth/fb_signin"
+	><img width="100%" alt="fb_login" src="/image/facebook.png"
+/></a>
+<a style="width: 80%; margin: 0 auto;" href="/auth/google_signin"
+	><img width="100%" alt="google_login" src="/image/google.png" /></a
+><br />
+<a class="skip" href="/type/login">Login</a>

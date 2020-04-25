@@ -18,11 +18,21 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="/css/main.css" />
+		<%if (locals.errmsg){ %>
+		<style>
+			.content_box1 {
+				height: 100%;
+			}
+		</style>
+		<% } %>
+
 		<title>Craigslist</title>
 	</head>
 	<body>
 		<%- body %>
 	</body>
 	<%- include ("./partial/jquery"); %>
+
 	<script src="/javascript/changeForm.js"></script>
+	<script src="/javascript/customFormValidation.js"></script>
 </html>

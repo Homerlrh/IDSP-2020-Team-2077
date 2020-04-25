@@ -8,15 +8,19 @@ const express = require("express"),
 
 module.exports = (db, passport) => {
 	app.use(express.static(path.join(__dirname, "public")));
-	app.use(expressLayouts);
 
+	app.use(expressLayouts);
 	app.set("view engine", "ejs");
+
 	app.use(express.urlencoded({ extended: false }));
 	app.use(express.json());
+
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(flash());
+
 	app.use(cookieParser());
+	app.use(flash());
+
 	app.use(helmet());
 
 	//serving login/sign up

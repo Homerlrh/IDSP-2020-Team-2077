@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const fb_strategy = require("passport-facebook").Strategy;
-const google_strategy = require("passport-google-oauth").Strategy;
+const google_strategy = require("passport-google-oauth20").Strategy;
 
 const user_control = require("../controllers/user_controller");
 require("dotenv").config();
@@ -79,7 +79,23 @@ const fb_login = new fb_strategy(
 	}
 );
 
+const google_login = new google_strategy(
+	{
+		clientID: process.env.GOOGLE_CLIENT_ID,
+		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		callbackURL: "/user/google/callback",
+	},
+	function (accessToken, refreshToken, profile, done) {
+		return profile
+			? done(null, profile)
+			: done(null, false, {
+					error: "Your login details are not valid. Please try again",
+			  });
+	}
+);
+
 module.exports = passport
 	.use("local", localLogin)
 	.use("jwt", jwtLogin)
-	.use("facebook_login", fb_login);
+	.use("facebook_login", fb_login)
+	.use("google_login", google_login);
