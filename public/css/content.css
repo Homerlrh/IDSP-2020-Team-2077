@@ -72,3 +72,30 @@ a.go_btn {
 	left: 0;
 	right: 0;
 }
+
+.nav_bar {
+	background-color: #fff;
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	height: 100vh;
+	width: 75%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #000000;
+}
+
+.sidebar_logosection {
+	text-align: center;
+	background-color: #005cec;
+	height: max-content;
+	padding: 35px 15px;
+}
+
+.sidebar_logo {
+	width: 55%;
+}
+
+ul {
+	list-style: none;
+}

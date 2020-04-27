@@ -13,7 +13,7 @@ connection.connect(function (err, connection) {
 		console.log(err.message);
 		return;
 	} else {
-		console.log("connected");
+		console.log(`Database connected`);
 	}
 });
 
