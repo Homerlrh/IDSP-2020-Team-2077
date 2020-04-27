@@ -15,7 +15,7 @@ body {
 
 .content_box1 {
 	box-sizing: border-box;
-	padding: 0 0 15% 0;
+	padding: 0 0 10% 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -85,7 +85,7 @@ body {
 	text-align: left;
 	position: relative;
 	top: 10px;
-	right: 120px;
+	right: 125px;
 }
 
 .input_space {
@@ -106,7 +106,9 @@ body {
 	padding: 0;
 }
 
-.inner2 {
+.inner2,
+.inner3,
+.inner4 {
 	display: none;
 	flex-direction: column;
 	align-items: center;
@@ -115,4 +117,60 @@ body {
 
 .inp {
 	width: 100%;
+}
+
+.terms_boiler {
+	margin-top: 50px;
+	font-size: 0.8rem;
+}
+
+.int_req {
+	opacity: 0.8;
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 1s ease-out;
+}
+
+input:focus + .int_req {
+	max-height: 500px;
+	transition: max-height 1s ease-in;
+}
+
+.invalid {
+	color: red;
+}
+.invalid::after {
+	content: "❌";
+}
+
+.valid {
+	color: #2ecc71;
+}
+
+.valid::after {
+	content: "✔️";
+}
+
+div.ui-dialog {
+	border-radius: 5%;
+	width: 250px !important;
+}
+
+div.ui-dialog > .ui-dialog-titlebar {
+	background: transparent;
+	border: none;
+}
+
+div.ui-dialog > .ui-widget-content {
+	border: none;
+}
+
+div.ui-dialog,
+div.ui-dialog > .ui-dialog-buttonpane {
+	background-color: #ffffff;
+}
+
+#confirm_agree {
+	width: 20px;
+	height: 20px;
 }

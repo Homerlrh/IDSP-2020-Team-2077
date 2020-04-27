@@ -13,7 +13,7 @@ connection.connect(function (err, connection) {
 		console.log(err.message);
 		return;
 	} else {
-		console.log("connected");
+		console.log(`Database connected`);
 	}
 });
 
@@ -32,4 +32,12 @@ exports.is_user = (email, cb) => {
 		[email],
 		cb
 	);
+};
+
+exports.create_user = (info, cb) => {
+	connection.query(`INSERT INTO user SET ?`, info, cb);
+};
+
+exports.get_user_by_id = (id, cb) => {
+	connection.query(`SELECT * FROM user WHERE id = ?`, [id], cb);
 };

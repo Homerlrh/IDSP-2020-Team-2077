@@ -6,8 +6,7 @@ exports.up = async (knex) => {
 			table.string("username").notNullable();
 			table.string("email").notNullable().unique();
 			table.string("password").notNullable();
-			table.integer("phone_number").notNullable().defaultTo(0000000000);
-			table.string("house_number").notNullable();
+			table.string("phone_number").notNullable().defaultTo("000-0000000");
 			table.string("street").notNullable();
 			table.string("city").notNullable();
 			table.string("province").notNullable();
@@ -118,7 +117,6 @@ exports.up = async (knex) => {
 				"seller_number",user.phone_number,
 				"seller_email",user.email,
 				"seller_adderss",CONCAT(
-				user.house_number,',',
 				user.street,',',
 				user.city,',',
 				user.province,',',

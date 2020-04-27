@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (passport) => {
 	router.get("/", (req, res) => {
-		res.send("dash");
+		res.render("content/home", { content_css: "/css/content.css" });
 	});
 
 	return router;

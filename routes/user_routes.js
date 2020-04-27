@@ -8,5 +8,10 @@ module.exports = (db, passport) => {
 		res.send(req.user._json);
 	});
 
+	const is_google = require("./middleware/google")(passport);
+	router.get("/google/callback", is_google, (req, res) => {
+		res.send(req.user._json);
+	});
+
 	return router;
 };

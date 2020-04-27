@@ -5,12 +5,13 @@
 		</span>
 		<p>BACK</p>
 	</div>
+
+	<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
 	<%if (locals.msg) { %>
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-danger" role="alert" style="width: 80%;">
 		<%=msg %>
 	</div>
 	<% } %>
-	<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
 	<form id="user_login" action="/auth/login" method="POST">
 		<div class="form-group">
 			<label for="email">Email address</label>

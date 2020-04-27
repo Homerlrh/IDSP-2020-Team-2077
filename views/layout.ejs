@@ -17,12 +17,26 @@
 			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
 			rel="stylesheet"
 		/>
+
+		<% if(locals.content_css) {%>
+		<link rel="stylesheet" href="<%=content_css%>" />
+		<%}else{%>
 		<link rel="stylesheet" href="/css/main.css" />
+		<%}%> <%if (locals.errmsg){ %>
+		<style>
+			.content_box1 {
+				height: 100%;
+			}
+		</style>
+		<% } %>
+
 		<title>Craigslist</title>
 	</head>
 	<body>
 		<%- body %>
 	</body>
 	<%- include ("./partial/jquery"); %>
+
 	<script src="/javascript/changeForm.js"></script>
+	<script src="/javascript/customFormValidation.js"></script>
 </html>

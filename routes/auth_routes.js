@@ -1,33 +1,98 @@
 const express = require("express");
 const router = express.Router();
 const auth_controller = require("../controllers/auth_controller");
+const bcrypt = require("bcryptjs");
 
 module.exports = (db, passport) => {
-	router.post("/login", (req, res, next) => {
-		const { email, password } = req.body;
-		db.is_user(email, (err, rows) => {
-			const is_user = rows[0].bool;
-			if (!is_user) {
-				res.render("layout/login", {
-					msg: "You are not a user, please login first",
-				});
-			} else {
-				passport.authenticate(
-					"local",
-					{ session: false },
-					async (err, user, info) => {
-						if (err || !user) {
-							res.render("layout/login", {
-								msg: info.error,
+	router
+		.route("/login")
+		.get((req, res) => {
+			res.render("layout/login");
+		})
+		.post((req, res, next) => {
+			const { email, password } = req.body;
+			db.is_user(email, (err, rows) => {
+				const is_user = rows[0].bool;
+				if (!is_user) {
+					res.render("layout/login", {
+						msg: "You are not a user, please login first",
+					});
+				} else {
+					passport.authenticate(
+						"local",
+						{ session: false },
+						async (err, user, info) => {
+							if (err || !user) {
+								res.render("layout/login", {
+									msg: info.error,
+								});
+							}
+							req.login(user, { session: false }, async (err) => {
+								if (err) {
+									res.send(err.message);
+								}
+								delete user.password; // delete password from token
+								const payload = { ...user };
+								const token = auth_controller.generateToken(payload);
+								res
+									.cookie("jwt", token, {
+										expires: new Date(Date.now() + 86400000),
+										httpOnly: true,
+									})
+									.redirect("/content");
 							});
 						}
-						req.login(user, { session: false }, async (err) => {
+					)(req, res, next);
+				}
+			});
+		});
+
+	router.get(
+		"/fb_signin",
+		passport.authenticate("facebook_login", { scope: "email" })
+	);
+
+	router.get(
+		"/google_signin",
+		passport.authenticate("google_login", {
+			scope: [
+				"https://www.googleapis.com/auth/userinfo.profile",
+				"https://www.googleapis.com/auth/userinfo.email",
+			],
+		})
+	);
+
+	router
+		.route("/sign_up")
+		.get((req, res) => {
+			res.render("layout/sign_up");
+		})
+		.post((req, res) => {
+			const user_info = { ...req.body };
+			db.is_user(user_info.email, (err, rows) => {
+				const is_user = rows[0].bool;
+				console.log(is_user);
+				if (is_user) {
+					res.render("layout/login", {
+						msg:
+							"You have already register an account with that email, please login",
+					});
+				} else {
+					delete user_info.confirm;
+					delete user_info.Confirm_Password;
+					user_info.password = auth_controller.get_hash_password(
+						user_info.password
+					);
+					db.create_user(user_info, (err, result) => {
+						if (err) {
+							return console.log(err.message);
+						}
+						db.get_user_by_id(result.insertId, (err, rows) => {
 							if (err) {
-								res.send(err.message);
+								console.log(err.message);
 							}
-							delete user.password; // delete password from token
-							const payload = { ...user };
-							const token = auth_controller.generateToken(payload);
+							const found_user = { ...rows[0] };
+							const token = auth_controller.generateToken(found_user);
 							res
 								.cookie("jwt", token, {
 									expires: new Date(Date.now() + 86400000),
@@ -35,19 +100,10 @@ module.exports = (db, passport) => {
 								})
 								.redirect("/content");
 						});
-					}
-				)(req, res, next);
-			}
+					});
+				}
+			});
 		});
-	});
 
-	router.get(
-		"/fb_signin",
-		passport.authenticate("facebook_login", { scope: "email" })
-	);
-
-	router.get("/google_signin", (req, res) => {
-		console.log("g");
-	});
 	return router;
 };
