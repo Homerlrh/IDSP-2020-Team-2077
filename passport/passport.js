@@ -24,8 +24,7 @@ const localLogin = new LocalStrategy(
 	async (email, password, done) => {
 		user_control.get_user(email, password, (err, user) => {
 			if (err) {
-				console.log(err);
-				return;
+				return console.log(err.message);
 			}
 			return user
 				? done(null, user)
@@ -54,12 +53,16 @@ const jwtLogin = new JwtStrategy(
 		secretOrKey: process.env.ACCESS_TOKEN_SECRET,
 	},
 	(payload, done) => {
-		const user = userController.get_user_by_id(payload._id);
-		return user
-			? done(null, user)
-			: done(null, false, {
-					error: "Your login details are not valid. Please try again",
-			  });
+		userController.get_user_by_id(payload.id, (err, user) => {
+			if (err) {
+				return console.log(err.message);
+			}
+			return user
+				? done(null, user)
+				: done(null, false, {
+						error: "can not find your user info, please try again later",
+				  });
+		});
 	}
 );
 

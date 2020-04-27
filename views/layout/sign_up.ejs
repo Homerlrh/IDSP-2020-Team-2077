@@ -10,11 +10,9 @@
 	<div class="content_box1 inner">
 		<%if (locals.errmsg){ %>
 		<div id="err_msg" style="width: 80%;">
-			<% for( item of errmsg) {%>
 			<div class="alert alert-danger" role="alert">
-				<%=item.msg %>
+				<%=errmsg %>
 			</div>
-			<%}%>
 		</div>
 		<% } %> <%- include("./require_info");%>
 	</div>

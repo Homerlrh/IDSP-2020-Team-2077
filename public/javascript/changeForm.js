@@ -34,6 +34,7 @@ bth.on("click", (e) => {
 	const c_pw = document.querySelector(
 		"label[for='Confirm_Password']:first-child"
 	).className;
+	const username = document.querySelector("#Username").value;
 	console.log("oh you clicked sign up");
 	if (
 		c_em == "invalid" ||
@@ -41,7 +42,8 @@ bth.on("click", (e) => {
 		pw_c == "invalid" ||
 		pw_c == "" ||
 		c_pw == "invalid" ||
-		c_pw == ""
+		c_pw == "" ||
+		username == ""
 	) {
 		$("#frm_validate").dialog("open");
 	} else {
@@ -64,9 +66,13 @@ const term_btn = $("#term_btn");
 term_btn.on("click", (e) => {
 	e.preventDefault();
 	console.log("oh you clicked term");
-	$(".logo1").hide();
-	$(".inner3").hide();
-	$(".inner4").css("display", "flex");
+	if ($("#confirm_agree").is(":checked")) {
+		$(".logo1").hide();
+		$(".inner3").hide();
+		$(".inner4").css("display", "flex");
+		return;
+	}
+	$("#term_btn").effect("shake", { direction: "up" });
 });
 
 $("#err_msg").change((e) => {

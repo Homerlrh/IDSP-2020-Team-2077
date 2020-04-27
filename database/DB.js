@@ -33,3 +33,11 @@ exports.is_user = (email, cb) => {
 		cb
 	);
 };
+
+exports.create_user = (info, cb) => {
+	connection.query(`INSERT INTO user SET ?`, info, cb);
+};
+
+exports.get_user_by_id = (id, cb) => {
+	connection.query(`SELECT * FROM user WHERE id = ?`, [id], cb);
+};

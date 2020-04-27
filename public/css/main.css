@@ -15,7 +15,7 @@ body {
 
 .content_box1 {
 	box-sizing: border-box;
-	padding: 0 0 15% 0;
+	padding: 0 0 10% 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -85,7 +85,7 @@ body {
 	text-align: left;
 	position: relative;
 	top: 10px;
-	right: 120px;
+	right: 125px;
 }
 
 .input_space {
@@ -168,4 +168,9 @@ div.ui-dialog > .ui-widget-content {
 div.ui-dialog,
 div.ui-dialog > .ui-dialog-buttonpane {
 	background-color: #ffffff;
+}
+
+#confirm_agree {
+	width: 20px;
+	height: 20px;
 }

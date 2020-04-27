@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "node server.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "nodemon server.js"
+		"dev": "nodemon server.js",
+		"create": "npx knex migrate:latest",
+		"insert": "npx knex seed:run"
 	},
 	"repository": {
 		"type": "git",
@@ -26,7 +28,6 @@
 		"ejs": "^3.0.2",
 		"express": "^4.17.1",
 		"express-ejs-layouts": "^2.5.0",
-		"express-validator": "^6.4.0",
 		"helmet": "^3.22.0",
 		"jsonwebtoken": "^8.5.1",
 		"knex": "^0.21.0",

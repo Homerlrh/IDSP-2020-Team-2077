@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth_controller = require("../controllers/auth_controller");
-const { body, check, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 module.exports = (db, passport) => {
 	router
@@ -67,38 +67,43 @@ module.exports = (db, passport) => {
 		.get((req, res) => {
 			res.render("layout/sign_up");
 		})
-		.post(
-			[
-				check("Username")
-					.not()
-					.isEmpty()
-					.withMessage("Username can not be null"),
-				check("email").isEmail().withMessage("Email formate is not correct"),
-				check("password")
-					.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/)
-					.withMessage(
-						"Password: At least one Upper case and one lower case must be at least 6 characters long"
-					)
-					.matches(/\d/)
-					.withMessage("Password: must contain a number"),
-			],
-			body("Confirm_Password").custom((value, { req }) => {
-				if (value !== req.body.password) {
-					throw new Error("Password confirmation does not match password");
+		.post((req, res) => {
+			const user_info = { ...req.body };
+			db.is_user(user_info.email, (err, rows) => {
+				const is_user = rows[0].bool;
+				console.log(is_user);
+				if (is_user) {
+					res.render("layout/login", {
+						msg:
+							"You have already register an account with that email, please login",
+					});
+				} else {
+					delete user_info.confirm;
+					delete user_info.Confirm_Password;
+					user_info.password = auth_controller.get_hash_password(
+						user_info.password
+					);
+					db.create_user(user_info, (err, result) => {
+						if (err) {
+							return console.log(err.message);
+						}
+						db.get_user_by_id(result.insertId, (err, rows) => {
+							if (err) {
+								console.log(err.message);
+							}
+							const found_user = { ...rows[0] };
+							const token = auth_controller.generateToken(found_user);
+							res
+								.cookie("jwt", token, {
+									expires: new Date(Date.now() + 86400000),
+									httpOnly: true,
+								})
+								.redirect("/content");
+						});
+					});
 				}
-				// Indicates the success of this synchronous custom validator
-				return true;
-			}),
-			(req, res) => {
-				const errors = validationResult(req);
-				if (!errors.isEmpty()) {
-					console.log(errors.array());
-				}
-				res.render("layout/sign_up", {
-					errmsg: errors.array(),
-				});
-				console.log(req.body);
-			}
-		);
+			});
+		});
+
 	return router;
 };

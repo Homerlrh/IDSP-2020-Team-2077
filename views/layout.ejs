@@ -17,8 +17,12 @@
 			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
 			rel="stylesheet"
 		/>
+
+		<% if(locals.content_css) {%>
+		<link rel="stylesheet" href="<%=content_css%>" />
+		<%}else{%>
 		<link rel="stylesheet" href="/css/main.css" />
-		<%if (locals.errmsg){ %>
+		<%}%> <%if (locals.errmsg){ %>
 		<style>
 			.content_box1 {
 				height: 100%;

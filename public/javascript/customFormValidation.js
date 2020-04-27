@@ -44,6 +44,15 @@ custom_validation.prototype = {
 	},
 };
 
+const username_validate = [
+	{
+		is_invalid: function (input) {
+			return !input.value.length > 0;
+		},
+		label: document.querySelector("label[for='Username']:first-child"),
+	},
+];
+
 const email_validate = [
 	{
 		is_invalid: function (input) {
@@ -91,6 +100,10 @@ const confirm_password = [
 ];
 
 // event listener
+
+const username_input = document.querySelector("#Username");
+username_input.custom_validation = new custom_validation(username_input);
+username_input.custom_validation.check_validity = username_validate;
 
 const email_input = document.querySelector("#email");
 email_input.custom_validation = new custom_validation(email_input);
