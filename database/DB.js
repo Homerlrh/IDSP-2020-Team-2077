@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const fs = require("fs");
 require("dotenv").config();
 
 const connection = mysql.createConnection({
@@ -6,6 +7,11 @@ const connection = mysql.createConnection({
 	password: process.env.password,
 	database: `craigslist`,
 	host: process.env.DSN || "35.203.176.28",
+	ssl: {
+		ca: process.env.ca.replace(/\\n/g, "\n"),
+		cert: process.env.cert.replace(/\\n/g, "\n"),
+		key: process.env.key.replace(/\\n/g, "\n"),
+	},
 });
 
 connection.connect(function (err, connection) {
