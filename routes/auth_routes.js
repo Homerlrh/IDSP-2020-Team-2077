@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const auth_controller = require("../controllers/auth_controller");
-const bcrypt = require("bcryptjs");
 
 module.exports = (db, passport) => {
 	router
@@ -21,13 +20,14 @@ module.exports = (db, passport) => {
 					passport.authenticate(
 						"local",
 						{ session: false },
-						async (err, user, info) => {
+						(err, user, info) => {
 							if (err || !user) {
 								res.render("layout/login", {
 									msg: info.error,
 								});
+								return;
 							}
-							req.login(user, { session: false }, async (err) => {
+							req.login(user, { session: false }, (err) => {
 								if (err) {
 									res.send(err.message);
 								}
@@ -39,7 +39,7 @@ module.exports = (db, passport) => {
 										expires: new Date(Date.now() + 86400000),
 										httpOnly: true,
 									})
-									.redirect("/content");
+									.redirect("/user/callback");
 							});
 						}
 					)(req, res, next);
@@ -55,10 +55,7 @@ module.exports = (db, passport) => {
 	router.get(
 		"/google_signin",
 		passport.authenticate("google_login", {
-			scope: [
-				"https://www.googleapis.com/auth/userinfo.profile",
-				"https://www.googleapis.com/auth/userinfo.email",
-			],
+			scope: ["profile", "email"],
 		})
 	);
 
@@ -71,7 +68,6 @@ module.exports = (db, passport) => {
 			const user_info = { ...req.body };
 			db.is_user(user_info.email, (err, rows) => {
 				const is_user = rows[0].bool;
-				console.log(is_user);
 				if (is_user) {
 					res.render("layout/login", {
 						msg:

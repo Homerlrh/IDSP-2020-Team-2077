@@ -3,6 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/e4ce15ec9e.js"
+			crossorigin="anonymous"
+		></script>
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,10 +37,21 @@
 		<title>Craigslist</title>
 	</head>
 	<body>
-		<%- body %>
+		<% if(locals.content_css) {%> <%- include ("./partial/sidemenu"); %>
+		<div id="overlay"></div>
+		<header><%- include ("./partial/header"); %></header>
+		<%- body %> <%- include ("./partial/footer"); %> <% } else { %> <%- body %>
+		<% } %>
 	</body>
 	<%- include ("./partial/jquery"); %>
-
 	<script src="/javascript/changeForm.js"></script>
+	<% if(locals.signup) { %>
 	<script src="/javascript/customFormValidation.js"></script>
+	<%}%>
+	<script src="/javascript/sidemenu_toggle.js"></script>
+	<% if(locals.content_css) {%>
+	<script src="/javascript/sub_category.js"></script>
+	<!-- <script src="/javascript/bottom_nav.js"></script> -->
+
+	<% } %>
 </html>

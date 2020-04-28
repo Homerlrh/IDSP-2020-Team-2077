@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-const fs = require("fs");
 require("dotenv").config();
 
 const connection = mysql.createConnection({
@@ -46,4 +45,24 @@ exports.create_user = (info, cb) => {
 
 exports.get_user_by_id = (id, cb) => {
 	connection.query(`SELECT * FROM user WHERE id = ?`, [id], cb);
+};
+
+exports.get_category_id = (type, cb) => {
+	connection.query(`SELECT id FROM category WHERE type = ?`, [type], cb);
+};
+
+exports.get_subcategory = (category_id, cb) => {
+	connection.query(
+		`SELECT name FROM sub_category WHERE category_id = ?`,
+		[category_id],
+		cb
+	);
+};
+
+exports.get_all_post_by_category = (category, sub_category_id, cb) => {
+	connection.query(
+		"SELECT * FROM view_post_img_detail WHERE category_id = ? AND sub_category_id = ?",
+		[category, sub_category_id],
+		cb
+	);
 };

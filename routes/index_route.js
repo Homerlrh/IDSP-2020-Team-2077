@@ -12,7 +12,9 @@ module.exports = () => {
 
 	router.get("/type/:type", (req, res) => {
 		const type = req.params.type;
-		type == "login" ? res.render("layout/login") : res.render("layout/sign_up");
+		type == "login"
+			? res.render("layout/login")
+			: res.render("layout/sign_up", { signup: true });
 	});
 
 	router.get("/logout", (req, res) => {

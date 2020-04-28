@@ -18,6 +18,14 @@ module.exports = (db, passport) => {
 	app.use(passport.initialize());
 	app.use(passport.session());
 
+	passport.serializeUser(function (user, done) {
+		done(null, user);
+	});
+
+	passport.deserializeUser(function (user, done) {
+		done(null, user);
+	});
+
 	app.use(cookieParser());
 	app.use(flash());
 
@@ -32,7 +40,7 @@ module.exports = (db, passport) => {
 	app.use("/auth", auth_route);
 
 	//serving content {eg. all post ; all category}
-	const content_route = require("./routes/content_route")();
+	const content_route = require("./routes/content_route")(db);
 	app.use("/content", content_route);
 
 	//serving user account page, login feature

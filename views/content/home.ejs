@@ -1,14 +1,11 @@
-<%- include ("../partial/sidemenu"); %>
-<header><%- include ("../partial/header"); %></header>
 <section class="container">
 	<div class="content_box">
 		<img class="logo" alt="stack_logo" src="/image/logo_with_text.png" />
-		<a class="go_btn" href="#">Housing</a>
-		<a class="go_btn" href="#">Vehicles</a>
-		<a class="go_btn" href="#">Electronics</a>
-		<a class="go_btn" href="#">For Sale</a>
-		<a class="go_btn" href="#">Jobs</a>
-		<a class="go_btn" href="#">Community</a>
+		<a class="go_btn" endpoint="/content/category/Housing">Housing</a>
+		<a class="go_btn" endpoint="/content/category/Vehicles">Vehicles</a>
+		<a class="go_btn" endpoint="/content/category/Electronics">Electronics</a>
+		<a class="go_btn" endpoint="/content/category/For Sale">For Sale</a>
+		<a class="go_btn" endpoint="/content/category/Jobs">Jobs</a>
+		<a class="go_btn" endpoint="/content/category/Community">Community</a>
 	</div>
 </section>
-<%- include ("../partial/footer"); %>
