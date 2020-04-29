@@ -4,7 +4,6 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const fb_strategy = require("passport-facebook").Strategy;
 const google_strategy = require("passport-google-oauth20").Strategy;
 const user_control = require("../controllers/user_controller");
-require("dotenv").config();
 
 const cookieExtractor = function (req) {
 	let token = null;

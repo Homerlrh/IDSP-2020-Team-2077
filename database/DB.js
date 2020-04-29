@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-require("dotenv").config();
 
 const connection = mysql.createConnection({
 	user: process.env.admin,
@@ -45,6 +44,10 @@ exports.create_user = (info, cb) => {
 
 exports.get_user_by_id = (id, cb) => {
 	connection.query(`SELECT * FROM user WHERE id = ?`, [id], cb);
+};
+
+exports.get_category = (cb) => {
+	connection.query(`SELECT type FROM category`, cb);
 };
 
 exports.get_category_id = (type, cb) => {

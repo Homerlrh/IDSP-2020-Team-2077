@@ -1,0 +1,31 @@
+<section class="container">
+	<div class="post_container">
+		<h3 class="post_style">title</h3>
+		<div class="form-group inp">
+			<label for="sort">Sort by</label>
+			<select class="form-control" type="text">
+				<option>Brand new</option>
+				<option>Good</option>
+				<option>Ok</option>
+				<option>Can not describe</option>
+			</select>
+		</div>
+		<div class="post_grid">
+			<% if(locals.content_css) {%> <%post.forEach(x=> {%>
+
+			<a href="/content/post_detail/<%=x.id%>" class="single-anchor">
+				<div class="single_post">
+					<img style="width: 10rem;" src="<%= %>" alt="Card image cap" />
+					<div class="post-body">
+						<h6><%= x.title %></h6>
+						<p class="price">CAD: $<%= x.price %></p>
+						<p class="condition">1 yr old</p>
+						<p class="date">April 27</p>
+						<p class="location">(Vancouver)</p>
+					</div>
+				</div>
+			</a>
+			<% }) ; %><%}%>
+		</div>
+	</div>
+</section>

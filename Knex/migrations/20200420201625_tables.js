@@ -103,7 +103,8 @@ exports.up = async (knex) => {
 				post.seller_id,
 				post.category_id,
 				post.sub_category_id,
-				JSON_ARRAYAGG(image.img_url)
+				post.created_at,
+				JSON_ARRAYAGG(image.img_url) As image
 			FROM post JOIN image
 				ON post.id = image.post_id
 			GROUP BY post.id;`

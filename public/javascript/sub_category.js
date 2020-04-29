@@ -57,6 +57,14 @@ function get_sub_link(categories, url, main_category) {
 	});
 }
 
+$(window).on("load", (e) => {
+	e.preventDefault();
+	categories.forEach((category, index) => {
+		const name = new capitalize(category.innerHTML);
+		category.innerHTML = name.check_includes();
+	});
+});
+
 categories.forEach((category, index) => {
 	$(category).on("click", (e) => {
 		e.preventDefault();
@@ -65,8 +73,8 @@ categories.forEach((category, index) => {
 		if (!$(category).hasClass("requirement_frm")) {
 			get_sub_link(categories, url, main_category);
 		} else {
-			console.log("anc");
-			$(".content_box").hide();
+			// $(".content_box").hide();
+			$("#getreq").attr("action", url).submit();
 		}
 	});
 });

@@ -39,7 +39,7 @@ module.exports = (db, passport) => {
 										expires: new Date(Date.now() + 86400000),
 										httpOnly: true,
 									})
-									.redirect("/user/callback");
+									.redirect("/content/home");
 							});
 						}
 					)(req, res, next);
@@ -94,7 +94,7 @@ module.exports = (db, passport) => {
 									expires: new Date(Date.now() + 86400000),
 									httpOnly: true,
 								})
-								.redirect("/content");
+								.redirect("/content/home");
 						});
 					});
 				}

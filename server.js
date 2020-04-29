@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config() || null;
 const http = require("http");
 const db = require("./database/DB");
 const passport = require("./passport/passport");
