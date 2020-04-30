@@ -175,11 +175,17 @@ li.Account > h5 {
 	background-color: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.25rem;
+	height: 7rem;
+}
+
+.single_post:hover {
+	box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 .post-body {
 	width: 100%;
 	padding: 0.25rem 0.3rem;
+	overflow-x: hidden;
 }
 .post-body > h6 {
 	font-weight: bold;
@@ -196,4 +202,10 @@ label[for="sort"] {
 .single-anchor {
 	color: unset;
 	text-decoration: none !important;
+}
+
+.post-img {
+	object-fit: scale-down;
+	width: 10rem;
+	border-right: 1px solid rgba(0, 0, 0, 0.125);
 }

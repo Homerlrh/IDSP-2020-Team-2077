@@ -45,7 +45,8 @@ module.exports = (db, passport) => {
 
 	//serving user account page, login feature
 	const user_route = require("./routes/user_routes")(db, passport);
-	app.use("/user", user_route);
+	const handler = require("./routes/middleware/handleauth");
+	app.use("/user", handler.handle_auth, user_route);
 
 	return app;
 };

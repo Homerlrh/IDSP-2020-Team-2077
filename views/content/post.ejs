@@ -1,6 +1,8 @@
 <section class="container">
 	<div class="post_container">
-		<h3 class="post_style">title</h3>
+		<h3 class="post_style" style="text-align: center;">
+			<%=title.charAt(0).toUpperCase() + title.slice(1);%>
+		</h3>
 		<div class="form-group inp">
 			<label for="sort">Sort by</label>
 			<select class="form-control" type="text">
@@ -13,15 +15,19 @@
 		<div class="post_grid">
 			<% if(locals.content_css) {%> <%post.forEach(x=> {%>
 
-			<a href="/content/post_detail/<%=x.id%>" class="single-anchor">
+			<a href="/content/post_detail/<%=x.post_id%>" class="single-anchor">
 				<div class="single_post">
-					<img style="width: 10rem;" src="<%= %>" alt="Card image cap" />
+					<img
+						src="<%=JSON.parse(x.image)[0] %>"
+						alt="Card image cap"
+						class="post-img"
+					/>
 					<div class="post-body">
-						<h6><%= x.title %></h6>
+						<h6><%= x.post_title %></h6>
 						<p class="price">CAD: $<%= x.price %></p>
-						<p class="condition">1 yr old</p>
-						<p class="date">April 27</p>
-						<p class="location">(Vancouver)</p>
+						<p class="condition"><%= x.item_condition%></p>
+						<p class="date"><%=x.date.toString().split('2020')[0]%></p>
+						<p class="location"><%= x.location %></p>
 					</div>
 				</div>
 			</a>

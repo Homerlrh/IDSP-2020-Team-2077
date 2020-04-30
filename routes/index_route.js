@@ -1,4 +1,5 @@
 const express = require("express");
+const check = require("./middleware/check_login");
 const router = express.Router();
 
 module.exports = () => {
@@ -10,9 +11,8 @@ module.exports = () => {
 		res.render("layout/main");
 	});
 
-	router.get("/type/:type", (req, res) => {
-		const type = req.params.type;
-		type == "login"
+	router.get("/type/:type", check.is_login, (req, res) => {
+		req.params.type == "login"
 			? res.render("layout/login")
 			: res.render("layout/sign_up", { signup: true });
 	});

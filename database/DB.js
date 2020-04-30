@@ -64,8 +64,35 @@ exports.get_subcategory = (category_id, cb) => {
 
 exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	connection.query(
-		"SELECT * FROM view_post_img_detail WHERE category_id = ? AND sub_category_id = ?",
+		"SELECT * FROM view_post_img_detail WHERE main_category = ? AND sub_category = ?",
 		[category, sub_category_id],
 		cb
 	);
 };
+
+// function a() {
+// 	connection.query(
+// 		`CREATE OR REPLACE VIEW view_post_img_detail AS
+// 	SELECT
+// 		post.id AS post_id,
+// 		post.title AS post_title,
+// 		post.description AS post_detail,
+// 		post.price AS price,
+// 		post.condition AS item_condition,
+// 		post.seller_id AS seller_id,
+// 		post.category_id AS main_category,
+// 		post.sub_category_id AS sub_category,
+// 		CONCAT(post.area," ",post.province)AS location,
+// 		post.created_at AS date,
+// 		JSON_ARRAYAGG(image.img_url) As image
+// 	FROM post JOIN image
+// 		ON post.id = image.post_id
+// 	GROUP BY post.id
+// 	ORDER BY post.created_at;`,
+// 		(err) => {
+// 			err ? console.log(err.message) : console.log("updated");
+// 		}
+// 	);
+// }
+
+// a();

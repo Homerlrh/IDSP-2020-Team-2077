@@ -77,7 +77,7 @@ const google_login = new google_strategy(
 	{
 		clientID: process.env.GOOGLE_CLIENT_ID,
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-		callbackURL: "http://localhost:3333/user/google/callback",
+		callbackURL: "/user/google/callback",
 	},
 	function (accessToken, refreshToken, profile, done) {
 		return profile

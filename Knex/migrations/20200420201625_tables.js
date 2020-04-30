@@ -1,6 +1,13 @@
 exports.up = async (knex) => {
 	return knex.schema
 		.withSchema("craigslist")
+		.raw(`SET FOREIGN_KEY_CHECKS=0;`)
+		.dropTableIfExists("user")
+		.dropTableIfExists("category")
+		.dropTableIfExists("post")
+		.dropTableIfExists("sub_category")
+		.dropTableIfExists("image")
+		.dropTableIfExists("comment")
 		.createTable("user", (table) => {
 			table.increments("id").primary();
 			table.string("username").notNullable();
@@ -95,19 +102,21 @@ exports.up = async (knex) => {
 		.raw(
 			`CREATE OR REPLACE VIEW view_post_img_detail AS
 			SELECT
-				post.id,
-				post.title,
-				post.description,
-				post.price,
-				post.condition,
-				post.seller_id,
-				post.category_id,
-				post.sub_category_id,
-				post.created_at,
+				post.id AS post_id,
+				post.title AS post_title,
+				post.description AS post_detail,
+				post.price AS price,
+				post.condition AS item_condition,
+				post.seller_id AS seller_id,
+				post.category_id AS main_category,
+				post.sub_category_id AS sub_category,
+				CONCAT(post.area," ",post.province)AS location,
+				post.created_at AS date,
 				JSON_ARRAYAGG(image.img_url) As image
 			FROM post JOIN image
 				ON post.id = image.post_id
-			GROUP BY post.id;`
+			GROUP BY post.id
+			ORDER BY post.created_at;`
 		)
 		.raw(
 			`CREATE OR REPLACE VIEW view_post_detail_user AS
@@ -127,8 +136,9 @@ exports.up = async (knex) => {
 			FROM view_post_img_detail
 				LEFT JOIN user
 				ON view_post_img_detail.seller_id = user.id
-			GROUP BY view_post_img_detail.id;`
+			GROUP BY view_post_img_detail.post_id;`
 		)
+		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
 		.then(console.log("table created"));
 };
 

@@ -38,10 +38,10 @@ module.exports = (db) => {
 			if (err) {
 				return console.log(err.message);
 			}
-			console.log(rows);
 			res.render("content/post", {
 				content_css: "/css/content.css",
 				post: [...rows],
+				title: type,
 			});
 		});
 	});
