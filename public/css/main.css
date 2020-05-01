@@ -75,11 +75,6 @@ body {
 	box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.skip {
-	font-family: "Roboto", sans-serif;
-	color: #7d5cec;
-}
-
 .top_bar {
 	display: flex;
 	text-align: left;

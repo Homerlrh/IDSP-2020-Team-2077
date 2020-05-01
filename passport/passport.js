@@ -3,36 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const fb_strategy = require("passport-facebook").Strategy;
 const google_strategy = require("passport-google-oauth20").Strategy;
-
 const user_control = require("../controllers/user_controller");
-
-passport.serializeUser(function (user, done) {
-	done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-	done(null, user);
-});
-
-const localLogin = new LocalStrategy(
-	{
-		usernameField: "email",
-		passwordField: "password",
-		session: false,
-	},
-	async (email, password, done) => {
-		user_control.get_user(email, password, (err, user) => {
-			if (err) {
-				return console.log(err.message);
-			}
-			return user
-				? done(null, user)
-				: done(null, false, {
-						error: "Your login details are not valid. Please try again",
-				  });
-		});
-	}
-);
 
 const cookieExtractor = function (req) {
 	let token = null;
@@ -46,16 +17,39 @@ const cookieExtractor = function (req) {
 	}
 };
 
+const localLogin = new LocalStrategy(
+	{
+		usernameField: "email",
+		passwordField: "password",
+		session: false,
+	},
+	(email, password, done) => {
+		user_control.get_user(email, password, (err, user) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			return user
+				? done(null, user)
+				: done(null, false, {
+						error: "Your login details are not valid. Please try again",
+				  });
+		});
+	}
+);
+
 const jwtLogin = new JwtStrategy(
 	{
 		jwtFromRequest: cookieExtractor,
 		secretOrKey: process.env.ACCESS_TOKEN_SECRET,
 	},
 	(payload, done) => {
-		userController.get_user_by_id(payload.id, (err, user) => {
+		user_control.get_user_by_id(payload.id, (err, rows) => {
 			if (err) {
 				return console.log(err.message);
 			}
+			const user = { ...rows[0] };
+			delete user.password;
 			return user
 				? done(null, user)
 				: done(null, false, {

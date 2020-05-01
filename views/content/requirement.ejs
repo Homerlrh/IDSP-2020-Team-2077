@@ -1,0 +1,64 @@
+<form method="post" action="" id="requirement_frm">
+	<div class="form-group inp">
+		<label for="type">Type</label>
+		<select class="form-control" id="type" name="type" type="text">
+			<option value="house">House</option>
+			<option value="townhouse">Townhouse</option>
+			<option value="apartment">Apartment</option>
+			<option value="basement">Basement</option>
+		</select>
+	</div>
+	<div class="form-group inp">
+		<label for="price">Cost</label>
+		<select class="form-control" id="price" name="price" type="text">
+			<option value="1,000,000.0">$1M ~ $1.5M </option>
+			<option value="1,500,000.0">$1.5M ~ $2M </option>
+			<option value="2,000,000.0">$2M ~ $2.5M </option>
+			<option value="2,500,000.0">$2.5M ~ $3M </option>
+		</select>
+	</div>
+	<div class="form-group inp">
+		<label for="condition">Condition</label>
+		<select class="form-control" id="condition" name="condition" type="text">
+			<option value="n/a">n/a</option>
+			<option value="new">Brand New</option>
+			<option value="good">Good</option>
+			<option value="ok">Ok</option>
+		</select>
+	</div>
+	<div class="form-group inp">
+		<label for="Province">Province</label>
+		<select class="form-control" id="Province" name="Province" type="text">
+			<option value="BC">n/a</option>
+			<option value="">Brand New</option>
+			<option value="good">Good</option>
+			<option value="ok">Ok</option>
+		</select>
+	</div>
+	<div class="form-group inp">
+		<label for="postcode">Postal code</label>
+		<input
+			type="text"
+			class="form-control"
+			name="postcode"
+			id="postcode"
+			placeholder="123 abc"
+			value=""
+		/>
+	</div>
+	<div class="form-group inp">
+		<label for="Country">Country</label>
+		<input
+			type="text"
+			class="form-control"
+			name="country"
+			id="Country"
+			placeholder="Canada"
+			value="Canada"
+		/>
+		<small>Default: Canada</small>
+	</div>
+	<button id="continue_btn" class="login inp">Continue</button>
+	<br />
+	<a class="skip" href="/skip">Skip for now</a>
+</form>

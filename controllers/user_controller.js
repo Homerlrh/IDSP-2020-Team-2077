@@ -14,7 +14,7 @@ exports.get_user = (email, password, cb) => {
 				delete user[0].password;
 				cb(null, user[0]);
 			} else {
-				return false;
+				cb(err, null);
 			}
 		}
 	});

@@ -45,3 +45,35 @@ exports.create_user = (info, cb) => {
 exports.get_user_by_id = (id, cb) => {
 	connection.query(`SELECT * FROM user WHERE id = ?`, [id], cb);
 };
+
+exports.get_category = (cb) => {
+	connection.query(`SELECT type FROM category`, cb);
+};
+
+exports.get_category_id = (type, cb) => {
+	connection.query(`SELECT id FROM category WHERE type = ?`, [type], cb);
+};
+
+exports.get_subcategory = (category_id, cb) => {
+	connection.query(
+		`SELECT name FROM sub_category WHERE category_id = ?`,
+		[category_id],
+		cb
+	);
+};
+
+exports.get_all_post_by_category = (category, sub_category_id, cb) => {
+	connection.query(
+		"SELECT * FROM view_post_img_detail WHERE main_category = ? AND sub_category = ?",
+		[category, sub_category_id],
+		cb
+	);
+};
+
+exports.get_user_id_by_email = (email, cb) => {
+	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
+};
+
+// connection.query(`select count(*) as number_of_user from user`, (err, rows) => {
+// 	console.log(rows);
+// });

@@ -1,8 +1,20 @@
 exports.up = async (knex) => {
 	return knex.schema
 		.withSchema("craigslist")
+		.raw(`SET FOREIGN_KEY_CHECKS=0;`)
+		.dropTableIfExists("user")
+		.dropTableIfExists("category")
+		.dropTableIfExists("post")
+		.dropTableIfExists("sub_category")
+		.dropTableIfExists("image")
+		.dropTableIfExists("comment")
 		.createTable("user", (table) => {
 			table.increments("id").primary();
+			table
+				.string("avatar")
+				.defaultTo(
+					"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png"
+				);
 			table.string("username").notNullable();
 			table.string("email").notNullable().unique();
 			table.string("password").notNullable();
@@ -95,39 +107,45 @@ exports.up = async (knex) => {
 		.raw(
 			`CREATE OR REPLACE VIEW view_post_img_detail AS
 			SELECT
-				post.id,
-				post.title,
-				post.description,
-				post.price,
-				post.condition,
-				post.seller_id,
-				post.category_id,
-				post.sub_category_id,
-				JSON_ARRAYAGG(image.img_url)
+				post.id AS post_id,
+				post.title AS post_title,
+				post.description AS post_detail,
+				post.price AS price,
+				post.condition AS item_condition,
+				post.seller_id AS seller_id,
+				post.category_id AS main_category,
+				post.sub_category_id AS sub_category,
+				CONCAT(post.area," ",post.province)AS location,
+				post.created_at AS date,
+				JSON_ARRAYAGG(image.img_url) As image
 			FROM post JOIN image
 				ON post.id = image.post_id
-			GROUP BY post.id;`
+			GROUP BY post.id
+			ORDER BY post.created_at;`
 		)
 		.raw(
 			`CREATE OR REPLACE VIEW view_post_detail_user AS
-			SELECT
-				view_post_img_detail.*,
-				JSON_ARRAYAGG(JSON_OBJECT(
-				'seller_name', user.username,
-				"seller_number",user.phone_number,
-				"seller_email",user.email,
-				"seller_adderss",CONCAT(
-				user.street,',',
-				user.city,',',
-				user.province,',',
-				user.postcode,',',
-				user.country)
-				)) AS seller
-			FROM view_post_img_detail
-				LEFT JOIN user
-				ON view_post_img_detail.seller_id = user.id
-			GROUP BY view_post_img_detail.id;`
+				SELECT
+					view_post_img_detail.*,
+					JSON_OBJECT(
+					'seller_avatar',user.avatar,	
+					'seller_name', user.username,
+					"seller_number",user.phone_number,
+					"seller_email",user.email,
+					"seller_adderss",CONCAT(
+					user.street,',',
+					user.city,',',
+					user.province,',',
+					user.postcode,',',
+					user.country)
+					) AS seller
+				FROM view_post_img_detail
+					LEFT JOIN user
+					ON view_post_img_detail.seller_id = user.id
+				GROUP BY view_post_img_detail.post_id
+				ORDER BY view_post_img_detail.date;`
 		)
+		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
 		.then(console.log("table created"));
 };
 

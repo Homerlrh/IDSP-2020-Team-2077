@@ -75,7 +75,53 @@ term_btn.on("click", (e) => {
 	$("#term_btn").effect("shake", { direction: "up" });
 });
 
-$("#err_msg").change((e) => {
+// $("#err_msg").change((e) => {
+// 	e.preventDefault();
+// 	console.log("hi");
+// });
+
+const sub_category = {
+	1: ["Buy", "Rent", "Office", "Storage", "Vacation", "Rooms"],
+	2: ["New", "Used", "Modified", "Rebuilt", "Salvage", "Parts"],
+	3: [
+		"Mobile",
+		"Desktop / Laptop",
+		"Audio / Video",
+		"Gaming",
+		"Smart Devices",
+		"Other / Accessories",
+	],
+	4: [
+		"Full Time",
+		"Part Time",
+		"Contract",
+		"Temporary",
+		"Informal / On Call",
+		"Seasonal",
+	],
+	5: [
+		"Home / Garden",
+		"Fun / Recreation",
+		"Fashion / Apparel",
+		"Sports / Outdoor",
+		"Arts / Stationary",
+		"TV / Appliances",
+	],
+	6: [
+		"Activities / Events",
+		"Child Care",
+		"Volunteer Opportunities",
+		"Community Services",
+		"Classes",
+		"Groups",
+	],
+};
+
+$("#Category").on("change", (e) => {
 	e.preventDefault();
-	console.log("hi");
+	const sub_group = $("#Category").val();
+	//change value in sub category checkbox according to category
+	sub_category[sub_group].forEach((x, index) => {
+		$("#Sub-Category").append(`<option value="${index + 1}">${x}</option>`);
+	});
 });
