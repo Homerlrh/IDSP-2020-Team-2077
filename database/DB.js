@@ -70,29 +70,10 @@ exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	);
 };
 
-// function a() {
-// 	connection.query(
-// 		`CREATE OR REPLACE VIEW view_post_img_detail AS
-// 	SELECT
-// 		post.id AS post_id,
-// 		post.title AS post_title,
-// 		post.description AS post_detail,
-// 		post.price AS price,
-// 		post.condition AS item_condition,
-// 		post.seller_id AS seller_id,
-// 		post.category_id AS main_category,
-// 		post.sub_category_id AS sub_category,
-// 		CONCAT(post.area," ",post.province)AS location,
-// 		post.created_at AS date,
-// 		JSON_ARRAYAGG(image.img_url) As image
-// 	FROM post JOIN image
-// 		ON post.id = image.post_id
-// 	GROUP BY post.id
-// 	ORDER BY post.created_at;`,
-// 		(err) => {
-// 			err ? console.log(err.message) : console.log("updated");
-// 		}
-// 	);
-// }
+exports.get_user_id_by_email = (email, cb) => {
+	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
+};
 
-// a();
+// connection.query(`select count(*) as number_of_user from user`, (err, rows) => {
+// 	console.log(rows);
+// });

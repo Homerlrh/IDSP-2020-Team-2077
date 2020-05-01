@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const auth_controller = require("../controllers/auth_controller");
 
-module.exports = (db, passport) => {
+module.exports = (db, passport, auth_controller) => {
 	router
 		.route("/login")
 		.get((req, res) => {
@@ -65,6 +64,10 @@ module.exports = (db, passport) => {
 			res.render("layout/sign_up");
 		})
 		.post((req, res) => {
+			const set_cookie = require("./helper_function/create_cookie")(
+				db,
+				auth_controller
+			);
 			const user_info = { ...req.body };
 			db.is_user(user_info.email, (err, rows) => {
 				const is_user = rows[0].bool;
@@ -80,22 +83,9 @@ module.exports = (db, passport) => {
 						user_info.password
 					);
 					db.create_user(user_info, (err, result) => {
-						if (err) {
-							return console.log(err.message);
-						}
-						db.get_user_by_id(result.insertId, (err, rows) => {
-							if (err) {
-								console.log(err.message);
-							}
-							const found_user = { ...rows[0] };
-							const token = auth_controller.generateToken(found_user);
-							res
-								.cookie("jwt", token, {
-									expires: new Date(Date.now() + 86400000),
-									httpOnly: true,
-								})
-								.redirect("/content/home");
-						});
+						err
+							? console.log(err.message)
+							: set_cookie(req, res, result.insertId);
 					});
 				}
 			});

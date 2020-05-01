@@ -31,12 +31,18 @@ module.exports = (db, passport) => {
 
 	app.use(helmet());
 
+	const auth_controller = require("./controllers/auth_controller");
+
 	//serving login/sign up
 	const index_route = require("./routes/index_route")();
 	app.use("/", index_route);
 
 	//serving auth method
-	const auth_route = require("./routes/auth_routes")(db, passport);
+	const auth_route = require("./routes/auth_routes")(
+		db,
+		passport,
+		auth_controller
+	);
 	app.use("/auth", auth_route);
 
 	//serving content {eg. all post ; all category}
@@ -44,9 +50,13 @@ module.exports = (db, passport) => {
 	app.use("/content", content_route);
 
 	//serving user account page, login feature
-	const user_route = require("./routes/user_routes")(db, passport);
-	const handler = require("./routes/middleware/handleauth");
-	app.use("/user", handler.handle_auth, user_route);
+	const user_route = require("./routes/user_routes")(
+		db,
+		passport,
+		auth_controller
+	);
+	const handler = require("./routes/middleware/handleauth").handle_auth;
+	app.use("/user", handler, user_route);
 
 	return app;
 };

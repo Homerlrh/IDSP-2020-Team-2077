@@ -2,11 +2,11 @@ module.exports = (passport) => {
 	const is_authenticate = (req, res, next) => {
 		passport.authenticate("jwt", { session: false }, (err, user, info) => {
 			if (!user) {
-				console.log(info);
-				// req.flash("msg", "Try to log in again.");
-				// res.render("error", { msg: req.flash("msg") });
+				console.log(err);
 			} else {
-				req.user = user;
+				if (!req.user) {
+					req.user = user;
+				}
 				next();
 			}
 		})(req, res, next);

@@ -7,13 +7,8 @@ module.exports = (passport) => {
 			{ failureRedirect: "/login" },
 			(err, user, info) => {
 				if (err) {
-					console.log(err);
-					return;
+					return console.log(err);
 				} else {
-					res.cookie("jwt", get_cookie.generateToken({ ...user._json }), {
-						expires: new Date(Date.now() + 86400000),
-						httpOnly: true,
-					});
 					req.user = user;
 					next();
 				}

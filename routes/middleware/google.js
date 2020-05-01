@@ -7,10 +7,6 @@ module.exports = (passport) => {
 				console.log(err);
 				return;
 			} else {
-				res.cookie("jwt", get_cookie.generateToken({ ...user._json }), {
-					expires: new Date(Date.now() + 86400000),
-					httpOnly: true,
-				});
 				req.user = user;
 				next();
 			}

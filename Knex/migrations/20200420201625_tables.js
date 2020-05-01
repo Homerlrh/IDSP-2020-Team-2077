@@ -10,6 +10,11 @@ exports.up = async (knex) => {
 		.dropTableIfExists("comment")
 		.createTable("user", (table) => {
 			table.increments("id").primary();
+			table
+				.string("avatar")
+				.defaultTo(
+					"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png"
+				);
 			table.string("username").notNullable();
 			table.string("email").notNullable().unique();
 			table.string("password").notNullable();
@@ -120,23 +125,25 @@ exports.up = async (knex) => {
 		)
 		.raw(
 			`CREATE OR REPLACE VIEW view_post_detail_user AS
-			SELECT
-				view_post_img_detail.*,
-				JSON_ARRAYAGG(JSON_OBJECT(
-				'seller_name', user.username,
-				"seller_number",user.phone_number,
-				"seller_email",user.email,
-				"seller_adderss",CONCAT(
-				user.street,',',
-				user.city,',',
-				user.province,',',
-				user.postcode,',',
-				user.country)
-				)) AS seller
-			FROM view_post_img_detail
-				LEFT JOIN user
-				ON view_post_img_detail.seller_id = user.id
-			GROUP BY view_post_img_detail.post_id;`
+				SELECT
+					view_post_img_detail.*,
+					JSON_OBJECT(
+					'seller_avatar',user.avatar,	
+					'seller_name', user.username,
+					"seller_number",user.phone_number,
+					"seller_email",user.email,
+					"seller_adderss",CONCAT(
+					user.street,',',
+					user.city,',',
+					user.province,',',
+					user.postcode,',',
+					user.country)
+					) AS seller
+				FROM view_post_img_detail
+					LEFT JOIN user
+					ON view_post_img_detail.seller_id = user.id
+				GROUP BY view_post_img_detail.post_id
+				ORDER BY view_post_img_detail.date;`
 		)
 		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
 		.then(console.log("table created"));

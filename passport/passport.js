@@ -44,10 +44,12 @@ const jwtLogin = new JwtStrategy(
 		secretOrKey: process.env.ACCESS_TOKEN_SECRET,
 	},
 	(payload, done) => {
-		userController.get_user_by_id(payload.id, (err, user) => {
+		user_control.get_user_by_id(payload.id, (err, rows) => {
 			if (err) {
 				return console.log(err.message);
 			}
+			const user = { ...rows[0] };
+			delete user.password;
 			return user
 				? done(null, user)
 				: done(null, false, {
