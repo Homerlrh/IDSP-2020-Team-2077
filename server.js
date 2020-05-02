@@ -1,3 +1,8 @@
+try {
+	require("dotenv").config();
+} catch (Error) {
+	null;
+}
 const http = require("http");
 const db = require("./database/DB");
 const passport = require("./passport/passport");

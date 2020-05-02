@@ -1,12 +1,13 @@
 module.exports = (passport) => {
+	const get_cookie = require("./getcookie");
+
 	const is_facebook = (req, res, next) => {
 		passport.authenticate(
 			"facebook_login",
 			{ failureRedirect: "/login" },
 			(err, user, info) => {
 				if (err) {
-					console.log(err);
-					return;
+					return console.log(err);
 				} else {
 					req.user = user;
 					next();
