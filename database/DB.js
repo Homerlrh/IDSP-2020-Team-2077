@@ -74,6 +74,14 @@ exports.get_user_id_by_email = (email, cb) => {
 	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
 };
 
-// connection.query(`select count(*) as number_of_user from user`, (err, rows) => {
+// connection.query(`select * from user`, (err, rows) => {
 // 	console.log(rows);
 // });
+
+exports.create_post = (info, cb) => {
+	connection.query(`INSERT INTO post SET ?`, info, cb);
+};
+
+exports.upload_photo = (photo, cb) => {
+	connection.query(`INSERT INTO image SET ?`, photo, cb);
+};

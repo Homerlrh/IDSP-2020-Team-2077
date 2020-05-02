@@ -31,7 +31,6 @@
 	align-content: center;
 	justify-items: center;
 	padding: 10px 0;
-	min-height: calc(100vh - 75px - 52px);
 }
 
 .content_box {
@@ -64,6 +63,10 @@
 	width: 10rem;
 	height: 7rem;
 	margin: auto;
+}
+
+.post_grid {
+	margin-bottom: 4rem;
 }
 
 .post-body {

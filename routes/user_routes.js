@@ -21,7 +21,6 @@ module.exports = (db, passport, auth_controller) => {
 				city: "",
 				province: "",
 			};
-			console.log(is_user);
 			if (is_user) {
 				db.get_user_id_by_email(req.user._json.email, (err, rows) => {
 					err ? console.log(err.message) : set_cookie(req, res, rows[0].id);
@@ -43,22 +42,33 @@ module.exports = (db, passport, auth_controller) => {
 	router
 		.route("/create_post")
 		.get((req, res) => {
-			console.log(1);
 			res.render("account/create_post", {
 				content_css: "/css/user.css",
+				user_id: req.user.id,
+				avatar: req.user.avatar,
+				email: req.user.email,
+				phone: req.user.phone_number == "" ? "n/a" : req.user.phone_number,
 			});
 		})
 		.post(AWS.upload.single("pic"), (req, res) => {
-			new formidable.IncomingForm()
-				.parse(req)
-				.on("field", (name, field) => {
-					console.log("Field", name, field);
-				})
-				.on("file", (name, file) => {
-					console.log("Uploaded file", file.name);
-				});
+			const post_body = { ...req.body };
+			const file_name = req.file.originalname;
 
-			// https://d39wlfkh0mxxlz.cloudfront.net/
+			const img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${req.file.originalname}`;
+
+			console.log(post_body);
+			db.create_post(post_body, (err, result) => {
+				err
+					? console.log(err)
+					: db.upload_photo(
+							{ img_url: img_url, post_id: result.insertId },
+							(err, result) => {
+								err ? console.log(err) : res.redirect("/user/login/callback");
+							}
+					  );
+			});
+
+			//
 		});
 
 	return router;

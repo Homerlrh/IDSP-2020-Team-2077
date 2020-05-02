@@ -19,6 +19,6 @@ exports.handle_auth = (req, res, next) => {
 		case "/user/login/callback":
 			return is_authenticate(req, res, next);
 		default:
-			is_login(req, res, next);
+			return is_authenticate(req, res, next);
 	}
 };
