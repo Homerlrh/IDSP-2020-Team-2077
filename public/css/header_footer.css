@@ -133,3 +133,14 @@ li.Account > h5 {
 	border: 1px solid #009bff;
 	box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5);
 }
+
+#logout-btn {
+	box-sizing: border-box;
+	padding: 0.45rem;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	color: red;
+	border-top: 1px solid #000;
+	font-size: 2rem;
+	font-weight: bold;
+}

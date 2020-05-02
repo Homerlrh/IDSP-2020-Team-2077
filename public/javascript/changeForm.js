@@ -120,8 +120,12 @@ const sub_category = {
 $("#Category").on("change", (e) => {
 	e.preventDefault();
 	const sub_group = $("#Category").val();
+	console.log($("#Category").val());
+	$("#Sub-Category").empty();
 	//change value in sub category checkbox according to category
 	sub_category[sub_group].forEach((x, index) => {
-		$("#Sub-Category").append(`<option value="${index + 1}">${x}</option>`);
+		$("#Sub-Category").append(
+			`<option alt="${x}" value="${index + 1}">${x}</option>`
+		);
 	});
 });
