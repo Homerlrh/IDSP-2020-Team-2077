@@ -1,0 +1,60 @@
+<div class="container">
+	<section id="post-sec">
+		<div class="d-flex" onclick=" window.history.back(); return false;">
+			<span class="material-icons">
+				keyboard_backspace
+			</span>
+			<p>BACK</p>
+		</div>
+		<img
+			alt="preview_pic"
+			name="preview_pic"
+			src="<%=picture[0]%>"
+			width="100%"
+		/>
+		<br />
+		<label class="d-flex"
+			>Title: &nbsp;
+			<span style="font-weight: bold;"> <%=post.post_title%></span></label
+		>
+		<label class="d-flex"
+			>Cost: &nbsp;
+			<span style="font-weight: bold;">$ <%=post.price%></span>
+		</label>
+		<label class="d-flex"
+			>Condition: &nbsp;
+			<span style="font-weight: bold;">$ <%=post.item_condition%></span>
+		</label>
+
+		<label class="d-flex"
+			>Locate at: &nbsp;
+			<span style="font-weight: bold;"><%=post.location%></span>
+		</label>
+		<br />
+		<br />
+		<article class="des"><%=post.post_detail%></article>
+		<br />
+		<br />
+		<div for="user_info">
+			<div class="user">
+				<img
+					src="<%=seller.seller_avatar%>"
+					alt="Card image cap"
+					class="avatar"
+				/>
+				<div style="margin: auto;">
+					<h6><%=seller.seller_email%></h6>
+
+					<% if(seller.seller_number == " "){ %>
+					<p>n/a</p>
+					<% }else{ %>
+					<p><%=seller.seller_number%></p>
+					<%}%>
+				</div>
+			</div>
+		</div>
+		<div style="text-align: right;">
+			<button id="contact">Contact</button>
+		</div>
+	</section>
+</div>

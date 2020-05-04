@@ -74,10 +74,6 @@ exports.get_user_id_by_email = (email, cb) => {
 	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
 };
 
-// connection.query(`select * from user`, (err, rows) => {
-// 	console.log(rows);
-// });
-
 exports.create_post = (info, cb) => {
 	connection.query(`INSERT INTO post SET ?`, info, cb);
 };
@@ -85,3 +81,23 @@ exports.create_post = (info, cb) => {
 exports.upload_photo = (photo, cb) => {
 	connection.query(`INSERT INTO image SET ?`, photo, cb);
 };
+
+exports.get_post_detail = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_detail_user WHERE post_id = ? `,
+		[id],
+		cb
+	);
+};
+
+exports.get_post_by_user_id = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_img_detail WHERE seller_id = ?`,
+		[id],
+		cb
+	);
+};
+
+// connection.query(`select * from post`, (err, row) => {
+// 	console.log(row);
+// });

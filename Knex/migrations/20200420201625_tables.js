@@ -146,6 +146,7 @@ exports.up = async (knex) => {
 				ORDER BY view_post_img_detail.date;`
 		)
 		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
+		.raw(`Delete from post WHERE timestamp < now() - interval 30 day;`)
 		.then(console.log("table created"));
 };
 

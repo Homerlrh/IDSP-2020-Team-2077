@@ -10,6 +10,7 @@ module.exports = (db) => {
 			res.render("content/home", {
 				content_css: "/css/content.css",
 				categories: [...rows],
+				is_login: req.cookies["jwt"] ? true : false,
 			});
 		});
 	});
@@ -31,6 +32,26 @@ module.exports = (db) => {
 		});
 	});
 
+	router.get("/sidemenu/:type", (req, res) => {
+		const type = req.params.type;
+		db.get_category_id(type, (err, rows) => {
+			if (err) {
+				return console.log(err.message);
+			}
+			const category_id = rows[0].id;
+			db.get_subcategory(category_id, (err, rows) => {
+				if (err) {
+					return console.log(err.message);
+				}
+				const sub_category = [...rows];
+				res.render("content/home", {
+					content_css: "/css/content.css",
+					sub_categories: sub_category,
+				});
+			});
+		});
+	});
+
 	//get data from db according the params in the url
 	router.get("/sub_category/:type/:category/:sub_category", (req, res) => {
 		const { type, category, sub_category } = req.params;
@@ -46,10 +67,18 @@ module.exports = (db) => {
 		});
 	});
 
-	//footer nav bar => get params form bottom nav bar
-	router.get("/bottom/:nav", (req, res) => {
-		const navigation = req.params.nav;
-		res.redirect(`/content/${navigation}`);
+	router.get("/post_detail/:post_id", (req, res) => {
+		const id = req.params.post_id;
+		db.get_post_detail(id, (err, rows) => {
+			return err
+				? console.log(err.message)
+				: res.render("content/detailpost", {
+						seller: JSON.parse({ ...rows[0] }.seller),
+						picture: JSON.parse({ ...rows[0] }.image),
+						post: { ...rows[0] },
+						content_css: "/css/content.css",
+				  });
+		});
 	});
 
 	return router;

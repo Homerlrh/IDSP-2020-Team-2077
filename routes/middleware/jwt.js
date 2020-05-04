@@ -3,6 +3,7 @@ module.exports = (passport) => {
 		passport.authenticate("jwt", { session: false }, (err, user, info) => {
 			if (!user) {
 				console.log(err);
+				res.redirect("/type/login");
 			} else {
 				if (!req.user) {
 					req.user = user;

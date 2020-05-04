@@ -2,6 +2,10 @@ body {
 	margin: 0;
 	padding: 0;
 }
+a {
+	text-decoration: none !important;
+	color: #000 !important;
+}
 
 .content_box {
 	box-sizing: border-box;
@@ -11,6 +15,16 @@ body {
 	align-items: center;
 	justify-content: space-evenly;
 	height: 100vh;
+}
+.content_box > .btn-grp > a:first-child {
+	margin-bottom: 20px;
+	color: #fff !important;
+}
+.content_box > .btn-grp {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
 }
 
 .content_box1 {
@@ -59,6 +73,7 @@ body {
 	font-size: 30px;
 	line-height: 42px;
 	outline: none !important;
+	text-align: center;
 }
 
 .login {
@@ -98,7 +113,11 @@ body {
 }
 
 .inner {
-	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
 }
 
 .inner2,
@@ -107,6 +126,8 @@ body {
 	display: none;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	margin: auto;
 	width: 80%;
 }
 
@@ -168,4 +189,9 @@ div.ui-dialog > .ui-dialog-buttonpane {
 #confirm_agree {
 	width: 20px;
 	height: 20px;
+}
+
+.sm-btn {
+	width: 80%;
+	margin: 0 auto;
 }

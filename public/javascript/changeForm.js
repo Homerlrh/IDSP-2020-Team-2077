@@ -11,6 +11,11 @@ $(function () {
 			duration: 1000,
 		},
 		modal: true,
+		position: {
+			my: "center",
+			at: "center",
+			of: $(".inner"),
+		},
 		buttons: {
 			Fix: function () {
 				$(this).dialog("close");
@@ -92,20 +97,20 @@ const sub_category = {
 		"Other / Accessories",
 	],
 	4: [
-		"Full Time",
-		"Part Time",
-		"Contract",
-		"Temporary",
-		"Informal / On Call",
-		"Seasonal",
-	],
-	5: [
 		"Home / Garden",
 		"Fun / Recreation",
 		"Fashion / Apparel",
 		"Sports / Outdoor",
 		"Arts / Stationary",
 		"TV / Appliances",
+	],
+	5: [
+		"Full Time",
+		"Part Time",
+		"Contract",
+		"Temporary",
+		"Informal / On Call",
+		"Seasonal",
 	],
 	6: [
 		"Activities / Events",
@@ -120,7 +125,6 @@ const sub_category = {
 $("#Category").on("change", (e) => {
 	e.preventDefault();
 	const sub_group = $("#Category").val();
-	console.log($("#Category").val());
 	$("#Sub-Category").empty();
 	//change value in sub category checkbox according to category
 	sub_category[sub_group].forEach((x, index) => {
