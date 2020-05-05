@@ -1,18 +1,24 @@
-<section class="container">
-	<div id="mobile">
+<section class="container alp">
+	<div class="content_box">
 		<form method="GET" action="" id="getreq" hidden></form>
-		<div class="content_box">
-			<img class="logo" alt="stack_logo" src="/image/logo_with_text.png" />
-			<% if(locals.categories) {%> <%categories.forEach(x=> {%>
+		<img class="logo" alt="stack_logo" src="/image/logo_with_text.png" />
+		<% if(locals.categories) {%> <%categories.forEach((x,index)=> {%>
+		<div class="all-c-box">
 			<a class="go_btn" endpoint="/content/category/<%= x.type %>"
-				><%= x.type %></a
+				><%= x.type %> </a
+			><%JSON.parse(x.all_category).forEach((k,num)=> { %>
+
+			<a
+				class="sub-c-btn"
+				href="/content/sub_category/<%=x.type.replace('/','_')%>/<%=index+1%>/<%=num+1%>"
+				><%=k%></a
 			>
-			<% }) ; %><%}%> <% if(locals.sub_categories) {%>
-			<%sub_categories.forEach(x=> {%>
-			<a class="go_btn" endpoint="/content/category/<%= x.type %>"
-				><%= x.name %></a
-			>
-			<% }) ; %><%}%>
+
+			<% }) ; %>
 		</div>
+		<% }) ; %> <%}%> <% if(locals.sub_categories) {%>
+		<%sub_categories.forEach(x=> {%>
+		<a class="go_btn"><%= x.name %></a>
+		<% }) ; %><%}%>
 	</div>
 </section>

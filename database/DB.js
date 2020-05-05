@@ -47,7 +47,7 @@ exports.get_user_by_id = (id, cb) => {
 };
 
 exports.get_category = (cb) => {
-	connection.query(`SELECT type FROM category`, cb);
+	connection.query(`SELECT * FROM view_all_category`, cb);
 };
 
 exports.get_category_id = (type, cb) => {
@@ -64,7 +64,7 @@ exports.get_subcategory = (category_id, cb) => {
 
 exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	connection.query(
-		"SELECT * FROM view_post_img_detail WHERE main_category = ? AND sub_category = ?",
+		"SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND main_category = ? AND sub_category = ?",
 		[category, sub_category_id],
 		cb
 	);
@@ -84,7 +84,7 @@ exports.upload_photo = (photo, cb) => {
 
 exports.get_post_detail = (id, cb) => {
 	connection.query(
-		`SELECT * FROM view_post_detail_user WHERE post_id = ? `,
+		`SELECT * FROM view_post_detail_user WHERE date > now() - interval 30 day AND post_id = ? `,
 		[id],
 		cb
 	);
@@ -92,12 +92,15 @@ exports.get_post_detail = (id, cb) => {
 
 exports.get_post_by_user_id = (id, cb) => {
 	connection.query(
-		`SELECT * FROM view_post_img_detail WHERE seller_id = ?`,
+		`SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND seller_id = ?`,
 		[id],
 		cb
 	);
 };
 
-// connection.query(`select * from post`, (err, row) => {
-// 	console.log(row);
-// });
+// connection.query(
+// 	,
+// 	(err, row) => {
+// 		err ? console.log(err) : console.log(row);
+// 	}
+// );

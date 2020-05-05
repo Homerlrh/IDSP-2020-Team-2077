@@ -47,6 +47,7 @@ module.exports = (db) => {
 				res.render("content/home", {
 					content_css: "/css/content.css",
 					sub_categories: sub_category,
+					is_login: req.cookies["jwt"] ? true : false,
 				});
 			});
 		});
@@ -63,6 +64,7 @@ module.exports = (db) => {
 				content_css: "/css/content.css",
 				post: [...rows],
 				title: type,
+				is_login: req.cookies["jwt"] ? true : false,
 			});
 		});
 	});
@@ -77,6 +79,7 @@ module.exports = (db) => {
 						picture: JSON.parse({ ...rows[0] }.image),
 						post: { ...rows[0] },
 						content_css: "/css/content.css",
+						is_login: req.cookies["jwt"] ? true : false,
 				  });
 		});
 	});

@@ -10,12 +10,16 @@
 		<ul>
 			<li class="Account">
 				<h5>Account</h5>
+				<%if(locals.is_login == false){%>
+
 				<ul class="act_init">
 					<li>
 						Create Account
 					</li>
 					<li>Sign In</li>
 				</ul>
+				<%}%>
+
 				<ul class="act_feature">
 					<li>Messages</li>
 					<li>Posts</li>

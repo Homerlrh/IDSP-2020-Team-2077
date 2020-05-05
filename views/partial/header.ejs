@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-	<div>
+	<div style="width: 10%;">
 		<a href="/content/home"
 			><img alt="logo" class="header_logo" src="/image/white_logo.png" /><img
 				alt="logo"
@@ -28,24 +28,37 @@
 				</li>
 			</ul>
 		</div>
-		<div>
-			<form class="form-inline my-2 my-lg-0">
-				<input
-					class="form-control mr-sm-2"
-					type="search"
-					placeholder="Search"
-					aria-label="Search"
-				/>
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-					Search
-				</button>
-			</form>
-		</div>
+
 		<%if(locals.is_login == false){%>
 		<div class="header_signin">
 			<a href="/type/login">Sign In</a>
 			<a href="/type/sign_up">Sign Up</a>
 		</div>
+		<%}else{ %>
+		<div class="dropdown">
+			<button
+				type="button"
+				data-toggle="dropdown"
+				class="account-button"
+			></button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="/type/login"
+					><i class="fas fa-user-circle"></i>
+
+					Account page</a
+				>
+				<a class="dropdown-item" href="/user/setting"
+					><i class="fas fa-cog"></i>
+
+					Setting</a
+				>
+				<a class="dropdown-item" href="/logout"
+					><i class="fas fa-sign-out-alt"></i>
+					logout
+				</a>
+			</div>
+		</div>
+
 		<%}%>
 	</div>
 

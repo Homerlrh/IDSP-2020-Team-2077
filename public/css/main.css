@@ -7,6 +7,7 @@ a {
 	color: #000 !important;
 }
 
+.dashboard,
 .content_box {
 	box-sizing: border-box;
 	padding: 30% 0 10% 0;
@@ -16,11 +17,11 @@ a {
 	justify-content: space-evenly;
 	height: 100vh;
 }
-.content_box > .btn-grp > a:first-child {
+.dashboard > .btn-grp > a:first-child {
 	margin-bottom: 20px;
 	color: #fff !important;
 }
-.content_box > .btn-grp {
+.dashboard > .btn-grp {
 	display: flex;
 	flex-direction: column;
 	width: 100%;

@@ -14,8 +14,10 @@ body {
 }
 .header_logo2 {
 	display: none;
-	max-width: 10rem;
+	min-width: 120px;
+	max-width: 150px;
 }
+
 .n-itm {
 	display: flex;
 	justify-content: space-between;
@@ -104,6 +106,7 @@ li.Account > h5 {
 	display: none; /* making it hidden by default */
 	transition: display 3s ease-in;
 }
+
 #sidebar-toggle {
 	outline: none;
 }
@@ -139,6 +142,13 @@ li.Account > h5 {
 	font-size: 2rem;
 	font-weight: bold;
 }
+.d-sidebar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	background-color: #def1f2;
+	width: 20%;
+}
 
 .d-footer {
 	box-sizing: border-box;
@@ -147,7 +157,7 @@ li.Account > h5 {
 	left: 0;
 	right: 0;
 	background: #def1f2;
-	padding: 1.5rem;
+	padding: 1.5rem 0 1.5rem 8rem;
 	display: flex;
 	max-height: 13.65rem;
 }
@@ -221,6 +231,43 @@ li.Account > h5 {
 .main-pg {
 	display: flex !important;
 }
+.nav-item {
+	margin-right: 20px;
+}
+.nav-item:hover {
+	background-color: #7d5cec;
+	border-radius: 5%;
+}
+
+.account-button {
+	background: url(/image/header-account.png) no-repeat;
+	width: 150px;
+	height: 45px;
+	outline: none !important;
+	border: transparent;
+	margin-right: 2rem;
+}
+
+.dropdown-menu {
+	margin-right: 2rem;
+}
+.all-c-box {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-self: start;
+	height: max-content;
+}
+
+.sub-c-btn {
+	font-size: 0.8vw;
+	margin: 0 auto;
+	width: 80%;
+	color: rgba(0, 0, 0, 0.5);
+	margin-top: 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
 
 @media only screen and (min-width: 995px) {
 	.header_logo {
@@ -237,16 +284,18 @@ li.Account > h5 {
 		min-height: 100%;
 		margin-bottom: 13.65rem;
 	}
-	.content_box {
-		text-align: center;
-		padding: 20% 0 10% 0 !important;
-		/* min-height: 812px !important;
-		margin: auto !important; */
-		display: grid;
-		grid-template-columns: auto auto auto;
-		grid-gap: 100px;
+	.dashboard {
+		padding: 20% 0 !important;
 	}
-	.content_box > .logo {
+	.content_box {
+		display: grid !important;
+		grid-template-columns: 33% 33% 33%;
+		min-height: 75vh !important;
+		column-gap: 100px;
+		row-gap: 15px;
+	}
+	.content_box > .logo,
+	.dashboard > .logo {
 		display: none;
 	}
 	.login,
@@ -255,10 +304,6 @@ li.Account > h5 {
 	}
 	.text_field > h4 {
 		font-size: 3rem;
-	}
-	.container {
-		max-width: 35% !important;
-		min-height: 100vh;
 	}
 	.logo1 {
 		display: none !important;
@@ -273,6 +318,9 @@ li.Account > h5 {
 		width: 65% !important;
 		margin-bottom: 20px !important;
 	}
+	.go_btn {
+		pointer-events: none;
+	}
 }
 @media only screen and (max-width: 995px) {
 	.d-footer {
@@ -284,11 +332,24 @@ li.Account > h5 {
 	.welcome-msg {
 		display: none;
 	}
+
+	.sub-c-btn {
+		display: none;
+	}
+}
+
+@media (max-width: 1270px) {
+	.d-sidebar {
+		display: none;
+	}
 }
 
 @media (min-width: 768px) and (min-width: 576px) {
 	.container {
-		max-width: 70%;
+		max-width: 35%;
+	}
+	.container.alp {
+		max-width: 60%;
 	}
 }
 
