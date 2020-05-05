@@ -145,7 +145,17 @@ exports.up = async (knex) => {
 				GROUP BY view_post_img_detail.post_id
 				ORDER BY view_post_img_detail.date;`
 		)
+		.raw(
+			`CREATE OR REPLACE VIEW view_all_category AS
+				SELECT category.type , 
+				JSON_ARRAYAGG(sub_category.name) AS all_category
+				FROM category 
+				LEFT JOIN sub_category 
+				ON category.id = sub_category.category_id
+				GROUP BY category.id;`
+		)
 		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
+		.raw(`Delete from post WHERE timestamp < now() - interval 30 day;`)
 		.then(console.log("table created"));
 };
 

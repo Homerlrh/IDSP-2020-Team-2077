@@ -41,9 +41,10 @@ function get_sub_link(categories, url, main_category) {
 				const name = new capitalize(response[index].name);
 				category.innerHTML = name.check_includes();
 				const attr = {
-					endpoint: `/content/sub_category/${
-						response[index].name
-					}/${main_category}/${index + 1}`,
+					endpoint: `/content/sub_category/${response[index].name.replace(
+						"/",
+						"_"
+					)}/${main_category}/${index + 1}`,
 					class: "requirement_frm",
 				};
 				set_attributes(category, attr);

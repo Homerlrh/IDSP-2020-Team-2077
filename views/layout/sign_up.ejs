@@ -1,4 +1,6 @@
 <section class="container content_box1">
+	<%- include ("../partial/dialog"); %>
+
 	<div class="top_bar" onclick=" window.history.back(); return false;">
 		<span class="material-icons">
 			keyboard_backspace
@@ -7,26 +9,32 @@
 	</div>
 
 	<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
-	<div class="content_box1 inner">
+	<div class="inner">
+		<div class="welcome-msg">
+			<div class="text_field" style="margin: 0 auto;">
+				<h4>Welcome to Craigslist</h4>
+				<p>Join more than 60 Million users around the globe</p>
+			</div>
+		</div>
 		<%if (locals.errmsg){ %>
 		<div id="err_msg" style="width: 80%;">
 			<div class="alert alert-danger" role="alert">
 				<%=errmsg %>
 			</div>
 		</div>
-		<% } %> <%- include("./require_info");%>
+		<% } %> <%- include("require_info");%>
 	</div>
 	<div class="inner2">
-		<%- include("./location");%>
+		<%- include("location");%>
 	</div>
 
 	<!-- terms of service -->
 	<div class="inner3">
-		<%- include("./term_of_service");%>
+		<%- include("term_of_service");%>
 	</div>
 
 	<!-- terms of service -->
 	<div class="inner4">
-		<%- include("./confirm");%>
+		<%- include("confirm");%>
 	</div>
 </section>

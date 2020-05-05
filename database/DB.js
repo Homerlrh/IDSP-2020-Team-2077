@@ -47,7 +47,7 @@ exports.get_user_by_id = (id, cb) => {
 };
 
 exports.get_category = (cb) => {
-	connection.query(`SELECT type FROM category`, cb);
+	connection.query(`SELECT * FROM view_all_category`, cb);
 };
 
 exports.get_category_id = (type, cb) => {
@@ -64,7 +64,7 @@ exports.get_subcategory = (category_id, cb) => {
 
 exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	connection.query(
-		"SELECT * FROM view_post_img_detail WHERE main_category = ? AND sub_category = ?",
+		"SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND main_category = ? AND sub_category = ?",
 		[category, sub_category_id],
 		cb
 	);
@@ -74,10 +74,6 @@ exports.get_user_id_by_email = (email, cb) => {
 	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
 };
 
-// connection.query(`select * from user`, (err, rows) => {
-// 	console.log(rows);
-// });
-
 exports.create_post = (info, cb) => {
 	connection.query(`INSERT INTO post SET ?`, info, cb);
 };
@@ -85,3 +81,26 @@ exports.create_post = (info, cb) => {
 exports.upload_photo = (photo, cb) => {
 	connection.query(`INSERT INTO image SET ?`, photo, cb);
 };
+
+exports.get_post_detail = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_detail_user WHERE date > now() - interval 30 day AND post_id = ? `,
+		[id],
+		cb
+	);
+};
+
+exports.get_post_by_user_id = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND seller_id = ?`,
+		[id],
+		cb
+	);
+};
+
+// connection.query(
+// 	,
+// 	(err, row) => {
+// 		err ? console.log(err) : console.log(row);
+// 	}
+// );

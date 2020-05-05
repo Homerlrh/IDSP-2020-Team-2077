@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script
-			src="https://kit.fontawesome.com/e4ce15ec9e.js"
-			crossorigin="anonymous"
-		></script>
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-			crossorigin="anonymous"
-		/>
-		<link
-			href="https://fonts.googleapis.com/icon?family=Material+Icons"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="/css/header_footer.css" />
-
-		<% if(locals.content_css) {%>
+		<%- include ("partial/header_include"); %> <% if(locals.content_css) {%>
 		<link rel="stylesheet" href="<%=content_css%>" />
 		<%}else{%>
 		<link rel="stylesheet" href="/css/main.css" />
@@ -34,18 +12,41 @@
 			}
 		</style>
 		<% } %>
-
 		<title>Craigslist</title>
 	</head>
 	<body>
-		<% if(locals.content_css) {%> <%- include ("./partial/sidemenu"); %>
+		<% if(locals.content_css) {%> <%- include ("partial/sidemenu"); %>
 		<div id="overlay"></div>
-		<header><%- include ("./partial/header"); %></header>
-		<%- body %> <%- include ("./partial/footer"); %> <% } else { %> <%- body %>
+		<header><%- include ("partial/header"); %></header>
+		<div class="d-flex">
+			<div class="d-sidebar">
+				<form class="form-inline" style="margin: 0 auto;">
+					<i class="fas fa-search" aria-hidden="true">
+						<input class="form-control" type="search" placeholder="Search" />
+					</i>
+					<button class="btn btn-outline-success" type="submit">
+						Search
+					</button>
+				</form>
+				<%- include ("partial/clock"); %>
+			</div>
+			<%- body %>
+		</div>
+		<%- include ("partial/footer"); %><%- include ("partial/desktop_footer"); %>
+		<% } else { %>
+		<div class="main-pg">
+			<section class="side-logo-box">
+				<img src="/image/white_stack_logo.png" />
+			</section>
+
+			<div class="body-sec">
+				<%- body %>
+			</div>
+		</div>
 		<% } %>
 	</body>
-
-	<%- include ("./partial/jquery"); %>
+	<script src="/javascript/clock.js"></script>
+	<%- include ("partial/jquery"); %>
 	<script src="/javascript/changeForm.js"></script>
 	<% if(locals.signup) { %>
 	<script src="/javascript/customFormValidation.js"></script>

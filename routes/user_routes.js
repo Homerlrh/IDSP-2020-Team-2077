@@ -34,8 +34,13 @@ module.exports = (db, passport, auth_controller) => {
 	});
 
 	router.get("/login/callback", (req, res) => {
-		res.render("account/account", {
-			content_css: "/css/user.css",
+		db.get_post_by_user_id(req.user.id, (err, rows) => {
+			err
+				? console.log(err)
+				: res.render("account/account", {
+						content_css: "/css/user.css",
+						latest_post: rows,
+				  });
 		});
 	});
 
@@ -53,10 +58,7 @@ module.exports = (db, passport, auth_controller) => {
 		.post(AWS.upload.single("pic"), (req, res) => {
 			const post_body = { ...req.body };
 			const file_name = req.file.originalname;
-
-			const img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${req.file.originalname}`;
-
-			console.log(post_body);
+			const img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${file_name}`;
 			db.create_post(post_body, (err, result) => {
 				err
 					? console.log(err)
@@ -67,9 +69,11 @@ module.exports = (db, passport, auth_controller) => {
 							}
 					  );
 			});
-
-			//
 		});
+
+	router.get("/account_setting", (req, res) => {
+		res.send(req.user);
+	});
 
 	return router;
 };

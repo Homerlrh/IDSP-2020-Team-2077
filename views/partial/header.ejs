@@ -1,11 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-light text-white">
+<nav class="navbar navbar-expand-lg">
 	<div style="width: 10%;">
-		<a href="/content"
+		<a href="/content/home"
 			><img alt="logo" class="header_logo" src="/image/white_logo.png" /><img
 				alt="logo"
 				class="header_logo2"
 				src="/image/white_horizontal_logo.png"
 		/></a>
+	</div>
+	<div class="collapse navbar-collapse n-itm" id="navbarSupportedContent">
+		<div></div>
+		<div>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link text-white" href="/content/home">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white" href="#">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white" href="#">Messages</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white" href="/user/create_post">Post</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white" href="#">Help</a>
+				</li>
+			</ul>
+		</div>
+
+		<%if(locals.is_login == false){%>
+		<div class="header_signin">
+			<a href="/type/login">Sign In</a>
+			<a href="/type/sign_up">Sign Up</a>
+		</div>
+		<%}else{ %>
+		<div class="dropdown">
+			<button
+				type="button"
+				data-toggle="dropdown"
+				class="account-button"
+			></button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="/type/login"
+					><i class="fas fa-user-circle"></i>
+
+					Account page</a
+				>
+				<a class="dropdown-item" href="/user/setting"
+					><i class="fas fa-cog"></i>
+
+					Setting</a
+				>
+				<a class="dropdown-item" href="/logout"
+					><i class="fas fa-sign-out-alt"></i>
+					logout
+				</a>
+			</div>
+		</div>
+
+		<%}%>
 	</div>
 
 	<button id="sidebar-toggle" class="navbar-toggler" type="button">
