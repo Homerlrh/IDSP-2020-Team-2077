@@ -98,9 +98,10 @@ exports.get_post_by_user_id = (id, cb) => {
 	);
 };
 
-// connection.query(
-// 	,
-// 	(err, row) => {
-// 		err ? console.log(err) : console.log(row);
-// 	}
-// );
+exports.get_favorite_post_by_user_id = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_user_favorite_post WHERE id = ?`,
+		[id],
+		cb
+	);
+};

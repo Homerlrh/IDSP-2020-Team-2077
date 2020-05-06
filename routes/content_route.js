@@ -48,6 +48,8 @@ module.exports = (db) => {
 					content_css: "/css/content.css",
 					sub_categories: sub_category,
 					is_login: req.cookies["jwt"] ? true : false,
+					type: type,
+					id: category_id,
 				});
 			});
 		});

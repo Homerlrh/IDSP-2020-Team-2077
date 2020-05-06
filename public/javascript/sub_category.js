@@ -58,14 +58,6 @@ function get_sub_link(categories, url, main_category) {
 	});
 }
 
-$(window).on("load", (e) => {
-	e.preventDefault();
-	categories.forEach((category, index) => {
-		const name = new capitalize(category.innerHTML);
-		category.innerHTML = name.check_includes();
-	});
-});
-
 categories.forEach((category, index) => {
 	$(category).on("click", (e) => {
 		e.preventDefault();
@@ -77,5 +69,18 @@ categories.forEach((category, index) => {
 			// $(".content_box").hide();
 			$("#getreq").attr("action", url).submit();
 		}
+	});
+});
+
+$(window).on("load", (e) => {
+	e.preventDefault();
+	categories.forEach((category, index) => {
+		const name = new capitalize(category.innerHTML);
+		category.innerHTML = name.check_includes();
+	});
+
+	document.querySelectorAll(".requirement_frm").forEach((x) => {
+		const name = new capitalize(x.innerHTML);
+		x.innerHTML = name.check_includes();
 	});
 });

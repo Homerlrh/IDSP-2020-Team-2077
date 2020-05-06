@@ -287,14 +287,14 @@ li.Account > h5 {
 	.dashboard {
 		padding: 20% 0 !important;
 	}
-	.content_box {
+	.content_home {
 		display: grid !important;
 		grid-template-columns: 33% 33% 33%;
 		min-height: 75vh !important;
 		column-gap: 100px;
 		row-gap: 15px;
 	}
-	.content_box > .logo,
+	.content_home > .logo,
 	.dashboard > .logo {
 		display: none;
 	}

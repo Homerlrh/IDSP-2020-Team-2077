@@ -1,0 +1,436 @@
+$font: "Roboto", sans-serif
+$logo-width: 40%
+$center: 0 auto
+$bd-height: calc(100vh - 75px - 52px)
+
+$main-color: #009bff
+$second-color: #005cec
+$third-color: #477b99
+$input-color: #def1f2
+$color-blk: #000
+
+$box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+$font-weight: bold
+$border-radius: 60px
+$border-fade :rgba(0, 0, 0, 0.125)
+$box-sizing: border-box
+
+%btn-shr
+    width: 100%
+    color: white
+    background: $main-color
+    border: 1px solid $main-color
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    font-weight: bold
+    font-size: 30px
+    line-height: 42px
+    outline: none !important
+    border-radius: 60px
+
+%btn-shr2
+    font-size: 1.5rem
+    width: 45%
+    border-radius: 60px
+    padding: 0.5rem
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    outline: none
+    font-weight: bold
+
+%btn-shr3
+    width: 80%
+    border-radius: 60px
+    font-style: normal
+    font-weight: bold
+    font-size: 30px
+    line-height: 42px
+    outline: none !important
+    text-align: center
+
+%shr-box
+    box-sizing: $box-sizing
+    padding: 30% 0 10% 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
+    height: 100vh
+
+
+body
+    font-family: $font
+    margin: 0
+    padding: 0
+
+a
+    color: unset !important
+    text-decoration: none !important
+
+.container
+    background-color: #fff !important
+
+.form-control
+    background: #def1f2 !important
+
+.form-group
+    margin-bottom: 1rem
+
+.logo
+    width: $logo-width
+    margin: $center
+
+.logo1
+    width: 70%
+    margin:0 auto
+
+.profile
+    display: flex
+    flex-direction: column
+    padding-top: 0.5rem
+    margin-bottom: 75px
+
+.crt-post
+    width: 100%
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+    text-align: center
+    color: $color-blk
+    font-weight: bold
+    font-size: 2em
+    vertical-align: baseline
+
+
+
+.text
+    color: $third-color
+    font-weight: bold
+
+#create_post
+    padding:0.5rem 0
+
+.avatar
+    border-radius: 50%
+    height: 5rem
+    width: 5rem
+    object-fit: cover
+    margin: auto 0.5rem
+
+.preview
+    @extend %btn-shr
+
+.upload
+    @extend %btn-shr
+    color: $color-blk
+    background: #fff
+    border-color: $main-color 
+
+.post
+    position: relative
+    box-sizing: $box-sizing
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    min-height: $bd-height
+
+.area
+    div
+        display: flex
+        justify-content: space-between
+        select
+            width: 30%
+
+#city
+    width: 50%
+
+#preview_img
+    width: 100%
+
+#preview_Title
+    font-weight: bold
+    font-size: 1rem
+
+
+#edit-btn
+    @extend %btn-shr2
+    background-color: #fff
+    border: 3px solid #8721ff
+
+#publish-btn 
+    @extend %btn-shr2
+    border: 3px solid $main-color
+    background-color: $main-color
+    color: #fff
+
+#preview_section
+    display: none
+    box-sizing: border-box
+    justify-content: space-around
+    flex-direction: column
+    min-height: 100vh
+    padding: 0.25rem 0 0 0
+    margin-bottom: 6.5rem
+    label
+        margin-bottom: 0 !important
+
+#preview_Description 
+    padding: 0.5rem
+    word-wrap: break-word
+    max-height: 10rem
+    min-height: 5.5rem
+    border: 1px solid #000
+    overflow-y: scroll
+
+.preview_user
+    padding: 0.25rem
+    margin-bottom: 20px
+    box-sizing: $box-sizing
+    display: flex
+    background-color: #fff
+    height: 6rem
+    border: 1px solid $border-fade
+    border-radius: 0.25rem
+
+.content_box
+    @extend %shr-box
+
+.dashboard
+    @extend %shr-box
+    
+    .btn-grp
+        display: flex
+        flex-direction: column
+        width: 100%
+        align-items: center
+        
+        a:first-child
+            margin-bottom: 20px
+            color: #fff !important
+
+.content_box1
+    box-sizing: $box-sizing
+    padding: 0 0 10% 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
+    height: 100vh
+
+.text_field
+    width: 70%
+    text-align: center
+    h4
+        color: $third-color
+        font-weight: bold
+    p
+        margin-top: 20px
+        font-weight: bold
+
+.login
+    @extend %btn-shr3
+    background: $main-color
+    border: 1px solid $main-color	
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
+.sign_up
+    @extend %btn-shr3
+    background: #fff
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: 4px 4px 0px $border-fade
+
+.back-btn
+    display: flex
+    text-align: left
+    position: relative
+    top: 10px
+    right: 125px
+
+#user_sign_up, 
+#user_login
+    width: 80%
+
+.sm-btn
+    width: 80%
+    margin: 0 auto
+
+.inner
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin: auto
+
+.inner2,
+.inner3,
+.inner4
+    display: none
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin: auto
+    width: 80%
+
+.inp
+    width: 100%
+
+.terms_boiler 
+    margin-top: 50px
+    font-size: 0.8rem
+
+
+.int_req 
+    opacity: 0.8
+    overflow: hidden
+    max-height: 0
+    transition: max-height 1s ease-out
+
+
+input:focus + .int_req 
+    max-height: 500px
+    transition: max-height 1s ease-in
+
+.invalid 
+    color: red
+.invalid::after 
+    content: "❌"
+.valid 
+    color: #2ecc71
+.valid::after 
+    content: "✔️"
+
+#confirm_agree
+    width: 20px
+    height: 20px
+
+div.ui-dialog 
+    border-radius: 5%
+    width: 250px !important
+    background-color: #fff
+    .ui-dialog-titlebar
+        background: transparent
+        border: none
+    .ui-widget-content
+        border: none
+
+#timedate
+    font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype","Dejavu Sans", "Helvetica Neue", Arial, sans-serif
+    text-align: left
+    margin: 0 auto
+    color: #000
+    border-left: 3px solid #ed1f24
+    padding: 20px
+
+.requirement_frm,
+.go_btn
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25)
+    border-radius: 60px
+    text-align: center
+    color: $color-blk
+    font-weight: bold
+    font-size: 30px
+
+.content_home
+    box-sizing: $box-sizing
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+    padding: 0 0 10px 0
+    min-height: calc(100vh - 75px - 52px)
+
+.post_container
+    display: flex
+    flex-direction: column
+    align-content: center
+    justify-items: center
+    padding: 10px 0
+
+%post-body
+    margin-bottom: 20px
+    box-sizing: $box-sizing
+    display: flex
+    justify-content: start
+    background-color: #fff
+    border: 1px solid $border-fade
+    border-radius: 0.25rem
+    height: 7.5rem
+    
+.user_single_post
+    @extend %post-body
+    .post-img 
+        object-fit: scale-down
+        width: 10rem
+        border-right: 1px solid $border-fade
+    .post-body
+        width: 100%
+        padding: 0.25rem 0.3rem
+        overflow-x: hidden
+        h6
+            font-weight: bold
+        p
+            font-size: 0.8rem
+            margin-bottom: 0
+
+.post_grid
+    margin-bottom: 4rem
+
+.single_post
+    @extend %post-body
+    flex-direction: column
+    height: unset
+    .post-img
+        object-fit: scale-down
+        width: 10rem
+        height: 7rem
+        margin: auto
+    .post-body
+        border-top: 1px solid rgba(0, 0, 0, 0.125)
+        width: 100%
+        padding: 0.25rem 0.3rem
+        overflow-x: hidden
+        h6
+            font-weight: bold
+        p
+            font-size: 0.8rem
+            margin-bottom: 0 !important
+
+.single_post:hover, .user_single_post:hover
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
+
+label[for="sort"]
+    font-weight: bold
+
+.user
+    padding: 0.25rem
+    margin-bottom: 20px
+    box-sizing: $box-sizing
+    display: flex
+    background-color: #fff
+    height: 6rem
+    border: 1px solid rgba(0, 0, 0, 0.125)
+    border-radius: 0.25rem
+    img
+        border-radius: 50%
+        height: 5rem
+        width: 5rem
+
+#post-sec
+    padding-top: 1rem
+    height: 100%
+    margin-bottom: 6.5rem
+
+#contact
+    width: 45%
+    border-color: #009bff
+    background: #009bff
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    border-radius: 60px
+    padding: 0.5rem
+    font-weight: bold
+    color: #fff
+    font-size: 1.5rem
+    outline: none

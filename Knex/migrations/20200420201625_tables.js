@@ -5,6 +5,7 @@ exports.up = async (knex) => {
 		.dropTableIfExists("user")
 		.dropTableIfExists("category")
 		.dropTableIfExists("post")
+		.dropTableIfExists("favorite_post")
 		.dropTableIfExists("sub_category")
 		.dropTableIfExists("image")
 		.dropTableIfExists("comment")
@@ -67,6 +68,21 @@ exports.up = async (knex) => {
 				.integer("sub_category_id")
 				.unsigned()
 				.references("sub_category.id")
+				.onDelete("SET NULL")
+				.onUpdate("RESTRICT");
+		})
+		.createTable("favorite_post", (table) => {
+			table.increments("id").primary();
+			table
+				.integer("user_id")
+				.unsigned()
+				.references("user.id")
+				.onDelete("SET NULL")
+				.onUpdate("RESTRICT");
+			table
+				.integer("post_id")
+				.unsigned()
+				.references("post.id")
 				.onDelete("SET NULL")
 				.onUpdate("RESTRICT");
 		})
@@ -154,8 +170,25 @@ exports.up = async (knex) => {
 				ON category.id = sub_category.category_id
 				GROUP BY category.id;`
 		)
+		.raw(
+			`CREATE OR REPLACE VIEW view_user_favorite_post AS
+			SELECT user.id, 
+			JSON_ARRAYAGG(JSON_OBJECT(
+				'post_id', view_post_img_detail.post_id,
+				'post_title',view_post_img_detail.post_title,
+				'price',view_post_img_detail.price,
+				'condition',view_post_img_detail.item_condition,
+				'location',view_post_img_detail.location,
+				'date',view_post_img_detail.date,
+				'image',view_post_img_detail.image
+			)) AS favorite_post
+			FROM user
+			LEFT JOIN favorite_post ON user.id = user_id
+			LEFT JOIN view_post_img_detail ON favorite_post.post_id = view_post_img_detail.post_id
+			GROUP BY user.id
+			`
+		)
 		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
-		.raw(`Delete from post WHERE timestamp < now() - interval 30 day;`)
 		.then(console.log("table created"));
 };
 

@@ -38,7 +38,7 @@ module.exports = (db, passport, auth_controller) => {
 			err
 				? console.log(err)
 				: res.render("account/account", {
-						content_css: "/css/user.css",
+						content_css: "/css/2main.css",
 						latest_post: rows,
 				  });
 		});
@@ -48,7 +48,7 @@ module.exports = (db, passport, auth_controller) => {
 		.route("/create_post")
 		.get((req, res) => {
 			res.render("account/create_post", {
-				content_css: "/css/user.css",
+				content_css: "/css/2main.css",
 				user_id: req.user.id,
 				avatar: req.user.avatar,
 				email: req.user.email,
@@ -73,6 +73,13 @@ module.exports = (db, passport, auth_controller) => {
 
 	router.get("/account_setting", (req, res) => {
 		res.send(req.user);
+	});
+
+	router.get("/user-favorite", (req, res) => {
+		const id = req.user.id;
+		db.get_favorite_post_by_user_id(id, (err, rows) => {
+			err ? res.send(err) : res.send(JSON.parse(rows[0].favorite_post));
+		});
 	});
 
 	return router;
