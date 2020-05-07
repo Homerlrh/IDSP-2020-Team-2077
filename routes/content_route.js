@@ -63,10 +63,11 @@ module.exports = (db) => {
 				return console.log(err.message);
 			}
 			res.render("content/post", {
-				content_css: "/css/content.css",
+				content_css: true,
 				post: [...rows],
 				title: type,
 				is_login: req.cookies["jwt"] ? true : false,
+				footer: false,
 			});
 		});
 	});
@@ -82,6 +83,7 @@ module.exports = (db) => {
 						post: { ...rows[0] },
 						content_css: "/css/content.css",
 						is_login: req.cookies["jwt"] ? true : false,
+						footer: false,
 				  });
 		});
 	});

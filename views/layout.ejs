@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<%- include ("partial/header_include"); %>
-		<link rel="stylesheet" href="/css/main.css" />
-		<%if (locals.errmsg){ %>
+		<%- include ("partial/header_include"); %> <%if (locals.errmsg){ %>
 		<style>
 			.content_box1 {
 				height: 100%;
@@ -16,22 +14,23 @@
 		<% if(locals.content_css) {%> <%- include ("partial/sidemenu"); %>
 		<div id="overlay"></div>
 		<header><%- include ("partial/header"); %></header>
-		<div class="d-flex">
-			<div class="d-sidebar">
-				<form class="form-inline" style="margin: 0 auto;">
-					<i class="fas fa-search" aria-hidden="true">
-						<input class="form-control" type="search" placeholder="Search" />
-					</i>
-					<button class="btn btn-outline-success" type="submit">
-						Search
-					</button>
-				</form>
-				<%- include ("partial/clock"); %>
-			</div>
-			<%- body %>
+
+		<div class="d-sidebar">
+			<br />
+			<%- include ("partial/clock"); %>
+			<br />
+			<form class="form-inline" style="margin: 0 auto;">
+				<i class="fas fa-search" aria-hidden="true">
+					<input class="form-control" type="search" placeholder="Search" />
+				</i>
+				<button class="btn btn-outline-success" type="submit">
+					Search
+				</button>
+			</form>
 		</div>
-		<%- include ("partial/footer"); %><%- include ("partial/desktop_footer"); %>
-		<% } else { %>
+
+		<%- body %> <%- include ("partial/footer"); %> <% if(locals.footer != false)
+		{%> <%- include ("partial/desktop_footer");%> <%}%><% } else { %>
 		<div class="main-pg">
 			<section class="side-logo-box">
 				<img src="/image/white_stack_logo.png" />
