@@ -105,3 +105,19 @@ exports.get_favorite_post_by_user_id = (id, cb) => {
 		cb
 	);
 };
+
+exports.add_favourite = (info, cb) => {
+	connection.query(`INSERT INTO favorite_post SET ?`, info, cb);
+};
+
+exports.detect_likes = (post_id, cb) => {
+	connection.query(
+		`SELECT post.id, JSON_ARRAYAGG(user.id) AS liked_user
+		FROM post
+		LEFT JOIN favorite_post ON favorite_post.post_id = post.id
+		LEFT JOIN user ON favorite_post.user_id = user.id
+		WHERE post.id = ?`,
+		[post_id],
+		cb
+	);
+};

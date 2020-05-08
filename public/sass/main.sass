@@ -113,8 +113,8 @@ a
 
 .avatar
     border-radius: 50%
-    height: 5rem
-    width: 5rem
+    height: 5rem !important
+    width: 5rem !important
     object-fit: cover
     margin: auto 0.5rem
 
@@ -169,19 +169,20 @@ a
     box-sizing: border-box
     justify-content: space-around
     flex-direction: column
-    min-height: 100vh
+    min-height: 100%
     padding: 0.25rem 0 0 0
-    margin-bottom: 6.5rem
     label
         margin-bottom: 0 !important
+        width: 80%
 
 #preview_Description 
     padding: 0.5rem
     word-wrap: break-word
-    max-height: 10rem
-    min-height: 5.5rem
+    max-height: 15rem
+    min-height: 7rem
     border: 1px solid #000
     overflow-y: scroll
+    width: 100%
 
 .preview_user
     padding: 0.25rem
@@ -244,9 +245,7 @@ a
 .back-btn
     display: flex
     text-align: left
-    position: relative
-    top: 10px
-    right: 125px
+    
 
 #user_sign_up, 
 #user_login
@@ -275,6 +274,7 @@ a
 
 .inp
     width: 100%
+    margin-bottom: 0 !important
 
 .terms_boiler 
     margin-top: 50px
@@ -351,7 +351,7 @@ div.ui-dialog
     padding: 10px 0
 
 %post-body
-    margin-bottom: 20px
+    margin-top: 20px
     box-sizing: $box-sizing
     display: flex
     justify-content: start
@@ -377,7 +377,7 @@ div.ui-dialog
             margin-bottom: 0
 
 .post_grid
-    margin-bottom: 15rem
+    margin-bottom: 10rem
 
 .post_style
     margin-top: 13%
@@ -424,9 +424,8 @@ label[for="sort"]
         width: 5rem
 
 #post-sec
-    padding-top: 1rem
     height: 100%
-    margin-bottom: 6.5rem
+    margin-bottom: 80px
 
 #contact
     width: 45%
@@ -441,8 +440,8 @@ label[for="sort"]
     outline: none
 
 .navbar
+    z-index: 1
     min-height: 5%
-    
     background-color: #005cec !important
 
 .header_logo 
@@ -628,6 +627,9 @@ li.CATEGORIES > h5, li.Account > h5
 .login-p 
     display: flex
 
+.preview
+    margin-bottom: 80px
+
 
 .side-logo-box 
     background-color: #005cec
@@ -686,7 +688,9 @@ li.CATEGORIES > h5, li.Account > h5
 
 
 
-@media only screen and (min-width: 995px) 
+@media only screen and (min-width: 995px)
+    .back-btn
+        display: none
     .header_logo 
         display: none
 
@@ -705,12 +709,14 @@ li.CATEGORIES > h5, li.Account > h5
         padding: 20% 0 !important
     
     .content_home 
+        position: relative
         display: grid !important
         grid-template-columns: 33% 33% 33%
         min-height: 75vh !important
         column-gap: 100px
         row-gap: 15px
-        margin-left: 20%
+        left: 15%
+        top: 80px
     
     .post_container
         margin-left: 20%
@@ -750,20 +756,95 @@ li.CATEGORIES > h5, li.Account > h5
         top: 0
         left: 0
         right: 0
-    
-    .all-c-box
-        margin-top: 25%
 
     .container.p
         min-width: 60%
+    .container.detail
+        min-width: 45%
 
     .post_grid
+        margin-top: 4%
         display: grid
         grid-template-columns: 30% 30% 30%
         column-gap: 50px
         row-gap: 15px
         justify-content: center
+
+    section.container.profile
+        display: grid
+        grid-template-columns: 30% 30% 30%
+        row-gap: 15px
+        .logo
+            display: none
+        span.text
+            grid-column: 1 / span 1
+            grid-row: 1
+            
+        .pp
+            grid-column: 1 / span 3
+            grid-row: 2
         
+        .fp
+            grid-column: 1 / span 3
+            grid-row: 3
+        .mg
+            grid-column: 1 / span 3
+            grid-row: 4
+    section.container.profile,
+    .container.detail,
+    .container.post
+        position: relative
+        min-width: 50%
+        left: 10%
+    
+    section.container.profile
+        top: 7%
+        margin-bottom: 50px
+
+    #preview_section
+        margin-bottom: unset
+        grid-template-columns: repeat(3, 1fr)
+        img
+            width: 80%
+            margin: 0 auto
+            margin-top: 4%
+            grid-column: 1 / span 3
+            grid-row: 1
+        #info
+            grid-column: 1 / span 2
+            grid-row: 2
+        .user_info
+            margin-top: 4%
+            grid-column: 3
+            grid-row: 2
+
+    #post-sec
+        display: grid
+        margin-bottom: unset
+        grid-template-columns: repeat(3, 1fr)
+        row-gap: 20px
+        column-gap: 20px
+        .slide_container
+            margin: 0 auto
+            margin-top: 10%
+            grid-column: 1 / span 3
+            grid-row: 1
+            width: 800px
+            max-height: 800px
+            .mySlides
+                max-width: 800px
+                max-height: 600px
+                margin: 0 auto
+                img
+                    max-width: 800px
+                    max-height: 600px
+                    margin: 0 auto !important
+                    object-fit: contain !important
+
+        .item-info
+            grid-column: 1 / span 2
+            grid-row: 2
+
 
 
 @media only screen and (max-width: 995px) 
@@ -792,6 +873,7 @@ li.CATEGORIES > h5, li.Account > h5
 
 @media (min-width: 768px) and (min-width: 576px) 
     .container 
+        z-index: 0
         max-width: 35%
 
     
@@ -805,3 +887,37 @@ li.CATEGORIES > h5, li.Account > h5
         margin-bottom: 5.5rem
     
 
+
+.slide_container
+    position: relative
+    min-height: 285px
+    .mySlides
+        img
+            width: 100%
+    .prev, .next 
+        background-color: $main-color
+        cursor: pointer
+        position: absolute
+        top: 50%
+        width: auto
+        padding: 16px
+        margin-top: -50px
+        color: white !important
+        font-weight: bold
+        font-size: 20px
+        border-radius: 0 3px 3px 0
+        user-select: none
+        -webkit-user-select: none
+    .prev:hover, .next:hover
+        color: unset !important
+        background: white
+    .next
+        right: 0
+    .row
+        content: ""
+        display: table
+        clear: both
+        padding: 0 15px
+        .column
+            float: left
+            width: 10%

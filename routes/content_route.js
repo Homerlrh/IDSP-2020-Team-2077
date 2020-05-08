@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 module.exports = (db) => {
@@ -72,19 +73,39 @@ module.exports = (db) => {
 		});
 	});
 
-	router.get("/post_detail/:post_id", (req, res) => {
+	function auth_token(req, res, next) {
+		const token = req.cookies["jwt"];
+		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+			if (err) {
+				req.user = null;
+				next;
+			}
+			req.user = user;
+			next();
+		});
+	}
+
+	router.get("/post_detail/:post_id", auth_token, (req, res) => {
 		const id = req.params.post_id;
 		db.get_post_detail(id, (err, rows) => {
-			return err
-				? console.log(err.message)
-				: res.render("content/detailpost", {
-						seller: JSON.parse({ ...rows[0] }.seller),
-						picture: JSON.parse({ ...rows[0] }.image),
-						post: { ...rows[0] },
-						content_css: "/css/content.css",
-						is_login: req.cookies["jwt"] ? true : false,
-						footer: false,
-				  });
+			db.detect_likes(id, (err, like) => {
+				let is_liked =
+					req.user != null
+						? JSON.parse(like[0].liked_user).includes(req.user.id)
+						: false;
+				return err
+					? console.log(err.message)
+					: res.render("content/detailpost", {
+							id: id,
+							seller: JSON.parse({ ...rows[0] }.seller),
+							picture: JSON.parse({ ...rows[0] }.image),
+							post: { ...rows[0] },
+							content_css: "/css/content.css",
+							is_login: req.cookies["jwt"] ? true : false,
+							footer: false,
+							is_liked: is_liked,
+					  });
+			});
 		});
 	});
 

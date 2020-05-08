@@ -40,7 +40,7 @@ $("#preview").click((e) => {
 	const l_children = $("#city option:selected").text();
 	document.querySelector("#location").innerHTML = `${l_children} > ${l_parent}`;
 	$("#fill_post").hide();
-	$("#preview_section").css("display", "flex");
+	$("#preview_section").css("display", "grid");
 });
 
 $("#edit-btn").click((e) => {

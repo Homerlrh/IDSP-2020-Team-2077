@@ -1,7 +1,6 @@
 exports.up = async (knex) => {
 	return knex.schema
 		.withSchema("craigslist")
-		.raw(`SET FOREIGN_KEY_CHECKS=0;`)
 		.dropTableIfExists("user")
 		.dropTableIfExists("category")
 		.dropTableIfExists("post")
@@ -85,6 +84,7 @@ exports.up = async (knex) => {
 				.references("post.id")
 				.onDelete("SET NULL")
 				.onUpdate("RESTRICT");
+			table.unique(["user_id", "post_id"]);
 		})
 		.createTable("image", (table) => {
 			table.increments("id").primary();
@@ -188,7 +188,6 @@ exports.up = async (knex) => {
 			GROUP BY user.id
 			`
 		)
-		.raw(`SET FOREIGN_KEY_CHECKS=1;`)
 		.then(console.log("table created"));
 };
 

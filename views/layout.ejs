@@ -42,18 +42,17 @@
 		</div>
 		<% } %>
 	</body>
-	<script src="/javascript/clock.js"></script>
 	<%- include ("partial/jquery"); %>
+	<script src="/javascript/clock.js"></script>
 	<script src="/javascript/changeForm.js"></script>
 	<% if(locals.signup) { %>
 	<script src="/javascript/customFormValidation.js"></script>
 	<%}%>
 	<script src="/javascript/sidemenu_toggle.js"></script>
 	<% if(locals.content_css) {%>
+	<script src="/javascript/addFavourite.js"></script>
 	<script src="/javascript/sub_category.js"></script>
 	<script src="/javascript/preview.js"></script>
-
-	<!-- <script src="/javascript/bottom_nav.js"></script> -->
-
+	<script src="/javascript/changeimg.js"></script>
 	<% } %>
 </html>
