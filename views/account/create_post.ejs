@@ -30,6 +30,20 @@
 				/>
 			</div>
 			<div class="form-group inp">
+				<label for="condition">Condition</label>
+				<select
+					class="form-control"
+					id="condition"
+					name="condition"
+					type="text"
+				>
+					<option value="New">New</option>
+					<option value="Good">Good</option>
+					<option value="Used">Used</option>
+					<option value="n/a">n/a</option>
+				</select>
+			</div>
+			<div class="form-group inp">
 				<label for="Category">Category</label>
 				<select
 					class="form-control"
@@ -103,6 +117,7 @@
 				name="pic"
 				accept="image/*"
 				id="imgInp"
+				multiple
 				hidden
 				required
 			/>

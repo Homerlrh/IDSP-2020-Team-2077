@@ -47,7 +47,7 @@ exports.get_user_by_id = (id, cb) => {
 };
 
 exports.get_category = (cb) => {
-	connection.query(`SELECT type FROM category`, cb);
+	connection.query(`SELECT * FROM view_all_category`, cb);
 };
 
 exports.get_category_id = (type, cb) => {
@@ -64,7 +64,7 @@ exports.get_subcategory = (category_id, cb) => {
 
 exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	connection.query(
-		"SELECT * FROM view_post_img_detail WHERE main_category = ? AND sub_category = ?",
+		"SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND main_category = ? AND sub_category = ?",
 		[category, sub_category_id],
 		cb
 	);
@@ -74,14 +74,64 @@ exports.get_user_id_by_email = (email, cb) => {
 	connection.query(`SELECT id FROM user WHERE email = ?`, [email], cb);
 };
 
-// connection.query(`select * from user`, (err, rows) => {
-// 	console.log(rows);
-// });
-
 exports.create_post = (info, cb) => {
 	connection.query(`INSERT INTO post SET ?`, info, cb);
 };
 
 exports.upload_photo = (photo, cb) => {
 	connection.query(`INSERT INTO image SET ?`, photo, cb);
+};
+
+exports.get_post_detail = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_detail_user WHERE date > now() - interval 30 day AND post_id = ? `,
+		[id],
+		cb
+	);
+};
+
+exports.get_post_by_user_id = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND seller_id = ?`,
+		[id],
+		cb
+	);
+};
+
+exports.get_favorite_post_by_user_id = (id, cb) => {
+	connection.query(
+		`SELECT * FROM view_user_favorite_post WHERE id = ?`,
+		[id],
+		cb
+	);
+};
+
+exports.add_favourite = (info, cb) => {
+	connection.query(`INSERT INTO favorite_post SET ?`, info, cb);
+};
+
+exports.detect_likes = (post_id, cb) => {
+	connection.query(
+		`SELECT post.id, JSON_ARRAYAGG(user.id) AS liked_user
+		FROM post
+		LEFT JOIN favorite_post ON favorite_post.post_id = post.id
+		LEFT JOIN user ON favorite_post.user_id = user.id
+		WHERE post.id = ?`,
+		[post_id],
+		cb
+	);
+};
+
+exports.search = (info, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_img_detail
+		WHERE date > now() - interval 30 day
+		AND WHERE CASE WHEN ? IS NOT NULL THEN main_category = ? ELSE 1=1 END
+		AND CASE WHEN ? IS NOT NULL THEN sub_category = ? ELSE 1=1 END
+		AND CASE WHEN ? IS NOT NULL THEN (LOWER(\`post_title\`) LIKE CONCAT('%' , ?, '%')
+		OR LOWER(\`post_detail\`) LIKE CONCAT('%' , ?, '%')) ELSE 1=1 END
+		`,
+		info,
+		cb
+	);
 };

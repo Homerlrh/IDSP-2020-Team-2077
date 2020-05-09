@@ -4,10 +4,12 @@ const express = require("express"),
 	flash = require("connect-flash"),
 	path = require("path"),
 	expressLayouts = require("express-ejs-layouts"),
+	compression = require("compression"),
 	app = express();
 
 module.exports = (db, passport) => {
 	app.use(express.static(path.join(__dirname, "public")));
+	app.use(compression());
 
 	app.use(expressLayouts);
 	app.set("view engine", "ejs");

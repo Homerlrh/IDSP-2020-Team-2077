@@ -1,6 +1,5 @@
 const express = require("express");
 const AWS = require("./photo_upload/aws");
-const formidable = require("formidable");
 const router = express.Router();
 
 module.exports = (db, passport, auth_controller) => {
@@ -34,8 +33,19 @@ module.exports = (db, passport, auth_controller) => {
 	});
 
 	router.get("/login/callback", (req, res) => {
-		res.render("account/account", {
-			content_css: "/css/user.css",
+		db.get_post_by_user_id(req.user.id, (err, rows) => {
+			err
+				? console.log(err)
+				: db.get_favorite_post_by_user_id(req.user.id, (req, row) => {
+						err
+							? console.log(err)
+							: res.render("account/account", {
+									content_css: " ",
+									latest_post: rows,
+									favorite_post: JSON.parse(row[0].favorite_post),
+									footer: false,
+							  });
+				  });
 		});
 	});
 
@@ -43,33 +53,60 @@ module.exports = (db, passport, auth_controller) => {
 		.route("/create_post")
 		.get((req, res) => {
 			res.render("account/create_post", {
-				content_css: "/css/user.css",
+				content_css: " ",
 				user_id: req.user.id,
 				avatar: req.user.avatar,
 				email: req.user.email,
 				phone: req.user.phone_number == "" ? "n/a" : req.user.phone_number,
+				footer: false,
+				preview: true,
 			});
 		})
-		.post(AWS.upload.single("pic"), (req, res) => {
+		.post(AWS.upload.array("pic"), (req, res) => {
 			const post_body = { ...req.body };
-			const file_name = req.file.originalname;
-
-			const img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${req.file.originalname}`;
-
-			console.log(post_body);
+			const files = [...req.files];
 			db.create_post(post_body, (err, result) => {
 				err
 					? console.log(err)
-					: db.upload_photo(
-							{ img_url: img_url, post_id: result.insertId },
-							(err, result) => {
-								err ? console.log(err) : res.redirect("/user/login/callback");
-							}
-					  );
+					: files.forEach((file) => {
+							let img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${file.originalname}`;
+							db.upload_photo(
+								{ img_url: img_url, post_id: result.insertId },
+								(err, result) => {
+									err ? console.log(err) : console.log(result.insertId);
+								}
+							);
+					  });
 			});
-
-			//
+			res.redirect("/user/create_post");
 		});
+
+	router.get("/setting", (req, res) => {
+		res.send(req.user);
+	});
+
+	router.get("/user-favorite/", (req, res) => {
+		const id = req.user.id;
+		db.get_favorite_post_by_user_id(id, (err, rows) => {
+			err
+				? res.send(err)
+				: res.render("content/post", {
+						content_css: "f",
+						title: "favourite",
+						post: JSON.parse(rows[0].favorite_post),
+				  });
+		});
+	});
+
+	router.post("/user-favorite/:post_id", (req, res) => {
+		const id = req.user.id;
+		const post = req.params.post_id;
+		const state = req.body.state;
+		console.log(state == "like");
+		db.add_favourite({ user_id: id, post_id: Number(post) }, (err, rows) => {
+			err ? res.send(err.message) : res.send("success");
+		});
+	});
 
 	return router;
 };

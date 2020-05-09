@@ -1,5 +1,3 @@
-<%- include ("../partial/dialog"); %>
-
 <form id="user_sign_up" action="/auth/sign_up" method="POST">
 	<div class="form-group">
 		<label for="Username">Username</label>
@@ -64,10 +62,5 @@
 <br />
 
 <p>OR</p>
-<a style="width: 80%; margin: 0 auto;" href="/auth/fb_signin"
-	><img width="100%" alt="fb_login" src="/image/facebook.png"
-/></a>
-<a style="width: 80%; margin: 0 auto;" href="/auth/google_signin"
-	><img width="100%" alt="google_login" src="/image/google.png" /></a
-><br />
+<%-include ("../partial/sm-btn");-%>
 <a class="skip" href="/type/login">Login</a>

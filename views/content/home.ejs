@@ -1,11 +1,30 @@
-<section class="container">
-	<form method="GET" action="" id="getreq" hidden></form>
-	<div class="content_box">
+<section class="container alp">
+	<div class="content_home">
+		<form method="GET" action="" id="getreq" hidden></form>
 		<img class="logo" alt="stack_logo" src="/image/logo_with_text.png" />
-		<% if(locals.content_css) {%> <%categories.forEach(x=> {%>
-		<a class="go_btn" endpoint="/content/category/<%= x.type %>"
-			><%= x.type %></a
-		>
-		<% }) ; %><%}%>
+		<% if(locals.categories) {%> <%categories.forEach((x,index)=> {%>
+		<div class="all-c-box">
+			<a class="go_btn" endpoint="/content/category/<%= x.type %>"
+				><%= x.type %> </a
+			><%JSON.parse(x.all_category).forEach((k,num)=> { %>
+			<a
+				class="sub-c-btn"
+				href="/content/<%=x.type.replace('/','_')%>/<%=index+1%>/sub_category/<%=k.replace('/','_')%>/<%=num+1%>"
+				><%=k%></a
+			>
+
+			<% }) ; %>
+		</div>
+		<% }) ; %> <%}%> <% if(locals.sub_categories) {%>
+		<%sub_categories.forEach((x,index)=> {%>
+		<div class="all-c-box">
+			<a
+				class="requirement_frm"
+				href="/content/<%=type.replace('/','_')%>/<%=id%>/sub_category/<%=x.name.replace('/','_')%>/<%=index+1%>"
+				><%= x.name %></a
+			>
+		</div>
+
+		<% }) ; %> <%}%>
 	</div>
 </section>
