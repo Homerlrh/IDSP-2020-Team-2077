@@ -1,7 +1,7 @@
 <section class="container p">
 	<div class="post_container">
-		<h3 class="post_style" style="text-align: center;">
-			<%=title.charAt(0).toUpperCase() + title.slice(1);%>
+		<h3 class="post_style" id="post-header" style="text-align: center;">
+			<%=title%>
 		</h3>
 		<div class="form-group inp">
 			<label for="sort">Sort by</label>
@@ -17,11 +17,18 @@
 
 			<a href="/content/post_detail/<%=x.post_id%>" class="single-anchor">
 				<div class="single_post">
+					<% if(locals.content_css == 'f') {%>
+					<img
+						src="<%=x.image[0] %>"
+						alt="Card image cap"
+						class="post-img"
+					/><%}else{%>
 					<img
 						src="<%=JSON.parse(x.image)[0] %>"
 						alt="Card image cap"
 						class="post-img"
 					/>
+					<%}%>
 					<div class="post-body">
 						<h6><%= x.post_title %></h6>
 						<p class="price">CAD: $<%= x.price %></p>

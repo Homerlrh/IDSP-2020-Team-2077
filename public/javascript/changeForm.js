@@ -86,6 +86,7 @@ term_btn.on("click", (e) => {
 // });
 
 const sub_category = {
+	0: ["Choose a Sub Category"],
 	1: ["Buy", "Rent", "Office", "Storage", "Vacation", "Rooms"],
 	2: ["New", "Used", "Modified", "Rebuilt", "Salvage", "Parts"],
 	3: [

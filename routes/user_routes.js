@@ -1,6 +1,5 @@
 const express = require("express");
 const AWS = require("./photo_upload/aws");
-const formidable = require("formidable");
 const router = express.Router();
 
 module.exports = (db, passport, auth_controller) => {
@@ -41,7 +40,7 @@ module.exports = (db, passport, auth_controller) => {
 						err
 							? console.log(err)
 							: res.render("account/account", {
-									content_css: "/css/2main.css",
+									content_css: " ",
 									latest_post: rows,
 									favorite_post: JSON.parse(row[0].favorite_post),
 									footer: false,
@@ -54,7 +53,7 @@ module.exports = (db, passport, auth_controller) => {
 		.route("/create_post")
 		.get((req, res) => {
 			res.render("account/create_post", {
-				content_css: "/css/2main.css",
+				content_css: " ",
 				user_id: req.user.id,
 				avatar: req.user.avatar,
 				email: req.user.email,
@@ -82,27 +81,32 @@ module.exports = (db, passport, auth_controller) => {
 			res.redirect("/user/create_post");
 		});
 
-	router.get("/account_setting", (req, res) => {
+	router.get("/setting", (req, res) => {
 		res.send(req.user);
 	});
 
-	router
-		.route("/user-favorite/:post_id")
-		.get((req, res) => {
-			const id = req.user.id;
-			db.get_favorite_post_by_user_id(id, (err, rows) => {
-				err ? res.send(err) : res.send(JSON.parse(rows[0].favorite_post));
-			});
-		})
-		.post((req, res) => {
-			const id = req.user.id;
-			const post = req.params.post_id;
-			const state = req.body.state;
-			console.log(state == "like");
-			db.add_favourite({ user_id: id, post_id: Number(post) }, (err, rows) => {
-				err ? res.send(err.message) : res.send("success");
-			});
+	router.get("/user-favorite/", (req, res) => {
+		const id = req.user.id;
+		db.get_favorite_post_by_user_id(id, (err, rows) => {
+			err
+				? res.send(err)
+				: res.render("content/post", {
+						content_css: "f",
+						title: "favourite",
+						post: JSON.parse(rows[0].favorite_post),
+				  });
 		});
+	});
+
+	router.post("/user-favorite/:post_id", (req, res) => {
+		const id = req.user.id;
+		const post = req.params.post_id;
+		const state = req.body.state;
+		console.log(state == "like");
+		db.add_favourite({ user_id: id, post_id: Number(post) }, (err, rows) => {
+			err ? res.send(err.message) : res.send("success");
+		});
+	});
 
 	return router;
 };

@@ -57,21 +57,24 @@ module.exports = (db) => {
 	});
 
 	//get data from db according the params in the url
-	router.get("/sub_category/:type/:category/:sub_category", (req, res) => {
-		const { type, category, sub_category } = req.params;
-		db.get_all_post_by_category(category, sub_category, (err, rows) => {
-			if (err) {
-				return console.log(err.message);
-			}
-			res.render("content/post", {
-				content_css: true,
-				post: [...rows],
-				title: type,
-				is_login: req.cookies["jwt"] ? true : false,
-				footer: false,
+	router.get(
+		"/:type/:category/sub_category/:sub_type/:sub_category",
+		(req, res) => {
+			const { type, category, sub_type, sub_category } = req.params;
+			db.get_all_post_by_category(category, sub_category, (err, rows) => {
+				if (err) {
+					return console.log(err.message);
+				}
+				res.render("content/post", {
+					content_css: true,
+					post: [...rows],
+					title: sub_type,
+					is_login: req.cookies["jwt"] ? true : false,
+					footer: false,
+				});
 			});
-		});
-	});
+		}
+	);
 
 	function auth_token(req, res, next) {
 		const token = req.cookies["jwt"];
@@ -100,13 +103,38 @@ module.exports = (db) => {
 							seller: JSON.parse({ ...rows[0] }.seller),
 							picture: JSON.parse({ ...rows[0] }.image),
 							post: { ...rows[0] },
-							content_css: "/css/content.css",
+							content_css: " ",
 							is_login: req.cookies["jwt"] ? true : false,
 							footer: false,
 							is_liked: is_liked,
+							img: true,
 					  });
 			});
 		});
+	});
+
+	router.post("/search", (req, res) => {
+		let { query, category_id, sub_category_id } = req.body;
+		console.log(query, category_id, sub_category_id);
+		category_id = category_id == 0 ? null : category_id;
+		sub_category_id = isNaN(sub_category_id) ? null : sub_category_id;
+		query = query.trim().length > 0 ? query : null;
+		console.log(query, category_id, sub_category_id);
+
+		db.search(
+			[
+				category_id,
+				category_id,
+				sub_category_id,
+				sub_category_id,
+				query,
+				query,
+				query,
+			],
+			(err, rows) => {
+				err ? console.log(err) : console.log(rows);
+			}
+		);
 	});
 
 	return router;

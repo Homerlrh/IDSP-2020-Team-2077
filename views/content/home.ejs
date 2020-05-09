@@ -7,10 +7,9 @@
 			<a class="go_btn" endpoint="/content/category/<%= x.type %>"
 				><%= x.type %> </a
 			><%JSON.parse(x.all_category).forEach((k,num)=> { %>
-
 			<a
 				class="sub-c-btn"
-				href="/content/sub_category/<%=x.type.replace('/','_')%>/<%=index+1%>/<%=num+1%>"
+				href="/content/<%=x.type.replace('/','_')%>/<%=index+1%>/sub_category/<%=k.replace('/','_')%>/<%=num+1%>"
 				><%=k%></a
 			>
 
@@ -21,7 +20,7 @@
 		<div class="all-c-box">
 			<a
 				class="requirement_frm"
-				href="/content/sub_category/<%=type%>/<%=id%>/<%=index+1%>"
+				href="/content/<%=type.replace('/','_')%>/<%=id%>/sub_category/<%=x.name.replace('/','_')%>/<%=index+1%>"
 				><%= x.name %></a
 			>
 		</div>

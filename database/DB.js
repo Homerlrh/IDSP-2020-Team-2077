@@ -121,3 +121,17 @@ exports.detect_likes = (post_id, cb) => {
 		cb
 	);
 };
+
+exports.search = (info, cb) => {
+	connection.query(
+		`SELECT * FROM view_post_img_detail
+		WHERE date > now() - interval 30 day
+		AND WHERE CASE WHEN ? IS NOT NULL THEN main_category = ? ELSE 1=1 END
+		AND CASE WHEN ? IS NOT NULL THEN sub_category = ? ELSE 1=1 END
+		AND CASE WHEN ? IS NOT NULL THEN (LOWER(\`post_title\`) LIKE CONCAT('%' , ?, '%')
+		OR LOWER(\`post_detail\`) LIKE CONCAT('%' , ?, '%')) ELSE 1=1 END
+		`,
+		info,
+		cb
+	);
+};

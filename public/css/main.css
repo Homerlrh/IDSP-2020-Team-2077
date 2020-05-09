@@ -212,7 +212,6 @@ a {
   padding: 0 0 10% 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
   height: 100vh;
 }
@@ -625,6 +624,36 @@ li.CATEGORIES > h5, li.Account > h5 {
   border-right: 1px solid #000;
   width: 20%;
 }
+.d-sidebar form .form-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.d-sidebar form .form-group .form-control {
+  min-width: 235px;
+}
+
+.pp #latest_post, .fp #latest_post {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.pp #latest_post a:first-child .user_single_post, .fp #latest_post a:first-child .user_single_post {
+  margin-top: 0 !important;
+}
+
+.mg #message_box {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.mg #message_box a:first-child .user_single_post {
+  margin-top: 0 !important;
+}
 
 .d-footer {
   box-sizing: border-box;
@@ -912,6 +941,9 @@ li.CATEGORIES > h5, li.Account > h5 {
     grid-column: 3;
     grid-row: 2;
   }
+  #preview_section .avatar {
+    margin: auto 0;
+  }
 
   #post-sec {
     display: grid;
@@ -934,8 +966,10 @@ li.CATEGORIES > h5, li.Account > h5 {
     margin: 0 auto;
   }
   #post-sec .slide_container .mySlides img {
-    max-width: 800px;
+    min-width: 800px;
+    min-height: 600px;
     max-height: 600px;
+    min-width: 800px;
     margin: 0 auto !important;
     object-fit: contain !important;
   }

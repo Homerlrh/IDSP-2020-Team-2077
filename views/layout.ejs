@@ -14,23 +14,9 @@
 		<% if(locals.content_css) {%> <%- include ("partial/sidemenu"); %>
 		<div id="overlay"></div>
 		<header><%- include ("partial/header"); %></header>
-
-		<div class="d-sidebar">
-			<br />
-			<%- include ("partial/clock"); %>
-			<br />
-			<form class="form-inline" style="margin: 0 auto;">
-				<i class="fas fa-search" aria-hidden="true">
-					<input class="form-control" type="search" placeholder="Search" />
-				</i>
-				<button class="btn btn-outline-success" type="submit">
-					Search
-				</button>
-			</form>
-		</div>
-
-		<%- body %> <%- include ("partial/footer"); %> <% if(locals.footer != false)
-		{%> <%- include ("partial/desktop_footer");%> <%}%><% } else { %>
+		<%- include ("partial/d-sidebar"); %> <%- body %> <%- include
+		("partial/footer"); %> <% if(locals.footer != false) {%> <%- include
+		("partial/desktop_footer");%> <%}%><% } else { %>
 		<div class="main-pg">
 			<section class="side-logo-box">
 				<img src="/image/white_stack_logo.png" />
@@ -50,9 +36,14 @@
 	<%}%>
 	<script src="/javascript/sidemenu_toggle.js"></script>
 	<% if(locals.content_css) {%>
-	<script src="/javascript/addFavourite.js"></script>
 	<script src="/javascript/sub_category.js"></script>
+
+	<% } %> <% if(locals.preview == true) {%>
 	<script src="/javascript/preview.js"></script>
+
+	<%}%> <% if(locals.img == true) {%>
+	<script src="/javascript/addFavourite.js"></script>
+
 	<script src="/javascript/changeimg.js"></script>
 	<% } %>
 </html>
