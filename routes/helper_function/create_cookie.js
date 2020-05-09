@@ -1,6 +1,7 @@
 module.exports = (db, auth_controller) => {
 	const create_cookie = (req, res, id) => {
 		db.get_user_by_id(id, (err, rows) => {
+			console.log("setting cookie");
 			if (err) {
 				console.log(err.message);
 			}

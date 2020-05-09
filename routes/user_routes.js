@@ -8,6 +8,7 @@ module.exports = (db, passport, auth_controller) => {
 		auth_controller
 	);
 	router.route(["/facebook/callback", "/google/callback"]).get((req, res) => {
+		console.log("i am oauth log in");
 		db.is_user(req.user._json.email, (err, rows) => {
 			const is_user = rows[0].bool;
 			const user = { ...req.user._json };
@@ -21,6 +22,7 @@ module.exports = (db, passport, auth_controller) => {
 				province: "",
 			};
 			if (is_user) {
+				console.log(is_user);
 				db.get_user_id_by_email(req.user._json.email, (err, rows) => {
 					err ? console.log(err.message) : set_cookie(req, res, rows[0].id);
 				});
