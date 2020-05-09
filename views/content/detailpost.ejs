@@ -1,60 +1,89 @@
-<div class="container">
+<div class="container detail">
+	<%- include ("../partial/back-btn"); %>
+
 	<section id="post-sec">
-		<div class="d-flex" onclick=" window.history.back(); return false;">
-			<span class="material-icons">
-				keyboard_backspace
-			</span>
-			<p>BACK</p>
-		</div>
-		<img
-			alt="preview_pic"
-			name="preview_pic"
-			src="<%=picture[0]%>"
-			width="100%"
-		/>
-		<br />
-		<label class="d-flex"
-			>Title: &nbsp;
-			<span style="font-weight: bold;"> <%=post.post_title%></span></label
-		>
-		<label class="d-flex"
-			>Cost: &nbsp;
-			<span style="font-weight: bold;">$ <%=post.price%></span>
-		</label>
-		<label class="d-flex"
-			>Condition: &nbsp;
-			<span style="font-weight: bold;">$ <%=post.item_condition%></span>
-		</label>
-
-		<label class="d-flex"
-			>Locate at: &nbsp;
-			<span style="font-weight: bold;"><%=post.location%></span>
-		</label>
-		<br />
-		<br />
-		<article class="des"><%=post.post_detail%></article>
-		<br />
-		<br />
-		<div for="user_info">
-			<div class="user">
-				<img
-					src="<%=seller.seller_avatar%>"
-					alt="Card image cap"
-					class="avatar"
-				/>
-				<div style="margin: auto;">
-					<h6><%=seller.seller_email%></h6>
-
-					<% if(seller.seller_number == " "){ %>
-					<p>n/a</p>
-					<% }else{ %>
-					<p><%=seller.seller_number%></p>
-					<%}%>
+		<div class="slide_container">
+			<%picture.forEach(x=>{%>
+			<div class="mySlides">
+				<img alt="preview_pic" name="preview_pic" src="<%=x%>" />
+			</div>
+			<%})%>
+			<a class="prev" onclick="plusSlides(-1)">❮</a>
+			<a class="next" onclick="plusSlides(1)">❯</a>
+			<div class="row">
+				<%picture.forEach(x=>{%>
+				<div class="column">
+					<img alt="preview_pic" name="preview_pic" src="<%=x%>" width="100%" />
 				</div>
+				<%})%>
 			</div>
 		</div>
-		<div style="text-align: right;">
-			<button id="contact">Contact</button>
+
+		<div class="item-info">
+			<form id="fav-frm" action="/user/user-favorite/<%=id%>">
+				<%if (locals.is_liked == true) {%>
+				<i
+					id="fav-btn"
+					class="fas fa-heart"
+					style="
+						font-size: 50px;
+						float: right;
+						cursor: pointer;
+						color: rgb(255, 0, 0);
+					"
+				>
+				</i>
+				<%}else{%>
+				<i
+					id="fav-btn"
+					class="fas fa-heart"
+					style="font-size: 50px; float: right; cursor: pointer;"
+				></i
+				><%}%>
+			</form>
+
+			<label class="d-flex"
+				>Title: &nbsp;
+				<span style="font-weight: bold;"> <%=post.post_title%></span>
+			</label>
+			<label class="d-flex"
+				>Cost: &nbsp;
+				<span style="font-weight: bold;">$ <%=post.price%></span>
+			</label>
+			<label class="d-flex"
+				>Condition: &nbsp;
+				<span style="font-weight: bold;">$ <%=post.item_condition%></span>
+			</label>
+
+			<label class="d-flex"
+				>Locate at: &nbsp;
+				<span style="font-weight: bold;"><%=post.location%></span>
+			</label>
+
+			<article class="des"><%=post.post_detail%></article>
+		</div>
+		<div>
+			<div class="user_info">
+				<div class="user">
+					<img
+						src="<%=seller.seller_avatar%>"
+						alt="Card image cap"
+						class="avatar"
+					/>
+					<div style="margin: auto;">
+						<h6><%=seller.seller_email%></h6>
+
+						<% if(seller.seller_number == " "){ %>
+						<p>n/a</p>
+						<% }else{ %>
+						<p><%=seller.seller_number%></p>
+						<%}%>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: right;">
+				<button id="contact">Contact</button>
+			</div>
 		</div>
 	</section>
 </div>

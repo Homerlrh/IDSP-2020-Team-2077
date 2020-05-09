@@ -32,7 +32,7 @@ function set_attributes(ele, obj) {
 	}
 }
 
-function get_sub_link(categories, url, main_category) {
+function get_sub_link(categories, url, main_category_id, main_category) {
 	$.ajax({
 		type: "get",
 		url: url,
@@ -41,10 +41,13 @@ function get_sub_link(categories, url, main_category) {
 				const name = new capitalize(response[index].name);
 				category.innerHTML = name.check_includes();
 				const attr = {
-					endpoint: `/content/sub_category/${response[index].name.replace(
+					endpoint: `/content/${main_category.replace(
 						"/",
 						"_"
-					)}/${main_category}/${index + 1}`,
+					)}/${main_category_id}/sub_category/${response[index].name.replace(
+						"/",
+						"_"
+					)}/${index + 1}`,
 					class: "requirement_frm",
 				};
 				set_attributes(category, attr);
@@ -58,24 +61,38 @@ function get_sub_link(categories, url, main_category) {
 	});
 }
 
-$(window).on("load", (e) => {
-	e.preventDefault();
-	categories.forEach((category, index) => {
-		const name = new capitalize(category.innerHTML);
-		category.innerHTML = name.check_includes();
-	});
-});
-
 categories.forEach((category, index) => {
 	$(category).on("click", (e) => {
 		e.preventDefault();
 		const main_category = index + 1;
 		let url = category.getAttribute("endpoint");
 		if (!$(category).hasClass("requirement_frm")) {
-			get_sub_link(categories, url, main_category);
+			get_sub_link(categories, url, main_category, category.innerHTML);
 		} else {
 			// $(".content_box").hide();
 			$("#getreq").attr("action", url).submit();
 		}
+	});
+});
+
+$(window).on("load", (e) => {
+	e.preventDefault();
+	try {
+		const h = document.querySelector("#post-header");
+		const name = new capitalize(h.innerHTML.trim());
+		h.innerHTML = name.check_includes();
+	} catch (err) {
+		null;
+	}
+
+	const a = document.querySelectorAll(".sub-c-btn");
+	const b = categories;
+	const c = document.querySelectorAll(".requirement_frm");
+
+	[a, b, c].forEach((x) => {
+		x.forEach((x) => {
+			const name = new capitalize(x.innerHTML);
+			x.innerHTML = name.check_includes();
+		});
 	});
 });

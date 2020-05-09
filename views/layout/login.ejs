@@ -1,11 +1,5 @@
-<section class="container">
-	<div class="content_box1">
-		<div class="top_bar" onclick=" window.history.back(); return false;">
-			<span class="material-icons">
-				keyboard_backspace
-			</span>
-			<p>BACK</p>
-		</div>
+<section class="container content_box1">
+		<%- include ("../partial/back-btn"); %>
 		<div class="welcome-msg">
 			<div class="text_field" style="margin: 0 auto;">
 				<h4>Welcome to Craigslist</h4>
@@ -14,11 +8,11 @@
 		</div>
 		<img class="logo1" alt="horizontal_logo" src="/image/horizontal.png" />
 		<%if (locals.msg) { %>
-		<div class="alert alert-danger" role="alert" style="width: 80%;">
+		< class="alert alert-danger" role="alert" style="width: 80%;">
 			<%=msg %>
 		</div>
 		<% } %>
-		<form id="user_login" action="/auth/login" method="POST">
+		<form id="user_login" action="/auth/login" method="POST" style="margin: 0 auto;">
 			<div class="form-group">
 				<label for="email">Email address</label>
 				<input
@@ -42,10 +36,10 @@
 				/>
 			</div>
 		</form>
-		<button form="user_login" class="login">Login</button>
-		<a class="skip" href="/forgot_password">Forgot Password ?</a>
-		<p>OR</p>
+		<button form="user_login" class="login"  style="margin: 0 auto;">Login</button>
+		<a class="skip" href="/forgot_password"  style="margin: 0 auto;">Forgot Password ?</a>
+		<p  style="margin: 0 auto;">OR</p>
 		<%-include ("../partial/sm-btn");-%>
-		<a class="skip" href="/type/sign_up">Create account</a>
-	</div>
+		<a class="skip" href="/type/sign_up"  style="margin: 0 auto;">Create account</a>
+	
 </section>

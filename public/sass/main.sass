@@ -1,0 +1,953 @@
+$font: "Roboto", sans-serif
+$logo-width: 40%
+$center: 0 auto
+$bd-height: calc(100vh - 75px - 52px)
+
+$main-color: #009bff
+$second-color: #005cec
+$third-color: #477b99
+$input-color: #def1f2
+$color-blk: #000
+
+$box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+$font-weight: bold
+$border-radius: 60px
+$border-fade :rgba(0, 0, 0, 0.125)
+$box-sizing: border-box
+
+%btn-shr
+    width: 100%
+    color: white
+    background: $main-color
+    border: 1px solid $main-color
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    font-weight: bold
+    font-size: 30px
+    line-height: 42px
+    outline: none !important
+    border-radius: 60px
+
+%btn-shr2
+    font-size: 1.5rem
+    width: 45%
+    border-radius: 60px
+    padding: 0.5rem
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    outline: none
+    font-weight: bold
+
+%btn-shr3
+    width: 80%
+    border-radius: 60px
+    font-style: normal
+    font-weight: bold
+    font-size: 30px
+    line-height: 42px
+    outline: none !important
+    text-align: center
+
+%shr-box
+    box-sizing: $box-sizing
+    padding: 30% 0 10% 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
+    height: 100vh
+
+
+body
+    font-family: $font
+    margin: 0
+    padding: 0
+    width: 100vw
+    height: 100vh
+
+a
+    color: unset !important
+    text-decoration: none !important
+
+.container
+    background-color: #fff !important
+
+.form-control
+    background: #def1f2 !important
+
+.form-group
+    margin-bottom: 1rem
+
+.logo
+    width: $logo-width
+    margin: $center
+
+.logo1
+    width: 70%
+    margin:0 auto
+
+.profile
+    display: flex
+    flex-direction: column
+    padding-top: 0.5rem
+    margin-bottom: 75px
+
+.crt-post
+    width: 100%
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+    text-align: center
+    color: $color-blk
+    font-weight: bold
+    font-size: 2em
+    vertical-align: baseline
+
+
+
+.text
+    color: $third-color
+    font-weight: bold
+
+#create_post
+    padding:0.5rem 0
+
+.avatar
+    border-radius: 50%
+    height: 5rem !important
+    width: 5rem !important
+    object-fit: cover
+    margin: auto 0.5rem
+
+.preview
+    @extend %btn-shr
+
+.upload
+    @extend %btn-shr
+    color: $color-blk
+    background: #fff
+    border-color: $main-color 
+
+.post
+    position: relative
+    box-sizing: $box-sizing
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    min-height: $bd-height
+
+.area
+    div
+        display: flex
+        justify-content: space-between
+        select
+            width: 30%
+
+#city
+    width: 50%
+
+#preview_img
+    width: 100%
+
+#preview_Title
+    font-weight: bold
+    font-size: 1rem
+
+
+#edit-btn
+    @extend %btn-shr2
+    background-color: #fff
+    border: 3px solid #8721ff
+
+#publish-btn 
+    @extend %btn-shr2
+    border: 3px solid $main-color
+    background-color: $main-color
+    color: #fff
+
+#preview_section
+    display: none
+    box-sizing: border-box
+    justify-content: space-around
+    flex-direction: column
+    min-height: 100%
+    padding: 0.25rem 0 0 0
+    label
+        margin-bottom: 0 !important
+        width: 80%
+
+#preview_Description 
+    padding: 0.5rem
+    word-wrap: break-word
+    max-height: 15rem
+    min-height: 7rem
+    border: 1px solid #000
+    overflow-y: scroll
+    width: 100%
+
+.preview_user
+    padding: 0.25rem
+    margin-bottom: 20px
+    box-sizing: $box-sizing
+    display: flex
+    background-color: #fff
+    height: 6rem
+    border: 1px solid $border-fade
+    border-radius: 0.25rem
+
+.content_box
+    @extend %shr-box
+
+.dashboard
+    @extend %shr-box
+    
+    .btn-grp
+        display: flex
+        flex-direction: column
+        width: 100%
+        align-items: center
+        
+        a:first-child
+            margin-bottom: 20px
+            color: #fff !important
+
+.content_box1
+    box-sizing: $box-sizing
+    padding: 0 0 10% 0
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    height: 100vh
+
+.text_field
+    width: 70%
+    text-align: center
+    h4
+        color: $third-color
+        font-weight: bold
+    p
+        margin-top: 20px
+        font-weight: bold
+
+.login
+    @extend %btn-shr3
+    background: $main-color
+    border: 1px solid $main-color	
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
+.sign_up
+    @extend %btn-shr3
+    background: #fff
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: 4px 4px 0px $border-fade
+
+.back-btn
+    display: flex
+    text-align: left
+    
+
+#user_sign_up, 
+#user_login
+    width: 80%
+
+.sm-btn
+    width: 80%
+    margin: 0 auto
+
+.inner
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin: auto
+
+.inner2,
+.inner3,
+.inner4
+    display: none
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin: auto
+    width: 80%
+
+.inp
+    width: 100%
+    margin-bottom: 0 !important
+
+.terms_boiler 
+    margin-top: 50px
+    font-size: 0.8rem
+
+
+.int_req 
+    opacity: 0.8
+    overflow: hidden
+    max-height: 0
+    transition: max-height 1s ease-out
+
+
+input:focus + .int_req 
+    max-height: 500px
+    transition: max-height 1s ease-in
+
+.invalid 
+    color: red
+.invalid::after 
+    content: "❌"
+.valid 
+    color: #2ecc71
+.valid::after 
+    content: "✔️"
+
+#confirm_agree
+    width: 20px
+    height: 20px
+
+div.ui-dialog 
+    border-radius: 5%
+    width: 250px !important
+    background-color: #fff
+    .ui-dialog-titlebar
+        background: transparent
+        border: none
+    .ui-widget-content
+        border: none
+
+#timedate
+    font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype","Dejavu Sans", "Helvetica Neue", Arial, sans-serif
+    text-align: left
+    margin: 0 auto
+    color: #000
+    border-left: 3px solid #ed1f24
+    padding: 20px
+
+.requirement_frm,
+.go_btn
+    border: 4px solid $second-color
+    box-sizing: $box-sizing
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25)
+    border-radius: 60px
+    text-align: center
+    color: $color-blk
+    font-weight: bold
+    font-size: 30px
+
+.content_home
+    box-sizing: $box-sizing
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+    padding: 0 0 10px 0
+    min-height: calc(100vh - 75px - 52px)
+
+.post_container
+    display: flex
+    flex-direction: column
+    align-content: center
+    justify-items: center
+    padding: 10px 0
+
+%post-body
+    margin-top: 20px
+    box-sizing: $box-sizing
+    display: flex
+    justify-content: start
+    background-color: #fff
+    border: 1px solid $border-fade
+    border-radius: 0.25rem
+    height: 7.5rem
+    
+.user_single_post
+    @extend %post-body
+    .post-img 
+        object-fit: scale-down
+        width: 10rem
+        border-right: 1px solid $border-fade
+    .post-body
+        width: 100%
+        padding: 0.25rem 0.3rem
+        overflow-x: hidden
+        h6
+            font-weight: bold
+        p
+            font-size: 0.8rem
+            margin-bottom: 0
+
+.post_grid
+    margin-bottom: 10rem
+
+.post_style
+    margin-top: 13%
+
+.single_post
+    @extend %post-body
+    flex-direction: column
+    height: unset
+    .post-img
+        object-fit: scale-down
+        width: 10rem
+        height: 7rem
+        margin: auto
+    .post-body
+        border-top: 1px solid rgba(0, 0, 0, 0.125)
+        width: 100%
+        padding: 0.25rem 0.3rem
+        overflow-x: hidden
+        h6
+            font-weight: bold
+        p
+            font-size: 0.8rem
+            margin-bottom: 0 !important
+
+.single_post:hover, .user_single_post:hover
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
+
+label[for="sort"]
+    font-weight: bold
+
+.user
+    padding: 0.25rem
+    margin-bottom: 20px
+    box-sizing: $box-sizing
+    display: flex
+    background-color: #fff
+    height: 6rem
+    border: 1px solid rgba(0, 0, 0, 0.125)
+    border-radius: 0.25rem
+    img
+        border-radius: 50%
+        height: 5rem
+        width: 5rem
+
+#post-sec
+    height: 100%
+    margin-bottom: 80px
+
+#contact
+    width: 45%
+    border-color: #009bff
+    background: #009bff
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+    border-radius: 60px
+    padding: 0.5rem
+    font-weight: bold
+    color: #fff
+    font-size: 1.5rem
+    outline: none
+
+.navbar
+    z-index: 1
+    min-height: 5%
+    background-color: #005cec !important
+
+.header_logo 
+    width: 100%
+    min-width: 30px
+    max-width: 65px
+
+.header_logo2 
+    display: none
+    min-width: 120px
+    max-width: 150px
+
+.n-itm 
+    display: flex
+    justify-content: space-between
+
+
+.footer_logo 
+    width: 45px
+
+
+.footer 
+    flex-shrink: 0
+
+.footer_nav 
+    max-height: 75px
+    box-sizing: border-box
+    padding: 8px 16px
+    background-color: #def1f2
+    display: flex
+    justify-content: space-between
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+
+.side_nav_bar 
+    background-color: #fff
+    z-index: 2
+    position: fixed
+    top: 0
+    left: 0
+    height: 100vh
+    max-width: 0
+    display: flex
+    flex-direction: column
+    overflow-x: hidden
+    transition: max-width 0.5s ease-out
+
+.sidebar_logosection 
+    width: 300px
+    text-align: center
+    background-color: #005cec
+    height: max-content
+    padding: 15px 10px
+
+
+.sidebar_logo 
+    max-width: 55%
+
+ul
+    list-style: none
+    padding: 0
+    width: 300px
+    li
+        ul
+            padding: 0 0 0 15%
+            border-bottom: 1px solid $color-blk
+            li
+                opacity: 0.5
+                padding: 2% 0
+                overflow-x: hidden
+
+%li-style
+    font-weight: bold
+    font-size: 1
+    padding: 2% 0 0 2%
+    overflow-x: hidden
+
+li.CATEGORIES > h5, li.Account > h5
+    @extend %li-style
+
+#overlay 
+    z-index: 1
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100%
+    background-color: rgba(128, 128, 128, 1)
+    display: none 
+    transition: display 3s ease-in
+
+
+#sidebar-toggle 
+    outline: none
+    i 
+        color: #fff
+        font-size: 28px
+
+.navbar-toggler 
+    border: unset !important
+
+.skip 
+    color: #7d5cec !important
+
+.login 
+    color: white
+    background: #009bff
+    border: 1px solid #009bff
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
+
+#logout-btn 
+    box-sizing: border-box
+    padding: 0.45rem
+    text-align: center
+    color: red !important
+    border-top: 1px solid #000
+    font-size: 2rem
+    font-weight: bold
+
+.d-sidebar
+    height: 100%
+    position: fixed
+    z-index: 0
+    top: 0
+    left: 0
+    top: 71.5px
+    display: flex
+    flex-direction: column
+    background-color: #fff
+    border-right: 1px solid #000
+    width: 20%
+    form
+        .form-group
+            width: 100%
+            display: flex
+            justify-content: space-between
+            .form-control
+                min-width: 235px
+
+.pp, .fp
+    #latest_post
+        padding: 10px
+        border: 1px solid $border-fade
+        border-radius: 0.25rem
+        max-height: 300px
+        overflow-y: auto
+        a:first-child
+            .user_single_post
+                margin-top: 0 !important
+.mg
+    #message_box
+        padding: 10px
+        border: 1px solid $border-fade
+        border-radius: 0.25rem
+        max-height: 300px
+        overflow-y: auto
+        a:first-child
+            .user_single_post
+                margin-top: 0 !important
+
+.d-footer 
+    box-sizing: border-box
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    background: #def1f2
+    padding: 1.5rem 0 1.5rem 8rem
+    display: flex
+    max-height: 13.65rem
+
+    div:first-child 
+        display: flex
+        flex-direction: column
+
+
+.d-logo 
+    width: 10rem
+
+
+.quick 
+    box-sizing: border-box
+    width: 60%
+    display: flex !important
+    justify-content: space-around
+    div 
+        display: flex
+        flex-direction: column
+    h6
+        opacity: 0.5
+
+.header_signin
+    color: #fff
+    max-width: 30%
+    a 
+        padding: 0.5rem
+        cursor: pointer
+        text-decoration: none
+        color: unset
+    a:nth-child(2) 
+        background: #009bff
+        border: 4px solid #ffffff
+        box-sizing: border-box
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25)
+        border-radius: 60px
+
+.login-p 
+    display: flex
+
+.preview
+    margin-bottom: 80px
+
+
+.side-logo-box 
+    background-color: #005cec
+    padding: 2rem
+    max-height: 100%
+    display: flex
+    align-items: center
+    width: 30%
+    height: 100vh
+    img 
+        object-fit: scale-down
+        width: 100%
+        height: 100%
+        margin: auto
+
+.body-sec 
+    height: 100vh
+    width: 100%
+
+.main-pg 
+    display: flex !important
+
+.nav-item 
+    margin-right: 20px
+    :hover 
+        background-color: #7d5cec
+        border-radius: 5%
+        
+.account-button 
+    background: url(/image/header-account.png) no-repeat
+    width: 150px
+    height: 45px
+    outline: none !important
+    border: transparent
+    margin-right: 2rem
+
+
+.dropdown-menu 
+    margin-right: 2rem
+
+.all-c-box 
+    display: flex
+    flex-direction: column
+    width: 100%
+    align-self: start
+    height: max-content
+
+
+.sub-c-btn 
+    font-size: 0.8vw
+    margin: 0 auto
+    width: 80%
+    color: rgba(0, 0, 0, 0.5)
+    margin-top: 20px
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5)
+
+
+
+@media only screen and (min-width: 995px)
+    .back-btn
+        display: none
+    .header_logo 
+        display: none
+
+    .header_logo2 
+        display: inline-block
+        width: 100%
+    
+    .footer_nav 
+        display: none
+    
+    .desktop 
+        min-height: 100%
+        margin-bottom: 13.65rem
+    
+    .dashboard 
+        padding: 20% 0 !important
+    
+    .content_home 
+        position: relative
+        display: grid !important
+        grid-template-columns: 33% 33% 33%
+        min-height: 75vh !important
+        column-gap: 100px
+        row-gap: 15px
+        left: 15%
+        top: 80px
+    
+    .post_container
+        margin-left: 20%
+
+    .content_home > .logo,
+    .dashboard > .logo 
+        display: none
+    
+    .login,
+    .sign_up 
+        width: 70% !important
+    
+    .text_field > h4 
+        font-size: 3rem
+    
+    .logo1 
+        display: none !important
+    
+    .content_box1 
+        padding: 30% 0 25% 0 !important
+    
+    .top_bar 
+        display: none !important
+    
+    .sm-btn 
+        width: 65% !important
+        margin-bottom: 20px !important
+    
+    .go_btn 
+        pointer-events: none
+
+    .form-control.sort
+        width: 20% 
+    
+    .navbar
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+
+    .container.p
+        min-width: 60%
+    .container.detail
+        min-width: 45%
+
+    .post_grid
+        margin-top: 4%
+        display: grid
+        grid-template-columns: 30% 30% 30%
+        column-gap: 50px
+        row-gap: 15px
+        justify-content: center
+
+    section.container.profile
+        display: grid
+        grid-template-columns: 30% 30% 30%
+        row-gap: 15px
+        .logo
+            display: none
+        span.text
+            grid-column: 1 / span 1
+            grid-row: 1
+            
+        .pp
+            grid-column: 1 / span 3
+            grid-row: 2
+        
+        .fp
+            grid-column: 1 / span 3
+            grid-row: 3
+        .mg
+            grid-column: 1 / span 3
+            grid-row: 4
+    section.container.profile,
+    .container.detail,
+    .container.post
+        position: relative
+        min-width: 50%
+        left: 10%
+    
+    section.container.profile
+        top: 7%
+        margin-bottom: 50px
+
+    #preview_section
+        margin-bottom: unset
+        grid-template-columns: repeat(3, 1fr)
+        img
+            width: 80%
+            margin: 0 auto
+            margin-top: 4%
+            grid-column: 1 / span 3
+            grid-row: 1
+        #info
+            grid-column: 1 / span 2
+            grid-row: 2
+        .user_info
+            margin-top: 4%
+            grid-column: 3
+            grid-row: 2
+        .avatar
+            margin: auto 0
+
+    #post-sec
+        display: grid
+        margin-bottom: unset
+        grid-template-columns: repeat(3, 1fr)
+        row-gap: 20px
+        column-gap: 20px
+        .slide_container
+            margin: 0 auto
+            margin-top: 10%
+            grid-column: 1 / span 3
+            grid-row: 1
+            width: 800px
+            max-height: 800px
+            .mySlides
+                max-width: 800px
+                max-height: 600px
+                margin: 0 auto
+                img
+                    min-width: 800px
+                    min-height: 600px
+                    max-height: 600px 
+                    min-width: 800px
+                    margin: 0 auto !important
+                    object-fit: contain !important
+
+        .item-info
+            grid-column: 1 / span 2
+            grid-row: 2
+
+
+
+@media only screen and (max-width: 995px) 
+    .d-footer 
+        display: none
+    
+    .side-logo-box 
+        display: none
+    
+    .welcome-msg 
+        display: none
+    
+    .side-bar-container
+        display: none
+
+    .sub-c-btn 
+        display: none
+    
+
+
+@media (max-width: 1270px) 
+    .d-sidebar 
+        display: none
+    
+
+
+@media (min-width: 768px) and (min-width: 576px) 
+    .container 
+        z-index: 0
+        max-width: 35%
+
+    
+    .container.alp 
+        max-width: 60%
+    
+
+
+@media (max-height: 800px) 
+    .content_box 
+        margin-bottom: 5.5rem
+    
+
+
+.slide_container
+    position: relative
+    min-height: 285px
+    .mySlides
+        img
+            width: 100%
+    .prev, .next 
+        background-color: $main-color
+        cursor: pointer
+        position: absolute
+        top: 50%
+        width: auto
+        padding: 16px
+        margin-top: -50px
+        color: white !important
+        font-weight: bold
+        font-size: 20px
+        border-radius: 0 3px 3px 0
+        user-select: none
+        -webkit-user-select: none
+    .prev:hover, .next:hover
+        color: unset !important
+        background: white
+    .next
+        right: 0
+    .row
+        content: ""
+        display: table
+        clear: both
+        padding: 0 15px
+        .column
+            float: left
+            width: 10%
