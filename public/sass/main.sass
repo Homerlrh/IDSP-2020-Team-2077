@@ -575,13 +575,16 @@ li.CATEGORIES > h5, li.Account > h5
     background-color: #fff
     border-right: 1px solid #000
     width: 20%
+    padding: 1rem
+    box-sizing: border-box
     form
         .form-group
             width: 100%
             display: flex
             justify-content: space-between
             .form-control
-                min-width: 235px
+                min-width: 193px
+                max-width: 235px
 
 .pp, .fp
     #latest_post
@@ -614,10 +617,12 @@ li.CATEGORIES > h5, li.Account > h5
     padding: 1.5rem 0 1.5rem 8rem
     display: flex
     max-height: 13.65rem
-
     div:first-child 
         display: flex
         flex-direction: column
+    .quick
+        div
+            font-size: 1vw
 
 
 .d-logo 
@@ -821,10 +826,11 @@ li.CATEGORIES > h5, li.Account > h5
     .container.post
         position: relative
         min-width: 50%
-        left: 10%
+        left: 5%
     
+    .container.post,
     section.container.profile
-        top: 7%
+        top: 14%
         margin-bottom: 50px
 
     #preview_section
@@ -848,13 +854,13 @@ li.CATEGORIES > h5, li.Account > h5
 
     #post-sec
         display: grid
-        margin-bottom: unset
+        margin-bottom: 8%
         grid-template-columns: repeat(3, 1fr)
         row-gap: 20px
         column-gap: 20px
         .slide_container
             margin: 0 auto
-            margin-top: 10%
+            margin-top: 8%
             grid-column: 1 / span 3
             grid-row: 1
             width: 800px
@@ -910,6 +916,8 @@ li.CATEGORIES > h5, li.Account > h5
     .container.alp 
         max-width: 60%
     
+    .content_home
+        margin-bottom: 200px
 
 
 @media (max-height: 800px) 
