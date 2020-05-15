@@ -188,6 +188,13 @@ exports.up = async (knex) => {
 			GROUP BY user.id
 			`
 		)
+		.raw(
+			`ALTER TABLE user
+		CHANGE updated_at
+		updated_at TIMESTAMP NOT NULL
+						DEFAULT CURRENT_TIMESTAMP
+						ON UPDATE CURRENT_TIMESTAMP`
+		)
 		.then(console.log("table created"));
 };
 

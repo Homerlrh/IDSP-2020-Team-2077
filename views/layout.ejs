@@ -14,8 +14,9 @@
 		<% if(locals.content_css) {%> <%- include ("partial/sidemenu"); %>
 		<div id="overlay"></div>
 		<header><%- include ("partial/header"); %></header>
-		<%- include ("partial/d-sidebar"); %> <%- body %> <%- include
-		("partial/footer"); %> <% if(locals.footer != false) {%> <%- include
+		<%if( locals.d_sidebar == false) {%> <% } else { %> <%- include
+		("partial/d-sidebar"); %> <%}%><%- body %> <%- include ("partial/footer");
+		%> <% if(locals.footer != false) {%> <%- include
 		("partial/desktop_footer");%> <%}%><% } else { %>
 		<div class="main-pg">
 			<section class="side-logo-box">
@@ -37,13 +38,12 @@
 	<script src="/javascript/sidemenu_toggle.js"></script>
 	<% if(locals.content_css) {%>
 	<script src="/javascript/sub_category.js"></script>
-
-	<% } %> <% if(locals.preview == true) {%>
+	<% } %> <% if(locals.preview == true){%>
 	<script src="/javascript/preview.js"></script>
-
-	<%}%> <% if(locals.img == true) {%>
+	<%}%> <% if(locals.img == true){%>
 	<script src="/javascript/addFavourite.js"></script>
-
 	<script src="/javascript/changeimg.js"></script>
-	<% } %>
+	<% } %> <%if(locals.a_c == true){%>
+	<script src="/javascript/account_update.js"></script>
+	<%}%>
 </html>

@@ -61,32 +61,14 @@ module.exports = (db) => {
 		"/:type/:category/sub_category/:sub_type/:sub_category",
 		(req, res) => {
 			const { type, category, sub_type, sub_category } = req.params;
-			db.get_all_post_by_category(category, sub_category, (err, rows) => {
-				if (err) {
-					return console.log(err.message);
-				}
-				res.render("content/post", {
-					content_css: true,
-					post: [...rows],
-					title: sub_type,
-					is_login: req.cookies["jwt"] ? true : false,
-					footer: false,
-				});
-			});
+			get_allpost(req, res, sub_type, category, sub_category);
 		}
 	);
-
-	function auth_token(req, res, next) {
-		const token = req.cookies["jwt"];
-		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-			if (err) {
-				req.user = null;
-				next;
-			}
-			req.user = user;
-			next();
-		});
-	}
+	//get all the post by category
+	router.get("/ql/:type/:c_id", (req, res) => {
+		const { type, c_id } = req.params;
+		get_allpost(req, res, type, c_id, null);
+	});
 
 	router.get("/post_detail/:post_id", auth_token, (req, res) => {
 		const id = req.params.post_id;
@@ -132,10 +114,44 @@ module.exports = (db) => {
 				query,
 			],
 			(err, rows) => {
-				err ? console.log(err) : console.log(rows);
+				err
+					? console.log(err)
+					: res.render("content/post", {
+							content_css: true,
+							post: [...rows],
+							title: query,
+							is_login: req.cookies["jwt"] ? true : false,
+							footer: false,
+					  });
 			}
 		);
 	});
 
+	function get_allpost(req, res, sub_type, category, sub_category) {
+		db.get_all_post_by_category(category, sub_category, (err, rows) => {
+			if (err) {
+				return console.log(err.message);
+			}
+			res.render("content/post", {
+				content_css: true,
+				post: [...rows],
+				title: sub_type,
+				is_login: req.cookies["jwt"] ? true : false,
+				footer: false,
+			});
+		});
+	}
+
+	function auth_token(req, res, next) {
+		const token = req.cookies["jwt"];
+		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+			if (err) {
+				req.user = null;
+				next;
+			}
+			req.user = user;
+			next();
+		});
+	}
 	return router;
 };
