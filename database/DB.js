@@ -64,8 +64,12 @@ exports.get_subcategory = (category_id, cb) => {
 
 exports.get_all_post_by_category = (category, sub_category_id, cb) => {
 	connection.query(
-		"SELECT * FROM view_post_img_detail WHERE date > now() - interval 30 day AND main_category = ? AND sub_category = ?",
-		[category, sub_category_id],
+		`SELECT * FROM view_post_img_detail
+		WHERE CASE WHEN ? IS NOT NULL THEN main_category = ? ELSE 1=1 END
+		AND CASE WHEN ? IS NOT NULL THEN sub_category = ? ELSE 1=1 END
+		AND date > now() - interval 30 day
+		`,
+		[category, category, sub_category_id, sub_category_id],
 		cb
 	);
 };
@@ -110,6 +114,14 @@ exports.add_favourite = (info, cb) => {
 	connection.query(`INSERT INTO favorite_post SET ?`, info, cb);
 };
 
+exports.unlike = (info, cb) => {
+	connection.query(
+		`DELETE FROM favorite_post WHERE user_id = ? AND post_id = ?`,
+		info,
+		cb
+	);
+};
+
 exports.detect_likes = (post_id, cb) => {
 	connection.query(
 		`SELECT post.id, JSON_ARRAYAGG(user.id) AS liked_user
@@ -125,13 +137,25 @@ exports.detect_likes = (post_id, cb) => {
 exports.search = (info, cb) => {
 	connection.query(
 		`SELECT * FROM view_post_img_detail
-		WHERE date > now() - interval 30 day
-		AND WHERE CASE WHEN ? IS NOT NULL THEN main_category = ? ELSE 1=1 END
+		WHERE CASE WHEN ? IS NOT NULL THEN main_category = ? ELSE 1=1 END
 		AND CASE WHEN ? IS NOT NULL THEN sub_category = ? ELSE 1=1 END
 		AND CASE WHEN ? IS NOT NULL THEN (LOWER(\`post_title\`) LIKE CONCAT('%' , ?, '%')
 		OR LOWER(\`post_detail\`) LIKE CONCAT('%' , ?, '%')) ELSE 1=1 END
+		AND date > now() - interval 30 day
 		`,
 		info,
 		cb
 	);
 };
+
+exports.update_user = (info, cb) => {
+	connection.query(
+		`UPDATE user SET avatar = ?, username = ? , phone_number = ? , street = ? , city = ?, province = ? , postcode = ?  WHERE id = ?`,
+		info,
+		cb
+	);
+};
+
+// connection.query(`delete from post where id = 7`, (err, row) => {
+// 	err ? console.log(err) : console.log(row);
+// });

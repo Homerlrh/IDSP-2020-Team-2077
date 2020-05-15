@@ -8,7 +8,7 @@ module.exports = () => {
 	});
 
 	router.get("/", (req, res) => {
-		res.render("layout/main");
+		req.cookies.jwt ? res.redirect("/content/home") : res.render("layout/main");
 	});
 
 	router.get("/type/:type", check.is_login, (req, res) => {

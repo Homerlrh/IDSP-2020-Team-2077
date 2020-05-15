@@ -64,10 +64,11 @@ module.exports = (db, passport, auth_controller) => {
 		})
 		.post(AWS.upload.array("pic"), (req, res) => {
 			const post_body = { ...req.body };
+			console.log(post_body);
 			const files = [...req.files];
 			db.create_post(post_body, (err, result) => {
 				err
-					? console.log(err)
+					? res.send(err)
 					: files.forEach((file) => {
 							let img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${file.originalname}`;
 							db.upload_photo(
@@ -81,9 +82,44 @@ module.exports = (db, passport, auth_controller) => {
 			res.redirect("/user/create_post");
 		});
 
-	router.get("/setting", (req, res) => {
-		res.send(req.user);
-	});
+	router
+		.route("/setting")
+		.get((req, res) => {
+			res.render("account/account_setting", {
+				content_css: " ",
+				user: req.user,
+				footer: false,
+				a_c: true,
+			});
+		})
+		.post(AWS.upload.single("avatar"), (req, res) => {
+			const {
+				user_id,
+				username,
+				email,
+				phone_number,
+				street,
+				city,
+				province,
+				postcode,
+			} = { ...req.body };
+			const avatar = req.file
+				? `https://d39wlfkh0mxxlz.cloudfront.net/${req.file.originalname}`
+				: req.user.avatar;
+			const stmt = [
+				avatar,
+				username,
+				phone_number,
+				street,
+				city,
+				province,
+				postcode,
+				user_id,
+			];
+			db.update_user(stmt, (err, row) => {
+				err ? res.send("opps, please try again later") : res.send("updated");
+			});
+		});
 
 	router.get("/user-favorite/", (req, res) => {
 		const id = req.user.id;
@@ -102,10 +138,16 @@ module.exports = (db, passport, auth_controller) => {
 		const id = req.user.id;
 		const post = req.params.post_id;
 		const state = req.body.state;
-		console.log(state == "like");
-		db.add_favourite({ user_id: id, post_id: Number(post) }, (err, rows) => {
-			err ? res.send(err.message) : res.send("success");
-		});
+		state == "like"
+			? db.add_favourite(
+					{ user_id: id, post_id: Number(post) },
+					(err, rows) => {
+						err ? res.send(err.message) : res.send("liked");
+					}
+			  )
+			: db.unlike([id, Number(post)], (err, rows) => {
+					err ? res.send(err.message) : res.send("unliked");
+			  });
 	});
 
 	return router;

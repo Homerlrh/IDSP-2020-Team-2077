@@ -17,7 +17,8 @@
 
 			<a href="/content/post_detail/<%=x.post_id%>" class="single-anchor">
 				<div class="single_post">
-					<% if(locals.content_css == 'f') {%>
+					<%if (x.post_id == null) {%> <%}else{%> <% if(locals.content_css ==
+					'f') {%>
 					<img
 						src="<%=x.image[0] %>"
 						alt="Card image cap"
@@ -38,7 +39,7 @@
 					</div>
 				</div>
 			</a>
-			<% }) ; %><%}%>
+			<%}%><% }) ; %><%}%>
 		</div>
 	</div>
 </section>

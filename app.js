@@ -5,6 +5,7 @@ const express = require("express"),
 	path = require("path"),
 	expressLayouts = require("express-ejs-layouts"),
 	compression = require("compression"),
+	rateLimit = require("express-rate-limit"),
 	app = express();
 
 module.exports = (db, passport) => {
@@ -58,7 +59,19 @@ module.exports = (db, passport) => {
 		auth_controller
 	);
 	const handler = require("./routes/middleware/handleauth").handle_auth;
+	const limit = rateLimit(
+		{
+			windowMs: 1 * 60 * 1000,
+			max: 1,
+		},
+		(err) => {
+			Console.log(err);
+		}
+	);
 	app.use("/user", handler, user_route);
+
+	const about_route = require("./routes/about_route")();
+	app.use("/about", about_route);
 
 	return app;
 };
