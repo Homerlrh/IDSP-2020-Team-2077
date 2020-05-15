@@ -5,7 +5,9 @@
 		<div class="slide_container">
 			<%picture.forEach(x=>{%>
 			<div class="mySlides">
-				<img alt="preview_pic" name="preview_pic" src="<%=x%>" />
+				<div style="margin: auto;">
+					<img alt="preview_pic" name="preview_pic" src="<%=x%>" />
+				</div>
 			</div>
 			<%})%>
 			<a class="prev" onclick="plusSlides(-1)">❮</a>

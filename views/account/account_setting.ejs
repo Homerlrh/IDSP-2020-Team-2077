@@ -1,0 +1,115 @@
+<div class="container account">
+	<div>
+		<form id="user_update" enctype="multipart/form-data">
+			<div class="form-group" style="width: max-content; margin: 0 auto;">
+				<input type="file" name="avatar" hidden />
+				<img alt="avatar" id="avatar" src="<%=user.avatar%>" />
+			</div>
+
+			<input type="text" name="user_id" value="<%=user.id%>" hidden />
+			<div class="form-group">
+				<label for="Title">username</label>
+				<input
+					class="form-control"
+					name="username"
+					type="text"
+					value="<%=user.username%>"
+				/>
+			</div>
+			<div class="form-group">
+				<label for="Title">email</label>
+				<input
+					class="form-control"
+					name="email"
+					type="text"
+					value="<%=user.email%>"
+					readonly
+				/>
+			</div>
+			<div class="form-group">
+				<label for="Title">phone number</label>
+				<input
+					class="form-control"
+					name="phone_number"
+					type="text"
+					value="<%=user.phone_number%>"
+				/>
+			</div>
+			<div class="form-group">
+				<label for="Title">House number and street</label>
+				<input
+					class="form-control"
+					name="street"
+					type="text"
+					value="<%=user.street%>"
+				/>
+			</div>
+			<div class="form-group area">
+				<label for="Sub-Category">Location</label>
+				<div>
+					<select class="form-control" name="city" type="text">
+						<option value="<%=user.city%> "><%=user.city%></option>
+						<option value="Vancouver">Vancouver</option>
+						<option value="Richmond">Richmond</option>
+						<option value="Surrey">Surrey</option>
+						<option value="Burnaby">Burnaby</option>
+						<option value="delta/surrey/langley">delta/surrey/langley</option>
+					</select>
+					<select class="form-control" name="province" type="text">
+						<option value="<%=user.province%>"><%=user.province%></option>
+						<option value="BC">BC</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="postcode">postcode</label>
+				<input
+					class="form-control"
+					name="postcode"
+					type="text"
+					value="<%=user.postcode%>"
+				/>
+			</div>
+		</form>
+		<button class="saved" data-toggle="modal" data-target="#confirmModal">
+			Save
+		</button>
+
+		<div class="modal fade" id="confirmModal" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content" style="z-index: 9999;">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">You sure ?</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="alert alert-danger" role="alert">
+							By pressing the save button, your personal information will get
+							save to the database. Click "save the changes" button to continue.
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button
+							id="close-btn"
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal"
+						>
+							Close
+						</button>
+						<button
+							type="submit"
+							class="btn btn-primary"
+							id="confirm_update"
+							form="user_update"
+						>
+							Save changes
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -11,6 +11,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
+			width: 80%;
 		"
 	>
 		<div class="form-group">
@@ -23,8 +24,13 @@
 			/>
 		</div>
 		<div class="form-group">
-			<label for="Category">Category</label>
-			<select class="form-control" id="Category" name="category_id" type="text">
+			<label>Optional</label>
+			<select
+				class="form-control"
+				id="d-Category"
+				name="category_id"
+				type="text"
+			>
 				<option value="0">Choose a Category</option>
 				<option class="Housing" value="1">Housing</option>
 				<option class="Vehicles" value="2">Vehicles</option>
@@ -35,10 +41,10 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="Sub-Category">Sub Category</label>
+			<label>Optional</label>
 			<select
 				class="form-control"
-				id="Sub-Category"
+				id="d-Sub-Category"
 				name="sub_category_id"
 				type="text"
 			>

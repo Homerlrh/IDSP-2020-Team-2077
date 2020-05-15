@@ -98,20 +98,20 @@ const sub_category = {
 		"Other / Accessories",
 	],
 	4: [
-		"Home / Garden",
-		"Fun / Recreation",
-		"Fashion / Apparel",
-		"Sports / Outdoor",
-		"Arts / Stationary",
-		"TV / Appliances",
-	],
-	5: [
 		"Full Time",
 		"Part Time",
 		"Contract",
 		"Temporary",
 		"Informal / On Call",
 		"Seasonal",
+	],
+	5: [
+		"Home / Garden",
+		"Fun / Recreation",
+		"Fashion / Apparel",
+		"Sports / Outdoor",
+		"Arts / Stationary",
+		"TV / Appliances",
 	],
 	6: [
 		"Activities / Events",
@@ -130,6 +130,18 @@ $("#Category").on("change", (e) => {
 	//change value in sub category checkbox according to category
 	sub_category[sub_group].forEach((x, index) => {
 		$("#Sub-Category").append(
+			`<option alt="${x}" value="${index + 1}">${x}</option>`
+		);
+	});
+});
+
+$("#d-Category").on("change", (e) => {
+	e.preventDefault();
+	const sub_group = $("#d-Category").val();
+	$("#d-Sub-Category").empty();
+	//change value in sub category checkbox according to category
+	sub_category[sub_group].forEach((x, index) => {
+		$("#d-Sub-Category").append(
 			`<option alt="${x}" value="${index + 1}">${x}</option>`
 		);
 	});
