@@ -342,6 +342,8 @@ div.ui-dialog .ui-widget-content {
   color: #000;
   border-left: 3px solid #ed1f24;
   padding: 20px;
+  overflow: hidden;
+  max-height: 250px;
 }
 
 .requirement_frm,
@@ -676,9 +678,6 @@ li.CATEGORIES > h5, li.Account > h5 {
   display: flex;
   flex-direction: column;
 }
-.d-footer .quick div {
-  font-size: 0.7vw;
-}
 
 .d-logo {
   width: 10rem;
@@ -779,7 +778,7 @@ li.CATEGORIES > h5, li.Account > h5 {
 }
 
 .sub-c-btn {
-  font-size: 0.8vw;
+  font-size: 1vw;
   margin: 0 auto;
   width: 80%;
   color: rgba(0, 0, 0, 0.5);
@@ -872,9 +871,7 @@ li.CATEGORIES > h5, li.Account > h5 {
 .about section ul {
   list-style-type: disc;
   width: 100%;
-}
-.about section ul li:before {
-  content: "      ";
+  padding-left: 50px;
 }
 
 @media only screen and (min-width: 995px) {

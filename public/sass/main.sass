@@ -323,6 +323,8 @@ div.ui-dialog
     color: #000
     border-left: 3px solid #ed1f24
     padding: 20px
+    overflow: hidden
+    max-height: 250px
 
 .requirement_frm,
 .go_btn
@@ -623,9 +625,6 @@ li.CATEGORIES > h5, li.Account > h5
     div:first-child 
         display: flex
         flex-direction: column
-    .quick
-        div
-            font-size: 0.7vw
 
 
 .d-logo 
@@ -713,7 +712,7 @@ li.CATEGORIES > h5, li.Account > h5
 
 
 .sub-c-btn 
-    font-size: 0.8vw
+    font-size: 1vw
     margin: 0 auto
     width: 80%
     color: rgba(0, 0, 0, 0.5)
@@ -795,9 +794,7 @@ li.CATEGORIES > h5, li.Account > h5
         ul
             list-style-type: disc
             width: 100%
-            
-            li:before
-                content: "      "
+            padding-left: 50px
 
 
 @media only screen and (min-width: 995px)
@@ -809,7 +806,7 @@ li.CATEGORIES > h5, li.Account > h5
     .header_logo2 
         display: inline-block
         width: 100%
-    
+
     .footer_nav 
         display: none
     
