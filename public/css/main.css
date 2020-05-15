@@ -343,7 +343,7 @@ div.ui-dialog .ui-widget-content {
   border-left: 3px solid #ed1f24;
   padding: 20px;
   overflow: hidden;
-  max-height: 250px;
+  max-height: 200px;
 }
 
 .requirement_frm,
