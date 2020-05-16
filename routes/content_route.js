@@ -12,6 +12,7 @@ module.exports = (db) => {
 				content_css: "/css/content.css",
 				categories: [...rows],
 				is_login: req.cookies["jwt"] ? true : false,
+				filter: false,
 			});
 		});
 	});
@@ -90,6 +91,7 @@ module.exports = (db) => {
 							footer: false,
 							is_liked: is_liked,
 							img: true,
+							d_sidebar: false,
 					  });
 			});
 		});

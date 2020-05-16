@@ -44,6 +44,7 @@ module.exports = (db, passport, auth_controller) => {
 									latest_post: rows,
 									favorite_post: JSON.parse(row[0].favorite_post),
 									footer: false,
+									d_sidebar: false,
 							  });
 				  });
 		});
@@ -60,6 +61,7 @@ module.exports = (db, passport, auth_controller) => {
 				phone: req.user.phone_number == "" ? "n/a" : req.user.phone_number,
 				footer: false,
 				preview: true,
+				d_sidebar: false,
 			});
 		})
 		.post(AWS.upload.array("pic"), (req, res) => {
@@ -90,6 +92,7 @@ module.exports = (db, passport, auth_controller) => {
 				user: req.user,
 				footer: false,
 				a_c: true,
+				d_sidebar: false,
 			});
 		})
 		.post(AWS.upload.single("avatar"), (req, res) => {

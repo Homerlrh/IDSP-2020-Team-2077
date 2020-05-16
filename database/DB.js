@@ -156,6 +156,20 @@ exports.update_user = (info, cb) => {
 	);
 };
 
+exports.get_msg = (user_id, cb) => {
+	connection.query(
+		`select user.username,
+		user_message.send_user,
+		user_message.recieve_user,
+		JSON_ARRAYAGG(JSON_OBJECT("line_chat",user_message.line_chat,"time",user_message.created_at)) AS chat 
+		from user
+		join user_message on user_message.send_user = user.id
+		Group by user_message.id`,
+		[user_id],
+		cb
+	);
+};
+
 // connection.query(`delete from post where id = 7`, (err, row) => {
 // 	err ? console.log(err) : console.log(row);
 // });

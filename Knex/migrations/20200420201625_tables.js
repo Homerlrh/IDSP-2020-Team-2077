@@ -195,6 +195,17 @@ exports.up = async (knex) => {
 						DEFAULT CURRENT_TIMESTAMP
 						ON UPDATE CURRENT_TIMESTAMP`
 		)
+		.raw(
+			`create table user_message (
+				id INTEGER PRIMARY KEY AUTO_INCREMENT,
+				send_user INTEGER UNSIGNED,
+				recieve_user INTEGER UNSIGNED,
+				line_chat VARCHAR(255),
+				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+				FOREIGN KEY (send_user) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT,
+				FOREIGN KEY (recieve_user) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT
+			);`
+		)
 		.then(console.log("table created"));
 };
 

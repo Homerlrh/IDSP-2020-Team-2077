@@ -796,6 +796,38 @@ li.CATEGORIES > h5, li.Account > h5
             width: 100%
             padding-left: 50px
 
+.container.detail_msg
+    min-height: calc(100vh - 75px - 52px)
+    max-height: calc(100vh - 75px - 52px)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    main
+        max-height: 615px
+        overflow-y: scroll
+    footer
+        padding: 10px
+        border-top: 1px solid #000
+        > form
+            width: 100%
+            > input 
+                border: none
+                border-radius: 60px
+                width: 88%
+                background: #DEF1F2
+                outline: none
+                padding-left: 15px
+            > button
+                outline: none
+                background: #009BFF
+                border: none
+                text-align: right
+                border-radius: 60px
+                position: absolute
+                z-index: 0
+                right: 5px
+                width: 25%
+                color: white
 
 @media only screen and (min-width: 995px)
     .back-btn
@@ -899,13 +931,13 @@ li.CATEGORIES > h5, li.Account > h5
         .mg
             grid-column: 1 / span 3
             grid-row: 4
+
     section.container.profile,
     .container.detail,
     .container.post,
     .container.account
         position: relative
         min-width: 50%
-        left: 5%
     
     .container.account
         padding-top: 1rem
@@ -1022,7 +1054,6 @@ li.CATEGORIES > h5, li.Account > h5
         display: none
     .content_home
         left: 0
-        margin-bottom: 0
         .sub-c-btn
             font-size: 1vw
     
@@ -1043,3 +1074,72 @@ li.CATEGORIES > h5, li.Account > h5
 @media (max-width: 425px)
     .container.post
         margin-bottom: 80px
+
+.hl
+    color: $main-color !important
+
+.hl:hover
+    color: #7d5cec !important
+
+.myModal
+    display: none
+    width: 100%
+    height: 100%
+    position: fixed
+    bottom: 0
+    z-index: 1
+    background-color: rgba(0,0,0,0.4)
+
+.chatbox
+    border-radius: 50px 50px 0 0
+    background: #fff
+    bottom: 0
+    width: 100%
+    height: 70%
+    position: fixed
+    bottom: 0
+    display: flex
+    flex-direction: column
+    header
+        padding: 5px 30px
+        border-bottom: 1px solid #000
+        color: $third-color
+        font-weight: bold
+        .close
+            cursor: pointer
+            font-size: 2rem   
+    main
+        display: flex
+        flex-direction: column
+        width: 100%
+        min-height: 200px
+        max-height: 460px
+        padding: 10px
+        overflow-y: scroll
+    footer
+        width: 100%
+        position: fixed
+        bottom: 0
+        padding: 5px
+        border-top: 1px solid #000
+
+        > form
+            width: 100%
+            > input 
+                border: none
+                border-radius: 60px
+                width: 88%
+                background: #DEF1F2
+                outline: none
+                padding-left: 15px
+            > button
+                outline: none
+                background: #009BFF
+                border: none
+                text-align: right
+                border-radius: 60px
+                position: absolute
+                z-index: 0
+                right: 5px
+                width: 25%
+                color: white
