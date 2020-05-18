@@ -156,20 +156,36 @@ exports.update_user = (info, cb) => {
 	);
 };
 
-exports.get_msg = (user_id, cb) => {
+exports.get_chat_room_by_user_id = (user_id, cb) => {
 	connection.query(
-		`select user.username,
-		user_message.send_user,
-		user_message.recieve_user,
-		JSON_ARRAYAGG(JSON_OBJECT("line_chat",user_message.line_chat,"time",user_message.created_at)) AS chat 
-		from user
-		join user_message on user_message.send_user = user.id
-		Group by user_message.id`,
-		[user_id],
+		`select user_chat_room.id,
+		JSON_ARRAYAGG(JSON_OBJECT('id', A.id ,'user', A.username, 'avatar', A.avatar, 'email', A.email)) AS user_one,
+		JSON_ARRAYAGG(JSON_OBJECT('id', B.id ,'user', B.username, 'avatar', B.avatar, 'email', B.email)) AS user_two,
+		view_chat_history.chat
+		from user_chat_room
+		JOIN user A ON A.id = user_chat_room.user_one
+		JOIN user B ON B.id = user_chat_room.user_two
+		JOIN view_chat_history on view_chat_history.room_id = user_chat_room.id
+		where A.id = ? or B.id = ?
+		GROUP BY user_chat_room.id;`,
+		[user_id, user_id],
 		cb
 	);
 };
 
-// connection.query(`delete from post where id = 7`, (err, row) => {
-// 	err ? console.log(err) : console.log(row);
-// });
+exports.get_chat = (room_id, cb) => {
+	connection.query(
+		`select user_chat_room.id,
+		JSON_ARRAYAGG(JSON_OBJECT('id', A.id ,'user', A.username, 'avatar', A.avatar, 'email', A.email)) AS user_one,
+		JSON_ARRAYAGG(JSON_OBJECT('id', B.id ,'user', B.username, 'avatar', B.avatar, 'email', B.email)) AS user_two,
+		view_chat_history.chat
+		from user_chat_room
+		JOIN user A ON A.id = user_chat_room.user_one
+		JOIN user B ON B.id = user_chat_room.user_two
+		JOIN view_chat_history on view_chat_history.room_id = user_chat_room.id
+		WHERE user_chat_room.id = ?
+		GROUP BY user_chat_room.id;`,
+		[room_id],
+		cb
+	);
+};

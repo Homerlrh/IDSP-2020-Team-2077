@@ -82,7 +82,7 @@ a {
   display: flex;
   flex-direction: column;
   padding-top: 0.5rem;
-  margin-bottom: 75px;
+  margin-bottom: 150px;
 }
 
 .crt-post {
@@ -463,7 +463,7 @@ label[for=sort] {
 
 #post-sec {
   height: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 150px;
 }
 
 #contact {
@@ -887,18 +887,23 @@ li.CATEGORIES > h5, li.Account > h5 {
 }
 .container.detail_msg footer {
   padding: 10px;
+  height: 45px;
   border-top: 1px solid #000;
 }
 .container.detail_msg footer > form {
   width: 100%;
+  position: relative;
 }
 .container.detail_msg footer > form > input {
+  position: absolute;
   border: none;
   border-radius: 60px;
   width: 88%;
   background: #DEF1F2;
   outline: none;
   padding-left: 15px;
+  z-index: 1;
+  left: -10px;
 }
 .container.detail_msg footer > form > button {
   outline: none;
@@ -908,9 +913,69 @@ li.CATEGORIES > h5, li.Account > h5 {
   border-radius: 60px;
   position: absolute;
   z-index: 0;
-  right: 5px;
+  right: 0;
   width: 25%;
   color: white;
+}
+
+#chatbody li:first-child {
+  margin-top: 10px;
+}
+#chatbody li {
+  list-style: none;
+  margin-bottom: 5px;
+  width: 100%;
+}
+#chatbody li .send, #chatbody li .receive {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 30px !important;
+  word-wrap: break-word;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+}
+#chatbody li .send {
+  background-color: #009bff;
+  color: #fff;
+}
+#chatbody li .receive {
+  background-color: #E5E5E5;
+  color: #000;
+}
+#chatbody li .send:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-left-color: #009bff;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-right: -20px;
+}
+#chatbody li .receive:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  bottom: 10%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #E5E5E5;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-right: -20px;
+}
+#chatbody .chat_avatar {
+  min-width: 3rem;
+  min-height: 3rem;
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 50%;
 }
 
 @media only screen and (min-width: 995px) {
@@ -1214,7 +1279,7 @@ section.container.profile {
 }
 @media (max-width: 425px) {
   .container.post {
-    margin-bottom: 80px;
+    margin-bottom: 150px;
   }
 }
 .hl {

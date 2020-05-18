@@ -10,14 +10,15 @@
 		<% } %>
 		<title>Craigslist</title>
 	</head>
+
 	<body>
 		<% if(locals.content_css) {%> <%- include ("partial/sidemenu"); %>
 		<div id="overlay"></div>
 		<header><%- include ("partial/header"); %></header>
-		<%if( locals.d_sidebar == false) {%> <% } else { %> <%- include
-		("partial/d-sidebar"); %> <%}%><%- body %> <%- include ("partial/footer");
+		<%if( locals.d_sidebar == false) {%> <% } else { %> <%-include
+		("partial/d-sidebar"); %> <%}%> <%- body %> <%- include ("partial/footer");
 		%> <% if(locals.footer != false) {%> <%- include
-		("partial/desktop_footer");%> <%}%><% } else { %>
+		("partial/desktop_footer");%> <%}%> <% } else { %>
 		<div class="main-pg">
 			<section class="side-logo-box">
 				<img src="/image/white_stack_logo.png" />
@@ -30,7 +31,7 @@
 		<% } %>
 	</body>
 	<%- include ("partial/jquery"); %>
-	<script src="/javascript/clock.js"></script>
+	<!-- <script src="/javascript/clock.js"></script> -->
 	<script src="/javascript/changeForm.js"></script>
 	<% if(locals.signup) { %>
 	<script src="/javascript/customFormValidation.js"></script>
@@ -46,7 +47,10 @@
 	<% } %> <%if(locals.a_c == true){%>
 	<script src="/javascript/account_update.js"></script>
 	<%}%>
-	<script defer src="/socket.io/socket.io.js"></script>
-	<script defer src="/javascript/messaging.js"></script>
+	<script src="/javascript/messaging.js"></script>
 	<script src="/javascript/sortby.js"></script>
+	<% if (locals.socket) { %>
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="/javascript/socket.js"></script>
+	<% } %>
 </html>

@@ -16,26 +16,14 @@ server.listen(port, () => {
 });
 
 io.on("connection", (socket) => {
-	// socket.emit("chat-message", "hello world");
-	console.log(socket.id);
-	socket.on("send-msg", (msg_inp) => {
-		console.log(msg_inp);
+	socket.on("join_chat", (room) => {
+		socket.join(room);
+		socket.to(room).broadcast.emit("join_chat", "online");
+	});
+	socket.on("send-msg", (room, msg) => {
+		socket.to(room).broadcast.emit("send-msg", msg);
+	});
+	socket.on("leave_chat", (room) => {
+		socket.to(room).broadcast.emit("leave_chat", "offline");
 	});
 });
-app.get("/chat/", (req, res) => {
-	io.emit("chat-message", "hello world");
-	res.render("account/message", {
-		content_css: " ",
-		footer: false,
-		d_sidebar: false,
-	});
-});
-
-app.get("/chat/detail_msg", (req, res) => {
-	res.render("account/detail_chat", {
-		content_css: " ",
-		footer: false,
-		d_sidebar: false,
-	});
-});
-app.post("/chat/msg", (req, res) => {});

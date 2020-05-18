@@ -14,7 +14,6 @@ module.exports = (db, passport) => {
 
 	app.use(expressLayouts);
 	app.set("view engine", "ejs");
-
 	app.use(express.urlencoded({ extended: false }));
 	app.use(express.json());
 
@@ -72,6 +71,9 @@ module.exports = (db, passport) => {
 
 	const about_route = require("./routes/about_route")();
 	app.use("/about", about_route);
+
+	const chat_route = require("./routes/chat_route")(db);
+	app.use("/chat", handler, chat_route);
 
 	return app;
 };
