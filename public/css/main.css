@@ -82,7 +82,7 @@ a {
   display: flex;
   flex-direction: column;
   padding-top: 0.5rem;
-  margin-bottom: 150px;
+  margin-bottom: 75px;
 }
 
 .crt-post {
@@ -463,7 +463,7 @@ label[for=sort] {
 
 #post-sec {
   height: 100%;
-  margin-bottom: 150px;
+  margin-bottom: 10rem;
 }
 
 #contact {
@@ -529,7 +529,7 @@ label[for=sort] {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   max-width: 0;
   display: flex;
   flex-direction: column;
@@ -1279,7 +1279,7 @@ section.container.profile {
 }
 @media (max-width: 425px) {
   .container.post {
-    margin-bottom: 150px;
+    margin-bottom: 80px;
   }
 }
 .hl {
