@@ -12,6 +12,7 @@ module.exports = (db) => {
 				content_css: "/css/content.css",
 				categories: [...rows],
 				is_login: req.cookies["jwt"] ? true : false,
+				filter: false,
 			});
 		});
 	});
@@ -90,6 +91,7 @@ module.exports = (db) => {
 							footer: false,
 							is_liked: is_liked,
 							img: true,
+							d_sidebar: false,
 					  });
 			});
 		});
@@ -97,12 +99,9 @@ module.exports = (db) => {
 
 	router.post("/search", (req, res) => {
 		let { query, category_id, sub_category_id } = req.body;
-		console.log(query, category_id, sub_category_id);
 		category_id = category_id == 0 ? null : category_id;
 		sub_category_id = isNaN(sub_category_id) ? null : sub_category_id;
 		query = query.trim().length > 0 ? query : null;
-		console.log(query, category_id, sub_category_id);
-
 		db.search(
 			[
 				category_id,

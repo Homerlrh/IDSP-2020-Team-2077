@@ -88,7 +88,7 @@ a
     display: flex
     flex-direction: column
     padding-top: 0.5rem
-    margin-bottom: 75px
+    margin-bottom: 150px
 
 .crt-post
     width: 100%
@@ -323,6 +323,8 @@ div.ui-dialog
     color: #000
     border-left: 3px solid #ed1f24
     padding: 20px
+    overflow: hidden
+    max-height: 200px
 
 .requirement_frm,
 .go_btn
@@ -426,7 +428,7 @@ label[for="sort"]
 
 #post-sec
     height: 100%
-    margin-bottom: 80px
+    margin-bottom: 150px
 
 #contact
     width: 45%
@@ -623,9 +625,6 @@ li.CATEGORIES > h5, li.Account > h5
     div:first-child 
         display: flex
         flex-direction: column
-    .quick
-        div
-            font-size: 0.7vw
 
 
 .d-logo 
@@ -713,7 +712,7 @@ li.CATEGORIES > h5, li.Account > h5
 
 
 .sub-c-btn 
-    font-size: 0.8vw
+    font-size: 1vw
     margin: 0 auto
     width: 80%
     color: rgba(0, 0, 0, 0.5)
@@ -795,9 +794,97 @@ li.CATEGORIES > h5, li.Account > h5
         ul
             list-style-type: disc
             width: 100%
-            
-            li:before
-                content: "      "
+            padding-left: 50px
+
+.container.detail_msg
+    min-height: calc(100vh - 75px - 52px)
+    max-height: calc(100vh - 75px - 52px)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    main
+        max-height: 615px
+        overflow-y: scroll
+    footer
+        padding: 10px
+        height: 45px
+        border-top: 1px solid #000
+        > form
+            width: 100%
+            position: relative
+            > input
+                position: absolute
+                border: none
+                border-radius: 60px
+                width: 88%
+                background: #DEF1F2
+                outline: none
+                padding-left: 15px
+                z-index: 1
+                left: -10px
+            > button
+                outline: none
+                background: #009BFF
+                border: none
+                text-align: right
+                border-radius: 60px
+                position: absolute
+                z-index: 0
+                right: 0
+                width: 25%
+                color: white
+#chatbody
+    li:first-child
+        margin-top: 10px
+    li
+        list-style: none
+        margin-bottom: 5px
+        width: 100%
+        .send,.receive
+            position: relative
+            box-sizing: $box-sizing
+            max-width: 30px !important
+            word-wrap: break-word
+            padding: 0.5rem 0.8rem
+            border-radius: 10px
+        .send
+            background-color: $main-color
+            color: #fff
+        .receive
+            background-color: #E5E5E5
+            color: #000
+        .send:after
+            content: ''
+            position: absolute
+            right: 10px
+            bottom: 10%
+            width: 0
+            height: 0
+            border: 20px solid transparent
+            border-left-color: $main-color
+            border-right: 0
+            border-bottom: 0
+            margin-top: -10px
+            margin-right: -20px
+        .receive:before
+            content: ''
+            position: absolute
+            left: -10px
+            bottom: 10%
+            width: 0
+            height: 0
+            border: 20px solid transparent
+            border-right-color: #E5E5E5
+            border-left: 0
+            border-bottom: 0
+            margin-top: -10px
+            margin-right: -20px
+    .chat_avatar
+        min-width: 3rem
+        min-height: 3rem
+        max-width: 3rem
+        max-height: 3rem
+        border-radius: 50%
 
 
 @media only screen and (min-width: 995px)
@@ -809,7 +896,7 @@ li.CATEGORIES > h5, li.Account > h5
     .header_logo2 
         display: inline-block
         width: 100%
-    
+
     .footer_nav 
         display: none
     
@@ -902,13 +989,13 @@ li.CATEGORIES > h5, li.Account > h5
         .mg
             grid-column: 1 / span 3
             grid-row: 4
+
     section.container.profile,
     .container.detail,
     .container.post,
     .container.account
         position: relative
         min-width: 50%
-        left: 5%
     
     .container.account
         padding-top: 1rem
@@ -1025,7 +1112,6 @@ li.CATEGORIES > h5, li.Account > h5
         display: none
     .content_home
         left: 0
-        margin-bottom: 0
         .sub-c-btn
             font-size: 1vw
     
@@ -1045,4 +1131,73 @@ li.CATEGORIES > h5, li.Account > h5
 
 @media (max-width: 425px)
     .container.post
-        margin-bottom: 80px
+        margin-bottom: 150px
+
+.hl
+    color: $main-color !important
+
+.hl:hover
+    color: #7d5cec !important
+
+.myModal
+    display: none
+    width: 100%
+    height: 100%
+    position: fixed
+    bottom: 0
+    z-index: 1
+    background-color: rgba(0,0,0,0.4)
+
+.chatbox
+    border-radius: 50px 50px 0 0
+    background: #fff
+    bottom: 0
+    width: 100%
+    height: 70%
+    position: fixed
+    bottom: 0
+    display: flex
+    flex-direction: column
+    header
+        padding: 5px 30px
+        border-bottom: 1px solid #000
+        color: $third-color
+        font-weight: bold
+        .close
+            cursor: pointer
+            font-size: 2rem   
+    main
+        display: flex
+        flex-direction: column
+        width: 100%
+        min-height: 200px
+        max-height: 460px
+        padding: 10px
+        overflow-y: scroll
+    footer
+        width: 100%
+        position: fixed
+        bottom: 0
+        padding: 5px
+        border-top: 1px solid #000
+
+        > form
+            width: 100%
+            > input 
+                border: none
+                border-radius: 60px
+                width: 88%
+                background: #DEF1F2
+                outline: none
+                padding-left: 15px
+            > button
+                outline: none
+                background: #009BFF
+                border: none
+                text-align: right
+                border-radius: 60px
+                position: absolute
+                z-index: 0
+                right: 5px
+                width: 25%
+                color: white

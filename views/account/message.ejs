@@ -1,0 +1,21 @@
+<div class="container message">
+	<% chatrooms.forEach(chatroom => { %>
+
+	<a href="/chat/detail_msg/<%= chatroom.id %>" class="single-anchor">
+		<div class="user_single_post">
+			<img
+				src="<%= JSON.parse(chatroom.other_user)[0].avatar %>"
+				alt="Card image cap"
+				class="avatar"
+			/>
+			<div class="post-body" style="margin: auto;">
+				<h6><%= JSON.parse(chatroom.other_user)[0].user %></h6>
+				<p style="font-size: 1rem;">
+					<%= JSON.parse(chatroom.chat)[ JSON.parse(chatroom.chat).length - 1
+					].line_chat %>
+				</p>
+			</div>
+		</div>
+	</a>
+	<% }) %>
+</div>

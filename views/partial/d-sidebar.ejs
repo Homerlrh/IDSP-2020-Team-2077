@@ -1,7 +1,5 @@
 <div class="d-sidebar">
 	<br />
-	<%- include ("clock"); %>
-	<br />
 	<form
 		method="POST"
 		action="/content/search"
@@ -56,4 +54,6 @@
 			Search
 		</button>
 	</form>
+	<%if (locals.filter == false) {%><%}else{%> <%- include("housing_filter")
+	%><%}%>
 </div>

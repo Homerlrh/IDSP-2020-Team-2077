@@ -195,6 +195,44 @@ exports.up = async (knex) => {
 						DEFAULT CURRENT_TIMESTAMP
 						ON UPDATE CURRENT_TIMESTAMP`
 		)
+		.raw(
+			`CREATE TABLE user_chat_room (
+				id INTEGER PRIMARY KEY AUTO_INCREMENT,
+				user_one INTEGER UNSIGNED,
+				user_two INTEGER UNSIGNED,
+				FOREIGN KEY (user_one) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT,
+				FOREIGN KEY (user_two) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT,
+				UNIQUE (user_one , user_two)
+			);`
+		).raw(
+			`CREATE TABLE user_message (
+				id INTEGER PRIMARY KEY AUTO_INCREMENT,
+				chat_room_id INTEGER,
+				send_user INTEGER UNSIGNED,
+				recieve_user INTEGER UNSIGNED,
+				line_chat VARCHAR(255),
+				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+				FOREIGN KEY (chat_room_id) REFERENCES user_chat_room (id) ON DELETE SET NULL ON UPDATE RESTRICT,
+				FOREIGN KEY (send_user) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT,
+				FOREIGN KEY (recieve_user) REFERENCES user (id) ON DELETE SET NULL ON UPDATE RESTRICT
+			);`
+		).raw(
+			`
+			CREATE OR REPLACE VIEW view_chat_history AS
+			SELECT user_chat_room.id AS room_id,
+			JSON_ARRAYAGG(JSON_OBJECT("user", A.username, "avatar", A.avatar, "email", A.email)) AS user_one,
+			JSON_ARRAYAGG(JSON_OBJECT("user", B.username, "avatar", B.avatar, "email", B.email)) AS user_two,
+			JSON_ARRAYAGG(JSON_OBJECT(
+			"send_user",user_message.send_user,
+			"line_chat",user_message.line_chat,
+			"to_user",user_message.receive_user,
+			"time",user_message.created_at)) AS chat
+			FROM user_chat_room
+			LEFT JOIN user_message ON user_message.chat_room_id = user_chat_room.id
+			LEFT JOIN user A ON A.id = user_chat_room.user_one
+			LEFT JOIN user B ON B.id = user_chat_room.user_two
+			GROUP BY user_chat_room.id;`
+		)
 		.then(console.log("table created"));
 };
 
@@ -208,3 +246,7 @@ exports.down = async (knex) => {
 	await knex.schema.withSchema("craiglist").dropTableIfExists("comment");
 	await knex.raw(`SET FOREIGN_KEY_CHECKS=1;`);
 };
+
+
+​
+

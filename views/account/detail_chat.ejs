@@ -1,0 +1,37 @@
+<div class="container detail_msg">
+	<input type="text" id="room" value="<%= id %>" hidden />
+	<input
+		type="text"
+		id="user_two_avatar"
+		value="<%= user_two.avatar %>"
+		hidden
+	/>
+	<div>
+		<%- include ("../partial/back-btn"); %>
+		<header>
+			<%= user_two.user %>
+			<span id="status"></span>
+		</header>
+		<main id="chatbody">
+			<% chat.forEach(message => {%> <% if (message.send_user == user.id) { %>
+			<li style="text-align: right;">
+				<span class="send"><%= message.line_chat%></span>&nbsp;&nbsp;
+				<img class="chat_avatar" src="<%=user.avatar%>" />
+			</li>
+			<% }else{ %>
+			<li style="text-align: left;">
+				<img class="chat_avatar" src="<%= user_two.avatar %>" />&nbsp;&nbsp;
+				<span class="receive"><%= message.line_chat%></span>
+			</li>
+			<%}%> <% }) %>
+		</main>
+	</div>
+	<footer>
+		<form id="chatForm">
+			<input type="text" id="username" value="<%=user.username%>" hidden />
+			<input type="text" id="avatar" value="<%=user.avatar%>" hidden />
+			<input type="text" name="msg" id="chatinput" required />
+			<button type="submit" id="send-btn">Send</button>
+		</form>
+	</footer>
+</div>
