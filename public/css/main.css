@@ -44,11 +44,12 @@
 }
 
 body {
+  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 a {
@@ -477,6 +478,7 @@ label[for=sort] {
   color: #fff;
   font-size: 1.5rem;
   outline: none;
+  margin-bottom: 6rem;
 }
 
 .navbar {
@@ -612,6 +614,7 @@ li.CATEGORIES > h5, li.Account > h5 {
   text-align: center;
   color: red !important;
   border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -658,6 +661,7 @@ li.CATEGORIES > h5, li.Account > h5 {
   border-radius: 0.25rem;
   max-height: 300px;
   overflow-y: auto;
+  margin-bottom: 2rem;
 }
 .mg #message_box a:first-child .user_single_post {
   margin-top: 0 !important;
