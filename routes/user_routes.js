@@ -74,7 +74,6 @@ module.exports = (db, passport, auth_controller) => {
 		})
 		.post(AWS.upload.array("pic"), (req, res) => {
 			const post_body = { ...req.body };
-			console.log(post_body);
 			const files = [...req.files];
 			db.create_post(post_body, (err, result) => {
 				err
@@ -88,8 +87,8 @@ module.exports = (db, passport, auth_controller) => {
 								}
 							);
 					  });
+				res.redirect(`/content/post_detail/${result.insertId}`);
 			});
-			res.redirect("/user/create_post");
 		});
 
 	router

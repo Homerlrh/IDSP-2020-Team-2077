@@ -15,7 +15,6 @@ exports.upload = multer({
 		s3: s3,
 		bucket: "apple-clone",
 		key: function (req, file, cb) {
-			console.log(`${file.originalname} uploaded`);
 			cb(null, file.originalname); //use Date.now() for unique file keys
 		},
 	}),
