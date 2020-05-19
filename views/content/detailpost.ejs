@@ -1,7 +1,7 @@
 <div class="container detail">
 	<%- include ("../partial/back-btn"); %>
 
-	<div id="post-sec">
+	<section id="post-sec">
 		<div class="slide_container">
 			<%picture.forEach(x=>{%>
 			<div class="mySlides">
@@ -94,14 +94,32 @@
 	<div class="chatbox">
 		<header>
 			<span class="close">&times;</span><br />
-			<%=seller.seller_email%>
+			<%=seller.seller_name%>
 		</header>
-		<main id="chatbody"></main>
+		<main id="chatbody">
+			<li style="text-align: left;">
+				<img class="chat_avatar" src="<%= seller.seller_avatar %>" />
+				<span class="receive">Contact me any time!</span>
+			</li>
+		</main>
 		<footer>
-			<form id="chatForm">
-				<input type="text" name="msg" id="chatinput" />
+			<form id="post_chatForm">
+				<input
+					type="text"
+					name="user_two"
+					value="<%= seller.seller_email %>"
+					hidden
+				/>
+				<input type="text" name="msg" id="chatinput" required />
 				<button type="submit" id="send-btn">Send</button>
 			</form>
 		</footer>
+		<div id="confirm_chat" title="" style="text-align: center;">
+			<i class="far fa-check-circle" style="font-size: 50px;"></i>
+			<h4 style="color: #477b99;">Message Send !</h4>
+			<p style="font-size: 13px;">
+				<%=seller.seller_name%> will contact you soon.
+			</p>
+		</div>
 	</div>
 </div>

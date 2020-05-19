@@ -62,7 +62,8 @@ body
     margin: 0
     padding: 0
     width: 100vw
-    min-height: 100vh
+    min-height: calc(100vh - 60px)
+    margin-bottom: 5rem
 
 a
     color: unset !important
@@ -187,6 +188,9 @@ a
     overflow-y: scroll
     width: 100%
 
+#preview_Description::-webkit-scrollbar
+    display: none
+
 .preview_user
     padding: 0.25rem
     margin-bottom: 20px
@@ -288,6 +292,8 @@ a
     overflow: hidden
     max-height: 0
     transition: max-height 1s ease-out
+.int_req::-webkit-scrollbar
+    display: none
 
 
 input:focus + .int_req 
@@ -316,16 +322,6 @@ div.ui-dialog
         border: none
     .ui-widget-content
         border: none
-
-#timedate
-    font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype","Dejavu Sans", "Helvetica Neue", Arial, sans-serif
-    text-align: left
-    margin: 0 auto
-    color: #000
-    border-left: 3px solid #ed1f24
-    padding: 20px
-    overflow: hidden
-    max-height: 200px
 
 .requirement_frm,
 .go_btn
@@ -429,7 +425,6 @@ label[for="sort"]
 
 #post-sec
     height: 100%
-    margin-bottom: 10rem
 
 #contact
     width: 45%
@@ -442,11 +437,10 @@ label[for="sort"]
     color: #fff
     font-size: 1.5rem
     outline: none
-    margin-bottom: 6rem
 
 
 .navbar
-    z-index: 1
+    z-index: 5
     min-height: 5%
     background-color: #005cec !important
 
@@ -483,10 +477,11 @@ label[for="sort"]
     bottom: 0
     left: 0
     right: 0
+    z-index: 2
 
 .side_nav_bar 
     background-color: #fff
-    z-index: 2
+    z-index: 10
     position: fixed
     top: 0
     left: 0
@@ -531,7 +526,7 @@ li.CATEGORIES > h5, li.Account > h5
     @extend %li-style
 
 #overlay 
-    z-index: 1
+    z-index: 3
     position: fixed
     top: 0
     left: 0
@@ -793,13 +788,14 @@ li.CATEGORIES > h5, li.Account > h5
             width: 10%
 
 .about
-    max-width: 80% !important
-    margin-top: 80px
+    margin-bottom: 80px
     section
+        margin-bottom: 80px
         ul
             list-style-type: disc
             width: 100%
             padding-left: 50px
+
 
 .container.detail_msg
     min-height: $bd-height
@@ -810,15 +806,17 @@ li.CATEGORIES > h5, li.Account > h5
     main
         max-height: 615px
         overflow-y: scroll
+    main::-webkit-scrollbar
+        display: none
     footer
         padding: 10px
         height: 45px
         border-top: 1px solid #000
         > form
             width: 100%
-            position: relative
             > input
-                position: absolute
+                height: 30px
+                position: relative
                 border: none
                 border-radius: 60px
                 width: 88%
@@ -828,6 +826,7 @@ li.CATEGORIES > h5, li.Account > h5
                 z-index: 1
                 left: -10px
             > button
+                height: 30px
                 outline: none
                 background: #009BFF
                 border: none
@@ -835,7 +834,7 @@ li.CATEGORIES > h5, li.Account > h5
                 border-radius: 60px
                 position: absolute
                 z-index: 0
-                right: 0
+                right: 15px
                 width: 25%
                 color: white
 #chatbody
@@ -853,9 +852,11 @@ li.CATEGORIES > h5, li.Account > h5
             padding: 0.5rem 0.8rem
             border-radius: 10px
         .send
+            margin-right: 10px
             background-color: $main-color
             color: #fff
         .receive
+            margin-left: 10px
             background-color: #E5E5E5
             color: #000
         .send:after
@@ -893,6 +894,8 @@ li.CATEGORIES > h5, li.Account > h5
 
 
 @media only screen and (min-width: 995px)
+    body
+        margin-bottom: unset
     .back-btn
         display: none
     .header_logo 
@@ -1056,12 +1059,12 @@ li.CATEGORIES > h5, li.Account > h5
                     max-width: 800px
                     margin: 0 auto !important
                     object-fit: contain !important
-
         .item-info
             grid-column: 1 / span 2
             grid-row: 2
 
-        
+    .container.detail_msg main
+        max-height: 900px
 
 
 @media (max-width: 995px) 
@@ -1092,17 +1095,29 @@ li.CATEGORIES > h5, li.Account > h5
             max-width: 100%
             margin: auto
             object-fit: scale-down !important
+    
 
 
-@media  (min-width: 576px) 
+@media (min-width: 576px) 
     .container 
         max-width: 80%
 
     .container.alp 
         max-width: 60%
-    
     .content_home
         margin-bottom: 180px
+
+    .about, .message
+        min-width: 80% !important
+        margin-top: 80px
+    .detail_msg
+        position: relative
+        top: 80px
+        border: 1px solid #000
+        border-radius: 30px
+        div
+            margin-top: 10px
+
 
 @media(min-width: 768px)
     .container 
@@ -1150,7 +1165,9 @@ li.CATEGORIES > h5, li.Account > h5
     height: 100%
     position: fixed
     bottom: 0
-    z-index: 1
+    left: 0
+    right: 0
+    z-index: 3
     background-color: rgba(0,0,0,0.4)
 
 .chatbox
@@ -1179,6 +1196,8 @@ li.CATEGORIES > h5, li.Account > h5
         max-height: 460px
         padding: 10px
         overflow-y: scroll
+    main::-webkit-scrollbar
+        display: none
     footer
         width: 100%
         position: fixed
@@ -1189,6 +1208,8 @@ li.CATEGORIES > h5, li.Account > h5
         > form
             width: 100%
             > input 
+                position: relative
+                z-index: 1
                 border: none
                 border-radius: 60px
                 width: 88%

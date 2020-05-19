@@ -156,6 +156,22 @@ exports.update_user = (info, cb) => {
 	);
 };
 
+exports.creat_chatroom = (info, cb) => {
+	connection.query(`INSERT INTO user_chat_room SET ?`, info, cb);
+};
+
+exports.find_chatroom = (keypair, cb) => {
+	connection.query(
+		`select id from user_chat_room WHERE CONCAT(user_one,user_two) = ? or CONCAT(user_two,user_one) = ?`,
+		[keypair, keypair],
+		cb
+	);
+};
+
+exports.insert_chat = (info, cb) => {
+	connection.query(`INSERT INTO user_message SET ?`, info, cb);
+};
+
 exports.get_chat_room_by_user_id = (user_id, cb) => {
 	connection.query(
 		`select user_chat_room.id,

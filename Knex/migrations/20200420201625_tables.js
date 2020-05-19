@@ -209,7 +209,7 @@ exports.up = async (knex) => {
 				id INTEGER PRIMARY KEY AUTO_INCREMENT,
 				chat_room_id INTEGER,
 				send_user INTEGER UNSIGNED,
-				recieve_user INTEGER UNSIGNED,
+				receive_user INTEGER UNSIGNED,
 				line_chat VARCHAR(255),
 				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 				FOREIGN KEY (chat_room_id) REFERENCES user_chat_room (id) ON DELETE SET NULL ON UPDATE RESTRICT,
