@@ -1,6 +1,7 @@
 const express = require("express");
 const AWS = require("./photo_upload/aws");
 const router = express.Router();
+const filter = require("./helper_function/filter_user").get_other_user;
 
 module.exports = (db, passport, auth_controller) => {
 	const set_cookie = require("./helper_function/create_cookie")(
@@ -35,18 +36,25 @@ module.exports = (db, passport, auth_controller) => {
 	});
 
 	router.get("/login/callback", (req, res) => {
-		db.get_post_by_user_id(req.user.id, (err, rows) => {
+		const user_id = req.user.id;
+		db.get_post_by_user_id(user_id, (err, rows) => {
 			err
 				? console.log(err)
-				: db.get_favorite_post_by_user_id(req.user.id, (req, row) => {
+				: db.get_favorite_post_by_user_id(user_id, (req, row) => {
 						err
 							? console.log(err)
-							: res.render("account/account", {
-									content_css: " ",
-									latest_post: rows,
-									favorite_post: JSON.parse(row[0].favorite_post),
-									footer: false,
-									d_sidebar: false,
+							: db.get_chat_room_by_user_id(user_id, (err, room) => {
+									const chatrooms = filter(room, user_id);
+									err
+										? console.log(err)
+										: res.render("account/account", {
+												content_css: " ",
+												latest_post: rows,
+												favorite_post: JSON.parse(row[0].favorite_post),
+												chatrooms: chatrooms,
+												footer: false,
+												d_sidebar: false,
+										  });
 							  });
 				  });
 		});

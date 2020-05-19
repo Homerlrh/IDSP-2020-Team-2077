@@ -12,6 +12,13 @@ $(document).ready(function () {
 		$("body").css("overflow", "hidden");
 	});
 
+	$("#overlay").click(() => {
+		$("#overlay").hide();
+		$(".side_nav_bar").css("max-width", "0");
+		$("body").css("overflow", "auto");
+		return;
+	});
+
 	if ($(window).width() < 995) {
 		$(".go_btn").css("pointer-events", "unset");
 	} else {

@@ -80,7 +80,7 @@ module.exports = (db) => {
 						? JSON.parse(like[0].liked_user).includes(req.user.id)
 						: false;
 				return err
-					? console.log(err.message)
+					? console.log(err)
 					: res.render("content/detailpost", {
 							id: id,
 							seller: JSON.parse({ ...rows[0] }.seller),
