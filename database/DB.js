@@ -205,3 +205,7 @@ exports.get_chat = (room_id, cb) => {
 		cb
 	);
 };
+
+// connection.query(`select * from user`, (err, ros) => {
+// 	console.log(ros);
+// });

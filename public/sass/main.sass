@@ -895,6 +895,7 @@ li.CATEGORIES > h5, li.Account > h5
 
 @media only screen and (min-width: 995px)
     body
+        min-height: unset
         margin-bottom: unset
     .back-btn
         display: none
@@ -980,6 +981,7 @@ li.CATEGORIES > h5, li.Account > h5
     section.container.profile
         display: grid
         grid-template-columns: 30% 30% 30%
+        column-gap: 5%
         row-gap: 15px
         .logo
             display: none
@@ -1002,9 +1004,9 @@ li.CATEGORIES > h5, li.Account > h5
     .container.detail,
     .container.post,
     .container.account
+        margin-top: 80px
         position: relative
         min-width: 50%
-    
     .container.account
         padding-top: 1rem
         
@@ -1095,6 +1097,9 @@ li.CATEGORIES > h5, li.Account > h5
             max-width: 100%
             margin: auto
             object-fit: scale-down !important
+    .detail_msg
+       top: 10px !important
+       margin-bottom: 85px
     
 
 
