@@ -1244,6 +1244,11 @@ section.container.profile {
     margin: auto;
     object-fit: scale-down !important;
   }
+
+  .detail_msg {
+    top: 10px !important;
+    margin-bottom: 85px;
+  }
 }
 @media (min-width: 576px) {
   .container {

@@ -114,7 +114,7 @@ module.exports = (db, passport, auth_controller) => {
 				postcode,
 			} = { ...req.body };
 			const avatar = req.file
-				? `https://d39wlfkh0mxxlz.cloudfront.net/${req.file.originalname}`
+				? `${process.env.cloudFront}${req.file.originalname}`
 				: req.user.avatar;
 			const stmt = [
 				avatar,
@@ -148,16 +148,20 @@ module.exports = (db, passport, auth_controller) => {
 		const id = req.user.id;
 		const post = req.params.post_id;
 		const state = req.body.state;
-		state == "like"
-			? db.add_favourite(
-					{ user_id: id, post_id: Number(post) },
-					(err, rows) => {
-						err ? res.send(err.message) : res.send("liked");
-					}
-			  )
-			: db.unlike([id, Number(post)], (err, rows) => {
-					err ? res.send(err.message) : res.send("unliked");
-			  });
+		if (req.user) {
+			state == "like"
+				? db.add_favourite(
+						{ user_id: id, post_id: Number(post) },
+						(err, rows) => {
+							err ? res.send(err.message) : res.send("liked");
+						}
+				  )
+				: db.unlike([id, Number(post)], (err, rows) => {
+						err ? res.send(err.message) : res.send("unliked");
+				  });
+		} else {
+			res.send("please log in first");
+		}
 	});
 
 	return router;
