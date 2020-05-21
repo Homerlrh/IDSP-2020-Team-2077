@@ -162,8 +162,16 @@ exports.creat_chatroom = (info, cb) => {
 
 exports.find_chatroom = (keypair, cb) => {
 	connection.query(
-		`select id from user_chat_room WHERE CONCAT(user_one,user_two) = ? or CONCAT(user_two,user_one) = ?`,
+		`select id from user_chat_room WHERE CONCAT(user_one,',',user_two) = ? or CONCAT(user_two,',',user_one) = ?`,
 		[keypair, keypair],
+		cb
+	);
+};
+
+exports.verify_user_in_chatroom = (user, cb) => {
+	connection.query(
+		`SELECT CASE WHEN EXISTS ( SELECT id FROM user_chat_room WHERE email = ?) then TRUE else FALSE end as bool`,
+		[user],
 		cb
 	);
 };
@@ -206,6 +214,6 @@ exports.get_chat = (room_id, cb) => {
 	);
 };
 
-// connection.query(`select * from user`, (err, ros) => {
+// connection.query(`select * from view_chat_history`, (err, ros) => {
 // 	console.log(ros);
 // });
