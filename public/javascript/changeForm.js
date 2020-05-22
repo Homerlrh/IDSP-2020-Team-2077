@@ -40,7 +40,6 @@ bth.on("click", (e) => {
 		"label[for='Confirm_Password']:first-child"
 	).className;
 	const username = document.querySelector("#Username").value;
-	console.log("oh you clicked sign up");
 	if (
 		c_em == "invalid" ||
 		c_em == "" ||
@@ -61,7 +60,6 @@ const cont_bth = $("#continue_btn");
 
 cont_bth.on("click", (e) => {
 	e.preventDefault();
-	console.log("oh you clicked continue");
 	$(".inner2").hide();
 	$(".inner3").css("display", "flex");
 });
@@ -70,7 +68,6 @@ const term_btn = $("#term_btn");
 
 term_btn.on("click", (e) => {
 	e.preventDefault();
-	console.log("oh you clicked term");
 	if ($("#confirm_agree").is(":checked")) {
 		$(".logo1").hide();
 		$(".inner3").hide();

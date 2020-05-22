@@ -6,7 +6,7 @@ module.exports = (db) => {
 	router.get("/home", (req, res) => {
 		db.get_category((err, rows) => {
 			if (err) {
-				return console.log(err);
+				return res.send(err);
 			}
 			res.render("content/home", {
 				content_css: "/css/content.css",
@@ -21,12 +21,12 @@ module.exports = (db) => {
 		const type = req.params.type.toLocaleLowerCase().replace(" ", "_");
 		db.get_category_id(type, (err, rows) => {
 			if (err) {
-				return console.log(err.message);
+				return res.send(err.message);
 			}
 			const category_id = rows[0].id;
 			db.get_subcategory(category_id, (err, rows) => {
 				if (err) {
-					return console.log(err.message);
+					return res.send(err.message);
 				}
 				const sub_category = [...rows];
 				res.send(sub_category);
@@ -38,12 +38,12 @@ module.exports = (db) => {
 		const type = req.params.type;
 		db.get_category_id(type, (err, rows) => {
 			if (err) {
-				return console.log(err.message);
+				return res.send(err.message);
 			}
 			const category_id = rows[0].id;
 			db.get_subcategory(category_id, (err, rows) => {
 				if (err) {
-					return console.log(err.message);
+					return res.send(err.message);
 				}
 				const sub_category = [...rows];
 				res.render("content/home", {
@@ -80,7 +80,7 @@ module.exports = (db) => {
 						? JSON.parse(like[0].liked_user).includes(req.user.id)
 						: false;
 				return err
-					? console.log(err)
+					? res.send(err)
 					: res.render("content/detailpost", {
 							id: id,
 							seller: JSON.parse({ ...rows[0] }.seller),
@@ -130,7 +130,7 @@ module.exports = (db) => {
 	function get_allpost(req, res, sub_type, category, sub_category) {
 		db.get_all_post_by_category(category, sub_category, (err, rows) => {
 			if (err) {
-				return console.log(err.message);
+				return res.send(err.message);
 			}
 			res.render("content/post", {
 				content_css: true,
