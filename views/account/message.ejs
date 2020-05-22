@@ -1,5 +1,13 @@
 <div class="container message">
-	<% chatrooms.forEach(chatroom => { %>
+	<% if (locals.err != "") { %>
+	<br />
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<%= err %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<% } %> <% chatrooms.forEach(chatroom => { %>
 
 	<a href="/chat/detail_msg/<%= chatroom.id %>" class="single-anchor">
 		<div class="user_single_post">

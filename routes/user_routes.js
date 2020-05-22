@@ -25,12 +25,18 @@ module.exports = (db, passport, auth_controller) => {
 			if (is_user) {
 				console.log(is_user);
 				db.get_user_id_by_email(req.user._json.email, (err, rows) => {
-					err ? console.log(err.message) : set_cookie(req, res, rows[0].id);
+					if (err) {
+						return console.log(err.message);
+					}
+					set_cookie(req, res, rows[0].id);
 				});
 				return;
 			}
 			db.create_user(info, (err, result) => {
-				err ? console.log(err.message) : set_cookie(req, res, result.insertId);
+				if (err) {
+					return console.log(err.message);
+				}
+				set_cookie(req, res, result.insertId);
 			});
 		});
 	});
@@ -38,25 +44,28 @@ module.exports = (db, passport, auth_controller) => {
 	router.get("/login/callback", (req, res) => {
 		const user_id = req.user.id;
 		db.get_post_by_user_id(user_id, (err, rows) => {
-			err
-				? console.log(err)
-				: db.get_favorite_post_by_user_id(user_id, (req, row) => {
-						err
-							? console.log(err)
-							: db.get_chat_room_by_user_id(user_id, (err, room) => {
-									const chatrooms = filter(room, user_id);
-									err
-										? console.log(err)
-										: res.render("account/account", {
-												content_css: " ",
-												latest_post: rows,
-												favorite_post: JSON.parse(row[0].favorite_post),
-												chatrooms: chatrooms,
-												footer: false,
-												d_sidebar: false,
-										  });
-							  });
-				  });
+			if (err) {
+				return console.log(err.message);
+			}
+			db.get_favorite_post_by_user_id(user_id, (req, row) => {
+				if (err) {
+					return console.log(err.message);
+				}
+				db.get_chat_room_by_user_id(user_id, (err, room) => {
+					const chatrooms = filter(room, user_id);
+					if (err) {
+						return console.log(err.message);
+					}
+					res.render("account/account", {
+						content_css: " ",
+						latest_post: rows,
+						favorite_post: JSON.parse(row[0].favorite_post),
+						chatrooms: chatrooms,
+						footer: false,
+						d_sidebar: false,
+					});
+				});
+			});
 		});
 	});
 
@@ -78,17 +87,18 @@ module.exports = (db, passport, auth_controller) => {
 			const post_body = { ...req.body };
 			const files = [...req.files];
 			db.create_post(post_body, (err, result) => {
-				err
-					? res.send(err)
-					: files.forEach((file) => {
-							let img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${file.originalname}`;
-							db.upload_photo(
-								{ img_url: img_url, post_id: result.insertId },
-								(err, result) => {
-									err ? console.log(err) : console.log(result.insertId);
-								}
-							);
-					  });
+				if (err) {
+					return res.send(err);
+				}
+				files.forEach((file) => {
+					let img_url = `https://d39wlfkh0mxxlz.cloudfront.net/${file.originalname}`;
+					db.upload_photo(
+						{ img_url: img_url, post_id: result.insertId },
+						(err, result) => {
+							err ? console.log(err) : console.log(result.insertId);
+						}
+					);
+				});
 				res.redirect(`/content/post_detail/${result.insertId}`);
 			});
 		});
@@ -129,20 +139,24 @@ module.exports = (db, passport, auth_controller) => {
 				user_id,
 			];
 			db.update_user(stmt, (err, row) => {
-				err ? res.send("opps, please try again later") : res.send("updated");
+				if (err) {
+					return res.send("opps, please try again later");
+				}
+				res.send("updated");
 			});
 		});
 
 	router.get("/user-favorite/", (req, res) => {
 		const id = req.user.id;
 		db.get_favorite_post_by_user_id(id, (err, rows) => {
-			err
-				? res.send(err)
-				: res.render("content/post", {
-						content_css: "f",
-						title: "favourite",
-						post: JSON.parse(rows[0].favorite_post),
-				  });
+			if (err) {
+				return res.send(err);
+			}
+			res.render("content/post", {
+				content_css: "f",
+				title: "favourite",
+				post: JSON.parse(rows[0].favorite_post),
+			});
 		});
 	});
 
@@ -155,11 +169,17 @@ module.exports = (db, passport, auth_controller) => {
 				? db.add_favourite(
 						{ user_id: id, post_id: Number(post) },
 						(err, rows) => {
-							err ? res.send(err.message) : res.send("liked");
+							if (err) {
+								return res.send(err);
+							}
+							res.send("liked");
 						}
 				  )
 				: db.unlike([id, Number(post)], (err, rows) => {
-						err ? res.send(err.message) : res.send("unliked");
+						if (err) {
+							return res.send(err);
+						}
+						res.send("unliked");
 				  });
 		} else {
 			res.send("please log in first");

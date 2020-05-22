@@ -885,7 +885,7 @@ li.CATEGORIES > h5, li.Account > h5 {
   justify-content: space-between;
 }
 .container.detail_msg main {
-  max-height: 615px;
+  max-height: 570px;
   overflow-y: scroll;
 }
 .container.detail_msg main::-webkit-scrollbar {

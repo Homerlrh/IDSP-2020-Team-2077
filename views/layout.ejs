@@ -9,6 +9,7 @@
 		</style>
 		<% } %>
 		<title>Craigslist</title>
+		<link rel="shortcut icon" type="image/png" href="/image/logo.png" />
 	</head>
 
 	<body>
@@ -31,7 +32,8 @@
 		<% } %>
 	</body>
 	<%- include ("partial/jquery"); %>
-	<!-- <script src="/javascript/clock.js"></script> -->
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="/javascript/socket.js"></script>
 	<script src="/javascript/changeForm.js"></script>
 	<% if(locals.signup) { %>
 	<script src="/javascript/customFormValidation.js"></script>
@@ -44,13 +46,9 @@
 	<%}%> <% if(locals.img == true){%>
 	<script src="/javascript/addFavourite.js"></script>
 	<script src="/javascript/changeimg.js"></script>
+	<script src="/javascript/messaging.js"></script>
 	<% } %> <%if(locals.a_c == true){%>
 	<script src="/javascript/account_update.js"></script>
 	<%}%>
-	<script src="/javascript/messaging.js"></script>
 	<script src="/javascript/sortby.js"></script>
-	<% if (locals.socket) { %>
-	<script defer src="/socket.io/socket.io.js"></script>
-	<script defer src="/javascript/socket.js"></script>
-	<% } %>
 </html>

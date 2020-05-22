@@ -113,15 +113,16 @@ module.exports = (db) => {
 				query,
 			],
 			(err, rows) => {
-				err
-					? console.log(err)
-					: res.render("content/post", {
-							content_css: true,
-							post: [...rows],
-							title: query,
-							is_login: req.cookies["jwt"] ? true : false,
-							footer: false,
-					  });
+				if (err) {
+					return res.send(err);
+				}
+				res.render("content/post", {
+					content_css: true,
+					post: [...rows],
+					title: query,
+					is_login: req.cookies["jwt"] ? true : false,
+					footer: false,
+				});
 			}
 		);
 	});

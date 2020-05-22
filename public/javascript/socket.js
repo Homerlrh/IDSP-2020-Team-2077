@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3333");
+const socket = io("https://idsp-craigslist-redesign.herokuapp.com/");
 
 //get the form data from DOM element
 const msg_frm = document.querySelector("#chatForm");
@@ -41,8 +41,8 @@ if (msg_frm != null) {
 }
 
 socket.on("send-msg", (data) => {
-	data.send_user = user_two_avatar.value;
 	console.log(data);
+	data.send_user = user_two_avatar.value;
 	append_message(data);
 });
 
