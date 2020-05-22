@@ -1,4 +1,5 @@
 const express = require("express"),
+	session = require("express-session"),
 	cookieParser = require("cookie-parser"),
 	helmet = require("helmet"),
 	flash = require("connect-flash"),
@@ -14,10 +15,8 @@ module.exports = (db, passport) => {
 
 	app.use(expressLayouts);
 	app.set("view engine", "ejs");
-
 	app.use(express.urlencoded({ extended: false }));
 	app.use(express.json());
-
 	app.use(passport.initialize());
 	app.use(passport.session());
 
@@ -29,6 +28,13 @@ module.exports = (db, passport) => {
 		done(null, user);
 	});
 
+	app.use(
+		session({
+			secret: "***",
+			saveUninitialized: true,
+			resave: true,
+		})
+	);
 	app.use(cookieParser());
 	app.use(flash());
 
@@ -72,6 +78,9 @@ module.exports = (db, passport) => {
 
 	const about_route = require("./routes/about_route")();
 	app.use("/about", about_route);
+
+	const chat_route = require("./routes/chat_route")(db);
+	app.use("/chat", handler, chat_route);
 
 	return app;
 };

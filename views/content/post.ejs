@@ -5,15 +5,18 @@
 		</h3>
 		<div class="form-group inp">
 			<label for="sort">Sort by</label>
-			<select class="form-control sort" type="text">
-				<option>Brand new</option>
-				<option>Good</option>
-				<option>Ok</option>
-				<option>Can not describe</option>
+			<select id="sort_by" class="form-control sort" type="text">
+				<option value="All">All</option>
+				<option value="New">Brand new</option>
+				<option value="Good">Good</option>
+				<option value="Ok">Ok</option>
+				<option value="n/a">Can not describe</option>
 			</select>
 		</div>
 		<div class="post_grid">
-			<% if(locals.content_css) {%> <%post.forEach(x=> {%>
+			<% if(locals.content_css) {%> <%if (post.length < 1) {%>
+			<h1>No listing yet</h1>
+			<%}else{%> <%post.forEach(x=> {%>
 
 			<a href="/content/post_detail/<%=x.post_id%>" class="single-anchor">
 				<div class="single_post">
@@ -39,7 +42,7 @@
 					</div>
 				</div>
 			</a>
-			<%}%><% }) ; %><%}%>
+			<%}%><% }) ; %><%}%><%}%>
 		</div>
 	</div>
 </section>

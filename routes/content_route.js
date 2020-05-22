@@ -12,6 +12,7 @@ module.exports = (db) => {
 				content_css: "/css/content.css",
 				categories: [...rows],
 				is_login: req.cookies["jwt"] ? true : false,
+				filter: false,
 			});
 		});
 	});
@@ -79,7 +80,7 @@ module.exports = (db) => {
 						? JSON.parse(like[0].liked_user).includes(req.user.id)
 						: false;
 				return err
-					? console.log(err.message)
+					? console.log(err)
 					: res.render("content/detailpost", {
 							id: id,
 							seller: JSON.parse({ ...rows[0] }.seller),
@@ -90,6 +91,7 @@ module.exports = (db) => {
 							footer: false,
 							is_liked: is_liked,
 							img: true,
+							d_sidebar: false,
 					  });
 			});
 		});
@@ -97,12 +99,9 @@ module.exports = (db) => {
 
 	router.post("/search", (req, res) => {
 		let { query, category_id, sub_category_id } = req.body;
-		console.log(query, category_id, sub_category_id);
 		category_id = category_id == 0 ? null : category_id;
 		sub_category_id = isNaN(sub_category_id) ? null : sub_category_id;
 		query = query.trim().length > 0 ? query : null;
-		console.log(query, category_id, sub_category_id);
-
 		db.search(
 			[
 				category_id,
@@ -114,15 +113,16 @@ module.exports = (db) => {
 				query,
 			],
 			(err, rows) => {
-				err
-					? console.log(err)
-					: res.render("content/post", {
-							content_css: true,
-							post: [...rows],
-							title: query,
-							is_login: req.cookies["jwt"] ? true : false,
-							footer: false,
-					  });
+				if (err) {
+					return res.send(err);
+				}
+				res.render("content/post", {
+					content_css: true,
+					post: [...rows],
+					title: query,
+					is_login: req.cookies["jwt"] ? true : false,
+					footer: false,
+				});
 			}
 		);
 	});

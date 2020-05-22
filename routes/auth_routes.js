@@ -83,9 +83,10 @@ module.exports = (db, passport, auth_controller) => {
 						user_info.password
 					);
 					db.create_user(user_info, (err, result) => {
-						err
-							? console.log(err.message)
-							: set_cookie(req, res, result.insertId);
+						if (err) {
+							return res.send(err);
+						}
+						set_cookie(req, res, result.insertId);
 					});
 				}
 			});

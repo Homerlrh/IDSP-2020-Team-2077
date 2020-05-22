@@ -80,11 +80,6 @@ term_btn.on("click", (e) => {
 	$("#term_btn").effect("shake", { direction: "up" });
 });
 
-// $("#err_msg").change((e) => {
-// 	e.preventDefault();
-// 	console.log("hi");
-// });
-
 const sub_category = {
 	0: ["Choose a Sub Category"],
 	1: ["Buy", "Rent", "Office", "Storage", "Vacation", "Rooms"],

@@ -3,10 +3,6 @@ const check = require("./middleware/check_login");
 const router = express.Router();
 
 module.exports = () => {
-	router.get("/favicon.ico", (req, res) => {
-		res.status(404);
-	});
-
 	router.get("/", (req, res) => {
 		req.cookies.jwt ? res.redirect("/content/home") : res.render("layout/main");
 	});

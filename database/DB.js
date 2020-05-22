@@ -156,6 +156,64 @@ exports.update_user = (info, cb) => {
 	);
 };
 
-// connection.query(`delete from post where id = 7`, (err, row) => {
-// 	err ? console.log(err) : console.log(row);
+exports.creat_chatroom = (info, cb) => {
+	connection.query(`INSERT INTO user_chat_room SET ?`, info, cb);
+};
+
+exports.find_chatroom = (keypair, cb) => {
+	connection.query(
+		`select id from user_chat_room WHERE CONCAT(user_one,',',user_two) = ? or CONCAT(user_two,',',user_one) = ?`,
+		[keypair, keypair],
+		cb
+	);
+};
+
+exports.verify_user_in_chatroom = (user, cb) => {
+	connection.query(
+		`SELECT CASE WHEN EXISTS ( SELECT id FROM user_chat_room WHERE email = ?) then TRUE else FALSE end as bool`,
+		[user],
+		cb
+	);
+};
+
+exports.insert_chat = (info, cb) => {
+	connection.query(`INSERT INTO user_message SET ?`, info, cb);
+};
+
+exports.get_chat_room_by_user_id = (user_id, cb) => {
+	connection.query(
+		`select user_chat_room.id,
+		JSON_ARRAYAGG(JSON_OBJECT('id', A.id ,'user', A.username, 'avatar', A.avatar, 'email', A.email)) AS user_one,
+		JSON_ARRAYAGG(JSON_OBJECT('id', B.id ,'user', B.username, 'avatar', B.avatar, 'email', B.email)) AS user_two,
+		view_chat_history.chat
+		from user_chat_room
+		JOIN user A ON A.id = user_chat_room.user_one
+		JOIN user B ON B.id = user_chat_room.user_two
+		JOIN view_chat_history on view_chat_history.room_id = user_chat_room.id
+		where A.id = ? or B.id = ?
+		GROUP BY user_chat_room.id;`,
+		[user_id, user_id],
+		cb
+	);
+};
+
+exports.get_chat = (room_id, cb) => {
+	connection.query(
+		`select user_chat_room.id,
+		JSON_ARRAYAGG(JSON_OBJECT('id', A.id ,'user', A.username, 'avatar', A.avatar, 'email', A.email)) AS user_one,
+		JSON_ARRAYAGG(JSON_OBJECT('id', B.id ,'user', B.username, 'avatar', B.avatar, 'email', B.email)) AS user_two,
+		view_chat_history.chat
+		from user_chat_room
+		JOIN user A ON A.id = user_chat_room.user_one
+		JOIN user B ON B.id = user_chat_room.user_two
+		JOIN view_chat_history on view_chat_history.room_id = user_chat_room.id
+		WHERE user_chat_room.id = ?
+		GROUP BY user_chat_room.id;`,
+		[room_id],
+		cb
+	);
+};
+
+// connection.query(`select * from view_chat_history`, (err, ros) => {
+// 	console.log(ros);
 // });
