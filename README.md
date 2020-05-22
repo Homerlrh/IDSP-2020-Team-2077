@@ -73,7 +73,7 @@ Project description- Allow users to post free ADs and or see all other posts fro
 
 ## How to set up IAM
 
-<img id="IAM" src="https://d39wlfkh0mxxlz.cloudfront.net/Annotation+2020-05-19+164248.png" />
+<img id="IAM" src="https://d39wlfkh0mxxlz.cloudfront.net/Screen Shot 2020-05-22 at 3.04.52 AM.png" />
 
 
 ### if any question feel free to create a issue
