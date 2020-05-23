@@ -11,7 +11,7 @@ module.exports = (db, io) => {
 		socket.on("send-msg", (room, msg) => {
 			const info = { chat_room_id: room, ...msg };
 			db.insert_chat(info, (err, result) => {
-				err ? console.log(err) : console.log(result.insertId);
+				return err ? console.log(err) : console.log(result.insertId);
 			});
 			socket.to(room).broadcast.emit("send-msg", msg);
 		});

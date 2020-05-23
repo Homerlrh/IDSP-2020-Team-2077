@@ -41,7 +41,6 @@ if (msg_frm != null) {
 }
 
 socket.on("send-msg", (data) => {
-	console.log(data);
 	data.send_user = user_two_avatar.value;
 	append_message(data);
 });

@@ -3,7 +3,6 @@ const fav = document.querySelector("#fav-btn");
 function like(input, color, like) {
 	input.css("color", color);
 	const url = $("#fav-frm").attr("action");
-	console.log(url);
 	$.ajax({
 		type: "post",
 		url: url,

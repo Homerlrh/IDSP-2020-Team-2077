@@ -26,7 +26,7 @@ module.exports = (db, passport, auth_controller) => {
 				console.log(is_user);
 				db.get_user_id_by_email(req.user._json.email, (err, rows) => {
 					if (err) {
-						return console.log(err.message);
+						return res.send(err.message);
 					}
 					set_cookie(req, res, rows[0].id);
 				});
@@ -34,7 +34,7 @@ module.exports = (db, passport, auth_controller) => {
 			}
 			db.create_user(info, (err, result) => {
 				if (err) {
-					return console.log(err.message);
+					return res.send(err.message);
 				}
 				set_cookie(req, res, result.insertId);
 			});
@@ -45,16 +45,16 @@ module.exports = (db, passport, auth_controller) => {
 		const user_id = req.user.id;
 		db.get_post_by_user_id(user_id, (err, rows) => {
 			if (err) {
-				return console.log(err.message);
+				return res.send(err.message);
 			}
 			db.get_favorite_post_by_user_id(user_id, (req, row) => {
 				if (err) {
-					return console.log(err.message);
+					return res.send(err.message);
 				}
 				db.get_chat_room_by_user_id(user_id, (err, room) => {
 					const chatrooms = filter(room, user_id);
 					if (err) {
-						return console.log(err.message);
+						return res.send(err.message);
 					}
 					res.render("account/account", {
 						content_css: " ",

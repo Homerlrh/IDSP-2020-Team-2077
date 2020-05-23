@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 	if ($(window).width() < 995) {
 		$(".go_btn").css("pointer-events", "unset");
-	} else {
-		$(".go_btn").css("pointer-events", "none");
+		return;
 	}
+	$(".go_btn").css("pointer-events", "none");
 });

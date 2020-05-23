@@ -3,7 +3,7 @@ module.exports = (db, auth_controller) => {
 		db.get_user_by_id(id, (err, rows) => {
 			console.log("setting cookie");
 			if (err) {
-				console.log(err.message);
+				res.send(err.message);
 			}
 			const found_user = { ...rows[0] };
 			const token = auth_controller.generateToken(found_user);

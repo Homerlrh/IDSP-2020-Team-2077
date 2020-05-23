@@ -9,7 +9,6 @@ let s3 = "";
 
 $("#sort_by").change(function () {
 	s1 = $(this).children("option:selected").val();
-	console.log(s1, s2, s3);
 	all_post.forEach(function (x) {
 		if (is_hidden(x)) {
 			$(x).hide();
@@ -23,7 +22,6 @@ $("#sort_by").change(function () {
 
 $("#d-filter-cost").change(function () {
 	s2 = $(this).children("option:selected").val();
-	console.log(s1, s2, s3);
 	const range = s2.split("~");
 	all_post.forEach(function (x) {
 		if (is_hidden(x)) {
@@ -50,7 +48,6 @@ $("#d-filter-cost").change(function () {
 
 $("#d-filter-c").change(function () {
 	s3 = $(this).children("option:selected").val();
-	console.log(s1, s2, s3);
 	Array.from(all_post).filter((x) => {
 		if (s3 == "All") {
 			return $(x).show();

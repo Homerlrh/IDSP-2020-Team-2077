@@ -1,4 +1,6 @@
 const modal = document.querySelector(".myModal");
+const frm = document.querySelector("#post_chatForm");
+const chat_input = document.querySelector("#chatinput");
 
 $("#contact").on("click", () => {
 	$(".myModal").show();
@@ -41,9 +43,6 @@ $(function () {
 		},
 	});
 });
-
-const frm = document.querySelector("#post_chatForm");
-const chat_input = document.querySelector("#chatinput");
 
 frm.addEventListener("submit", (e) => {
 	e.preventDefault();

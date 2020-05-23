@@ -64,8 +64,6 @@ $("#publish-btn").click((e) => {
 		is_empty = check_empty(x);
 	});
 	if (!is_empty) {
-		console.log(is_empty);
-
 		$("#publish-btn").effect("shake", { direction: "up" });
 		return;
 	}
