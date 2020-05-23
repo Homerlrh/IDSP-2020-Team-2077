@@ -7,7 +7,7 @@ module.exports = (passport) => {
 			{ failureRedirect: "/login" },
 			(err, user, info) => {
 				if (err) {
-					return console.log(err);
+					return res.send(err);
 				} else {
 					req.user = user;
 					next();
