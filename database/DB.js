@@ -214,6 +214,6 @@ exports.get_chat = (room_id, cb) => {
 	);
 };
 
-// connection.query(`select * from view_chat_history`, (err, ros) => {
+// connection.query(`select * from post`, (err, ros) => {
 // 	console.log(ros);
 // });

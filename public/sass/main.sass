@@ -55,7 +55,6 @@ $box-sizing: border-box
     justify-content: space-evenly
     height: 100vh
 
-
 body
     box-sizing: $box-sizing
     font-family: $font
@@ -144,7 +143,7 @@ a
         display: flex
         justify-content: space-between
         select
-            width: 30%
+            width: 45%
 
 #city
     width: 50%
@@ -351,7 +350,7 @@ div.ui-dialog
     padding: 10px 0
 
 %post-body
-    margin-top: 20px
+    margin-bottom: 20px
     box-sizing: $box-sizing
     display: flex
     justify-content: start
@@ -380,7 +379,7 @@ div.ui-dialog
     margin-bottom: 10rem
 
 .post_style
-    margin-top: 13%
+    margin-top: 3%
 
 .single_post
     @extend %post-body
@@ -414,10 +413,7 @@ label[for="sort"]
     margin-bottom: 20px
     box-sizing: $box-sizing
     display: flex
-    background-color: #fff
     height: 6rem
-    border: 1px solid rgba(0, 0, 0, 0.125)
-    border-radius: 0.25rem
     img
         border-radius: 50%
         height: 5rem
@@ -425,18 +421,28 @@ label[for="sort"]
 
 #post-sec
     height: 100%
-
+#picGrid
+    flex-direction: row
+    flex-wrap: wrap
+    padding: 0 4px
+    .column
+        margin: 3px
+        max-width: 550px
+    
+    
 #contact
-    width: 45%
+    width: 100%
     border-color: #009bff
     background: #009bff
-    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
     border-radius: 60px
     padding: 0.5rem
     font-weight: bold
     color: #fff
     font-size: 1.5rem
     outline: none
+    &:hover
+        box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.5)
+
 
 
 .navbar
@@ -923,12 +929,8 @@ li.CATEGORIES > h5, li.Account > h5
         min-height: 75vh !important
         column-gap: 100px
         row-gap: 15px
-        left: 15%
-        top: 80px
-    
-    .post_container
-        margin-left: 20%
-
+        top: 50px
+        
     .content_home > .logo,
     .dashboard > .logo 
         display: none
@@ -987,18 +989,20 @@ li.CATEGORIES > h5, li.Account > h5
             display: none
         span.text
             grid-column: 1 / span 1
-            grid-row: 1
+            grid-row: 1 / span 4
             
         .pp
-            grid-column: 1 / span 3
             grid-row: 2
-        
+            grid-column: 2 / span 3
         .fp
-            grid-column: 1 / span 3
             grid-row: 3
+            grid-column: 2 / span 3
+
+
         .mg
-            grid-column: 1 / span 3
             grid-row: 4
+            grid-column: 2 / span 3
+
 
     section.container.profile,
     .container.detail,
@@ -1006,7 +1010,7 @@ li.CATEGORIES > h5, li.Account > h5
     .container.account
         margin-top: 80px
         position: relative
-        min-width: 50%
+        min-width: 45%
     .container.account
         padding-top: 1rem
         
@@ -1022,9 +1026,8 @@ li.CATEGORIES > h5, li.Account > h5
         margin-bottom: unset
         grid-template-columns: repeat(3, 1fr)
         img
-            width: 80%
+            width: 100%
             margin: 0 auto
-            margin-top: 4%
             grid-column: 1 / span 3
             grid-row: 1
         #info
@@ -1044,14 +1047,13 @@ li.CATEGORIES > h5, li.Account > h5
         row-gap: 20px
         column-gap: 20px
         .slide_container
-            margin: 0 auto
             margin-top: 8%
             grid-column: 1 / span 3
             grid-row: 1
-            width: 800px
+            width: 100%
             max-height: 800px
             .mySlides
-                max-width: 800px
+                max-width: 80%
                 max-height: 600px
                 margin: 0 auto
                 img
@@ -1175,6 +1177,8 @@ li.CATEGORIES > h5, li.Account > h5
     z-index: 3
     background-color: rgba(0,0,0,0.4)
 
+#myModal
+    margin-top: 80px
 .chatbox
     border-radius: 50px 50px 0 0
     background: #fff
@@ -1231,4 +1235,214 @@ li.CATEGORIES > h5, li.Account > h5
                 z-index: 0
                 right: 5px
                 width: 25%
+                color: white
+
+
+.newDesign
+    width: 80%
+    margin: 0 auto
+
+.searchBar
+    border: 2px solid #000
+    border-radius: 25px
+    padding:10px
+    display: flex
+    justify-content: space-between
+    width: 83%
+    margin: 0 auto
+    box-sizing: border-box
+    margin-top: 100px
+
+option
+    border-radius: 25px
+
+.searchQuery
+    border: none
+    box-sizing: border-box
+    height: 50px
+    width: 31.5%
+    border-radius: 25px
+    outline: none
+    padding: 5px
+.searchQuery:hover
+    color: #000
+    opacity: 0.5
+    background-color: lightgrey
+    transition-duration: 0.5s
+
+.searchBtn
+    border-radius: 50%    
+    width: 50px !important
+    height: 50px !important
+    height:50px !important
+    background-color:$main-color
+    color: white
+.searchBtn:hover
+    opacity: 0.8 !important
+    transition-duration: 0.5s
+    background: $main-color  
+        
+.hr-line
+    border: 0.5px solid #000
+    margin: 0 5px
+
+
+.imgControl
+    width: 100%
+    position: absolute
+    display: flex
+    justify-content: space-between
+    box-size: $box-sizing
+    padding: 0 10px
+    top: 50%
+    .prev,
+    .next
+        font-size: 30px
+        cursor: pointer
+    div
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        border: 1px solid #000
+        width: 60px
+        height: 60px
+        border-radius: 50%
+        background-color: white
+        &:hover
+            opacity: 0.8
+            transition-duration: 0.5s
+.m-img
+    cursor: pointer
+    :hover
+        opacity: 0.8
+        transition-duration: 0.5s
+
+.clo-btn
+    color: white
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 30px
+    width: 100px
+    padding: 0 10px
+    margin-left: 20px
+    background-color: gray
+    opacity: 0.7
+    cursor: pointer
+    border-radius: 10px
+
+.clo-btn:hover
+        opacity: 1
+
+.modal-content
+    border: none
+
+
+
+.pi 
+    width: 100%
+    object-fit: scale-down
+    pointer: cursor
+.pi:hover
+    opacity: 0.8
+.column
+    width: 100%
+.column:not(:first-child) 
+    width: 100%
+
+
+.user_info
+    border: 1px solid #000
+    box-shadow: $box-shadow
+    border-radius: 30px
+    box-sizing: $box-sizing
+    padding: 10px
+
+
+.userHeader
+    box-sizing: $box-sizing
+    text-align: center
+    border-bottom: 1px solid #000
+    padding-top: 5px
+    font-size: 1.5em
+
+.item-info
+    font-size: 1em
+
+.picon
+    font-size: 1.2em
+    margin-right: 20px
+.fav-btn
+    margin-top: 80px
+
+.ptitle
+    font-size: 2em
+
+
+
+.photoGlary
+    display: grid
+    grid-template-columns: 550px auto auto
+    gap: 5px
+    heigh: 100%
+    .grid0
+        grid-row: 1 / span 2
+        grid-column: 1/span 1
+        max-height: 415px
+        overflow: hidden
+    .grid1,
+    .grid2
+        grid-row: 1 / span 1
+    .grid3,
+    .grid4
+        grid-row: 2 / span 1
+
+.CI
+    display: grid
+    grid-template-columns: 30% auto
+    heigh: 100%
+
+#detail_chat
+    border: 1px solid #000
+    max-width: 80%
+    overflow: hidden
+    border-radius: 20px
+
+#newChatBox
+    padding: 20px
+    box-sizing: border-box
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    .chatFooter
+        text-align: center
+        display: flex
+        padding: 10px
+        height: 45px
+        border-top: 1px solid #000
+        form
+            width: 100%
+            input
+                height: 30px
+                border: none
+                border-radius: 60px
+                width: 88%
+                background: #DEF1F2
+                outline: none
+                padding-left: 15px
+                position: relative
+                z-index: 1
+            button
+                width: 10% 
+                height: 30px
+                outline: none
+                background: #009BFF
+                border: none
+                text-align: right
+                border-radius: 60px
+                position: relative
+                z-index: 0
+                right: 30px
                 color: white

@@ -3,15 +3,19 @@ $("#photo_upload").on("click", () => {
 });
 
 function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
+	console.log(input.files);
+	const allPic = document.querySelectorAll(".preview_img");
+	allPic.forEach((x, index) => {
+		if (input.files && input.files[index]) {
+			var reader = new FileReader();
 
-		reader.onload = function (e) {
-			$("#preview_img").attr("src", e.target.result);
-		};
+			reader.onload = function (e) {
+				$(x).attr("src", e.target.result);
+			};
 
-		reader.readAsDataURL(input.files[0]); // convert to base64 string
-	}
+			reader.readAsDataURL(input.files[index]); // convert to base64 string
+		}
+	});
 }
 
 $("#imgInp").change(function () {
@@ -30,6 +34,7 @@ function add_preview(input) {
 add_preview("Title");
 add_preview("Price");
 add_preview("Description");
+add_preview("Condition");
 
 $("#preview").click((e) => {
 	e.preventDefault();

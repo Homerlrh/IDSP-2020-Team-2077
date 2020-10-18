@@ -1,4 +1,12 @@
 try {
+	function openModal() {
+		document.getElementById("myModal").style.display = "block";
+	}
+
+	function closeModal() {
+		document.getElementById("myModal").style.display = "none";
+	}
+
 	var slideIndex = 1;
 	showSlides(slideIndex);
 
@@ -11,8 +19,8 @@ try {
 	}
 
 	function showSlides(n) {
-		let i;
-		const slides = document.querySelectorAll(".mySlides");
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
 		if (n > slides.length) {
 			slideIndex = 1;
 		}
@@ -22,7 +30,8 @@ try {
 		for (i = 0; i < slides.length; i++) {
 			slides[i].style.display = "none";
 		}
-		slides[slideIndex - 1].style.display = "flex";
+
+		slides[slideIndex - 1].style.display = "block";
 	}
 } catch (err) {
 	console.log(err);

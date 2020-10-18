@@ -8,18 +8,18 @@
 	/>
 	<div>
 		<%- include ("../partial/back-btn"); %>
-		<header style="text-align: center; border-bottom: 1px solid #000;">
+		<header style="text-align: center; border-bottom: 1px solid #000">
 			<%= user_two.user %>
 			<span id="status"></span>
 		</header>
 		<main id="chatbody">
 			<% chat.forEach(message => {%> <% if (message.send_user == user.id) { %>
-			<li style="text-align: right;">
+			<li style="text-align: right">
 				<span class="send"><%= message.line_chat%></span>
 				<img class="chat_avatar" src="<%=user.avatar%>" />
 			</li>
 			<% }else{ %>
-			<li style="text-align: left;">
+			<li style="text-align: left">
 				<img class="chat_avatar" src="<%= user_two.avatar %>" />
 				<span class="receive"><%= message.line_chat%></span>
 			</li>

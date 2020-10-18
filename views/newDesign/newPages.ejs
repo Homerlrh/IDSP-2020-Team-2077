@@ -1,0 +1,38 @@
+<div class="newDesign">
+	<form method="POST" action="/content/search" class="searchBar">
+		<input
+			class="searchQuery input"
+			name="query"
+			type="search"
+			placeholder="Search"
+		/>
+		<div class="hr-line"></div>
+		<select
+			class="searchQuery category"
+			id="d-Category"
+			name="category_id"
+			type="text"
+		>
+			<option value="0">Choose a Category</option>
+			<option class="Housing" value="1">Housing</option>
+			<option class="Vehicles" value="2">Vehicles</option>
+			<option class="Electronics" value="3">Electronics</option>
+			<option class="For Sale" value="4">For Sale</option>
+			<option class="Jobs" value="5">Jobs</option>
+			<option class="Community" value="6">Community</option>
+		</select>
+		<div class="hr-line"></div>
+		<select
+			class="searchQuery sub0category"
+			id="d-Sub-Category"
+			name="sub_category_id"
+			type="text"
+		>
+			<option>Choose a Sub Category</option>
+		</select>
+		<div class="hr-line"></div>
+		<button class="searchQuery searchBtn" type="submit">
+			<i class="fas fa-search" aria-hidden="true"> </i>
+		</button>
+	</form>
+</div>

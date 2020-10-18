@@ -81,7 +81,7 @@ module.exports = (db) => {
 						: false;
 				return err
 					? res.send(err)
-					: res.render("content/detailpost", {
+					: res.render("newDesign/newPostDetail", {
 							id: id,
 							seller: JSON.parse({ ...rows[0] }.seller),
 							picture: JSON.parse({ ...rows[0] }.image),

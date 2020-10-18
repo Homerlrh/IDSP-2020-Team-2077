@@ -6,7 +6,7 @@
 			id="create_post"
 			runat="server"
 		>
-			<input type="text" name="seller_id" value="<%=user_id%>" hidden />
+			<input type="text" name="seller_id" value="<%=seller.id%>" hidden />
 			<div class="form-group inp">
 				<label for="Title">Title</label>
 				<input
@@ -33,7 +33,7 @@
 				<label for="condition">Condition</label>
 				<select
 					class="form-control"
-					id="condition"
+					id="Condition"
 					name="condition"
 					type="text"
 				>
@@ -123,9 +123,7 @@
 			/>
 			<br />
 		</form>
-		<button id="photo_upload" class="upload">
-			Upload Images
-		</button>
+		<button id="photo_upload" class="upload">Upload Images</button>
 		<br /><br />
 		<button class="preview" id="preview">preview</button>
 	</div>

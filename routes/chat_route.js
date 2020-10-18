@@ -9,7 +9,7 @@ module.exports = (db) => {
 			if (err) {
 				return res.send(err);
 			}
-			res.render("account/message", {
+			res.render("newDesign/newChatInterface", {
 				err: req.flash("message"),
 				chatrooms: filter(row, user),
 				content_css: " ",
@@ -29,6 +29,31 @@ module.exports = (db) => {
 					return res.send(err);
 				}
 				res.render("account/detail_chat", {
+					user: req.user,
+					id: modify[0].id,
+					user_two: JSON.parse(modify[0].other_user)[0],
+					chat: JSON.parse(modify[0].chat),
+					content_css: " ",
+					footer: false,
+					d_sidebar: false,
+				});
+			} catch (err) {
+				req.flash("message", "That is not your chatroom");
+				res.redirect("/chat/");
+			}
+		});
+	});
+
+	router.get("/detail_msg/ci/:room_id", (req, res) => {
+		const user = { ...req.user }.id;
+		const room = req.params.room_id;
+		db.get_chat(room, (err, rows) => {
+			try {
+				const modify = filter(rows, user);
+				if (err) {
+					return res.send(err);
+				}
+				res.send({
 					user: req.user,
 					id: modify[0].id,
 					user_two: JSON.parse(modify[0].other_user)[0],

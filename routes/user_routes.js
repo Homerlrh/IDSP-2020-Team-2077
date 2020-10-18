@@ -40,6 +40,7 @@ module.exports = (db, passport, auth_controller) => {
 	});
 
 	router.get("/login/callback", (req, res) => {
+		const current_user = req.user;
 		const user_id = req.user.id;
 		db.get_post_by_user_id(user_id, (err, rows) => {
 			if (err) {
@@ -55,12 +56,14 @@ module.exports = (db, passport, auth_controller) => {
 						return res.send(err.message);
 					}
 					res.render("account/account", {
+						user: current_user,
 						content_css: " ",
 						latest_post: rows,
 						favorite_post: JSON.parse(row[0].favorite_post),
 						chatrooms: chatrooms,
 						footer: false,
 						d_sidebar: false,
+						a_c: true,
 					});
 				});
 			});
@@ -70,12 +73,12 @@ module.exports = (db, passport, auth_controller) => {
 	router
 		.route("/create_post")
 		.get((req, res) => {
+			const current_user = req.user;
 			res.render("account/create_post", {
 				content_css: " ",
-				user_id: req.user.id,
-				avatar: req.user.avatar,
-				email: req.user.email,
-				phone: req.user.phone_number == "" ? "n/a" : req.user.phone_number,
+				seller: current_user,
+				phone:
+					current_user.phone_number == "" ? "n/a" : current_user.phone_number,
 				footer: false,
 				preview: true,
 				d_sidebar: false,

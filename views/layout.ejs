@@ -17,7 +17,7 @@
 		<div id="overlay"></div>
 		<header><%- include ("partial/header"); %></header>
 		<%if( locals.d_sidebar == false) {%> <% } else { %> <%-include
-		("partial/d-sidebar"); %> <%}%> <%- body %> <%- include ("partial/footer");
+		("newDesign/newPages"); %> <%}%> <%- body %> <%- include ("partial/footer");
 		%> <% if(locals.footer != false) {%> <%- include
 		("partial/desktop_footer");%> <%}%> <% } else { %>
 		<div class="main-pg">
@@ -25,9 +25,7 @@
 				<img src="/image/white_stack_logo.png" />
 			</section>
 
-			<div class="body-sec">
-				<%- body %>
-			</div>
+			<div class="body-sec"><%- body %></div>
 		</div>
 		<% } %>
 	</body>
@@ -51,4 +49,5 @@
 	<script src="/javascript/account_update.js"></script>
 	<%}%>
 	<script src="/javascript/sortby.js"></script>
+	<script src="/javascript/allInOneChat.js"></script>
 </html>

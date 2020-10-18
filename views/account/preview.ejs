@@ -1,35 +1,69 @@
 <section id="preview_section">
-	<img id="preview_img" alt="preview_pic" name="preview_pic" src="#" />
-	<div id="info">
-		<label class="d-flex"
-			>Title: &nbsp; <span style="font-weight: bold;" id="preview_Title"></span
-		></label>
-		<label class="d-flex"
-			>Cost: $ &nbsp;
-			<span style="font-weight: bold;" id="preview_Price"></span>
+	<div style="grid-column: 1 / span 3">
+		<div class="photoGlary">
+			<div class="column m-img grid0">
+				<img class="preview_img" alt="preview_pic" name="preview_pic" src="#" />
+			</div>
+			<div class="column m-img grid1">
+				<img class="preview_img" alt="preview_pic" name="preview_pic" src="#" />
+			</div>
+			<div class="column m-img grid2">
+				<img class="preview_img" alt="preview_pic" name="preview_pic" src="#" />
+			</div>
+			<div class="column m-img grid3">
+				<img class="preview_img" alt="preview_pic" name="preview_pic" src="#" />
+			</div>
+		</div>
+	</div>
+
+	<div class="item-info">
+		<label class="ptitle d-flex align-items-center">
+			<span style="font-weight: bold" id="preview_Title"> </span>
+		</label>
+		<hr />
+		<label class="d-flex align-items-center"
+			><i class="fas fa-dollar-sign picon"></i>
+			&nbsp;
+			<span style="font-weight: bold" id="preview_Price">$ </span>
+		</label>
+		<label class="d-flex align-items-center"
+			><i class="fas fa-thumbs-up picon"></i>
+			&nbsp;
+			<span style="font-weight: bold" id="preview_Condition"> </span>
+		</label>
+
+		<label class="d-flex align-items-center"
+			><i class="fas fa-map-marker-alt picon"></i>
+			&nbsp;
+			<span style="font-weight: bold" id="location"></span>
 		</label>
 		<label class="d-flex"
 			>Post at: &nbsp;
-			<span style="font-weight: bold;" id="category"></span>
+			<span style="font-weight: bold" id="category"></span>
 		</label>
-		<label class="d-flex"
-			>Locate at: &nbsp;
-			<span style="font-weight: bold;" id="location"></span>
-		</label>
-		<label
-			>Item description:
-			<article id="preview_Description"></article>
-		</label>
+		<hr />
+		<article class="des" id="preview_Description"></article>
 	</div>
+
 	<div class="user_info">
-		<div class="preview_user">
-			<img src="<%=avatar%>" alt="Card image cap" class="avatar" />
-			<div class="post-body" style="margin: auto;">
-				<h6><%=email%> (You)</h6>
-				<p><%=phone%></p>
+		<div class="userHeader"><label>Seller Info</label></div>
+
+		<div>
+			<div class="user">
+				<img src="<%=seller.avatar%>" alt="Card image cap" class="avatar" />
+				<div style="margin: auto">
+					<h6><%=seller.email%></h6>
+
+					<% if(phone == " "){ %>
+					<p>n/a</p>
+					<% }else{ %>
+					<p><%=phone%></p>
+					<%}%>
+				</div>
 			</div>
 		</div>
-		<div class="d-flex justify-content-around" style="margin-bottom: 2rem;">
+
+		<div class="d-flex justify-content-around" style="margin-bottom: 2rem">
 			<%if (locals.preview == true) {%>
 			<button id="edit-btn">Edit</button>
 			<%}%>

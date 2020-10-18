@@ -1,13 +1,12 @@
 <section class="container profile">
 	<img class="logo" src="/image/logo_with_text.png" />
-	<br /><span class="text"
-		>Welcome Back !
-		<a class="dropdown-item" href="/user/setting"
-			><i class="fas fa-cog"></i>
+	<br />
 
-			Setting</a
-		>
-	</span>
+	<span class="text"
+		>Welcome Back <%=user.username%> ! <%- include ("./account_setting");
+		%></span
+	>
+
 	<a class="crt-post" href="/user/create_post"
 		><img class="footer_logo" alt="post" src="/image/post.png" />Create a
 		post</a
@@ -69,9 +68,9 @@
 						alt="Card image cap"
 						class="avatar"
 					/>
-					<div class="post-body" style="margin: auto;">
+					<div class="post-body" style="margin: auto">
 						<h6><%= JSON.parse(chatroom.other_user)[0].user %></h6>
-						<p style="font-size: 1rem;">
+						<p style="font-size: 1rem">
 							<%= JSON.parse(chatroom.chat)[ JSON.parse(chatroom.chat).length -
 							1 ].line_chat %>
 						</p>

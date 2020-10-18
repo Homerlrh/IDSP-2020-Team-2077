@@ -82,5 +82,12 @@ module.exports = (db, passport) => {
 	const chat_route = require("./routes/chat_route")(db);
 	app.use("/chat", handler, chat_route);
 
+	app.get("/newPages", (req, res) => {
+		res.render("newDesign/newPages", {
+			newDesign: true,
+			content_css: true,
+			d_sidebar: false,
+		});
+	});
 	return app;
 };

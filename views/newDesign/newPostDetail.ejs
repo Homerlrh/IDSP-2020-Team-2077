@@ -1,23 +1,34 @@
 <div class="container detail">
-	<%- include ("../partial/back-btn"); %>
-
 	<section id="post-sec">
-		<div class="slide_container">
-			<%picture.forEach(x=>{%>
-			<div class="mySlides">
-				<div style="margin: auto">
-					<img alt="preview_pic" name="preview_pic" src="<%=x%>" />
-				</div>
+		<div class="row slide_container" id="picGrid">
+			<div class="photoGlary">
+				<%picture.forEach((x,index)=>{%> <% if(index < 4) {%>
+
+				<img
+					src="<%=x%>"
+					onclick="openModal();currentSlide(<%=index+1%>)"
+					class="pi column m-img grid<%=index%>"
+				/>
+				<%}%> <%})%>
 			</div>
-			<%})%>
-			<a class="prev" onclick="plusSlides(-1)">❮</a>
-			<a class="next" onclick="plusSlides(1)">❯</a>
-			<div class="row">
+		</div>
+
+		<div id="myModal" class="modal">
+			<span class="clo-btn" onclick="closeModal()">X Close</span>
+			<div class="modal-content">
 				<%picture.forEach(x=>{%>
-				<div class="column">
-					<img alt="preview_pic" name="preview_pic" src="<%=x%>" width="100%" />
+
+				<div class="mySlides" style="margin: auto; text-align: center">
+					<img src="<%=x%>" style="width: 60%; height: 80%" />
 				</div>
+
 				<%})%>
+
+				<div class="imgControl">
+					<div onclick="plusSlides(-1)"><a class="prev">&#10094;</a></div>
+
+					<div onclick="plusSlides(1)"><a class="next">&#10095;</a></div>
+				</div>
 			</div>
 		</div>
 
@@ -44,28 +55,38 @@
 				><%}%>
 			</form>
 
-			<label class="d-flex"
-				>Title: &nbsp;
-				<span style="font-weight: bold"> <%=post.post_title%></span>
-			</label>
-			<label class="d-flex"
-				>Cost: &nbsp;
-				<span style="font-weight: bold">$ <%=post.price%></span>
-			</label>
-			<label class="d-flex"
-				>Condition: &nbsp;
-				<span style="font-weight: bold"> <%=post.item_condition%></span>
-			</label>
+			<!-- item info -->
+			<div class="item-info">
+				<label class="ptitle d-flex align-items-center">
+					<span style="font-weight: bold"> <%=post.post_title%></span>
+				</label>
+				<hr />
+				<label class="d-flex align-items-center"
+					><i class="fas fa-dollar-sign picon"></i>
+					&nbsp;
+					<span style="font-weight: bold">$ <%=post.price%></span>
+				</label>
+				<label class="d-flex align-items-center"
+					><i class="fas fa-thumbs-up picon"></i>
+					&nbsp;
+					<span style="font-weight: bold"> <%=post.item_condition%></span>
+				</label>
 
-			<label class="d-flex"
-				>Locate at: &nbsp;
-				<span style="font-weight: bold"><%=post.location%></span>
-			</label>
-
-			<article class="des"><%=post.post_detail%></article>
+				<label class="d-flex align-items-center"
+					><i class="fas fa-map-marker-alt picon"></i>
+					&nbsp;
+					<span style="font-weight: bold"><%=post.location%></span>
+				</label>
+				<hr />
+				<article class="des"><%=post.post_detail%></article>
+			</div>
 		</div>
-		<div>
-			<div class="user_info">
+
+		<!-- user info -->
+		<div class="user_info">
+			<div class="userHeader"><label>Seller Info</label></div>
+
+			<div>
 				<div class="user">
 					<img
 						src="<%=seller.seller_avatar%>"

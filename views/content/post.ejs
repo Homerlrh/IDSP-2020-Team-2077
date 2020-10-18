@@ -1,20 +1,56 @@
 <section class="container p">
 	<div class="post_container">
-		<h3 class="post_style" id="post-header" style="text-align: center;">
+		<h3 class="post_style" id="post-header" style="text-align: center">
 			<%=title%>
 		</h3>
-		<div class="form-group inp">
-			<label for="sort">Sort by</label>
-			<select id="sort_by" class="form-control sort" type="text">
-				<option value="All">All</option>
-				<option value="New">Brand new</option>
-				<option value="Good">Good</option>
-				<option value="Ok">Ok</option>
-				<option value="n/a">Can not describe</option>
-			</select>
+		<div style="display: flex">
+			<div class="form-group inp">
+				<label for="sort">Sort by</label>
+				<select id="sort_by" class="form-control sort" type="text">
+					<option value="All">All</option>
+					<option value="New">Brand new</option>
+					<option value="Good">Good</option>
+					<option value="Ok">Ok</option>
+					<option value="n/a">Can not describe</option>
+				</select>
+			</div>
+		</div>
+		<br />
+		<div style="display: flex; justify-content: space-between">
+			<div style="width: 32%">
+				<small>Cost</small>
+				<select class="form-control" id="d-filter-cost" type="text">
+					<option value="All">All</option>
+					<option value="2000000">above $2M</option>
+					<option value="1999999~1000000">$2M ~ $1M</option>
+					<option value="999999~500000">$900k ~ $500k</option>
+					<option value="499999~100000">$49k ~ $10k</option>
+					<option value="99999~50000">$90k ~ $50k</option>
+					<option value="49999~10000">$49k ~ $10k</option>
+					<option value="9999~1000">$9k ~ $1000</option>
+					<option value="999~0">below $1000</option>
+				</select>
+			</div>
+			<div style="width: 32%">
+				<small> province</small>
+				<select class="form-control" id="d-filter-p" type="text">
+					<option value="BC">BC</option>
+				</select>
+			</div>
+			<div style="width: 32%">
+				<small>city</small>
+				<select class="form-control" id="d-filter-c" type="text">
+					<option value="All">All</option>
+					<option value="Vancouver">Vancouver</option>
+					<option value="Richmond">Richmond</option>
+					<option value="Surrey">Surrey</option>
+					<option value="Burnaby">Burnaby</option>
+					<option value="delta/surrey/langley">delta/surrey/langley</option>
+				</select>
+			</div>
 		</div>
 		<div class="post_grid">
-			<% if(locals.content_css) {%> <%if (post.length < 1) {%>
+			<%post[0]%> <% if(locals.content_css) {%> <%if (post.length < 1) {%>
 			<h1>No listing yet</h1>
 			<%}else{%> <%post.forEach(x=> {%>
 
