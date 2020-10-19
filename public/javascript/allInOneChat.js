@@ -3,7 +3,6 @@ const allChat = document.querySelectorAll(".single-anchor");
 allChat.forEach((chat) => {
 	const url = chat.getAttribute("link");
 	chat.addEventListener("click", (e) => {
-		console.log("you clicked");
 		$.ajax({
 			type: "get",
 			url: url,
@@ -51,7 +50,6 @@ const constructChat = (chat) => {
 };
 
 const constructLineChat = (chat) => {
-	console.log(chat);
 	let a = "";
 	chat.chat.forEach((msg) => {
 		if (msg.send_user == chat.user.id) {
